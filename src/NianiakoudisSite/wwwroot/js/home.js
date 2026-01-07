@@ -22,9 +22,22 @@
         }
     );
 
-    rows.forEach((row) => observer.observe(row));
+    rows.forEach((row, index) => {
+        observer.observe(row);
+
+        row.addEventListener("click", (event) => {
+            if (event.target.closest("a, button")) {
+                return;
+            }
+            const nextRow = rows[index + 1];
+            if (nextRow) {
+                nextRow.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    });
 
     window.scrollHomeTop = () => {
-        scrollContainer.scrollTo({ top: 0, behavior: "auto" });
+        rows[0]?.scrollIntoView({ behavior: "auto", block: "start" });
+        scrollContainer.scrollTop = 0;
     };
 })();
