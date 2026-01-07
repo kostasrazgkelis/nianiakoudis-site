@@ -22,6 +22,21 @@
         }
     );
 
+    const setFocusedRow = () => {
+        let closestRow = rows[0];
+        let closestDistance = Number.POSITIVE_INFINITY;
+
+        rows.forEach((row) => {
+            const distance = Math.abs(row.offsetTop - scrollContainer.scrollTop);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestRow = row;
+            }
+        });
+
+        rows.forEach((row) => row.classList.toggle("is-focused", row === closestRow));
+    };
+
     rows.forEach((row, index) => {
         observer.observe(row);
 
@@ -36,8 +51,15 @@
         });
     });
 
+    scrollContainer.addEventListener("scroll", () => {
+        window.requestAnimationFrame(setFocusedRow);
+    });
+
+    setFocusedRow();
+
     window.scrollHomeTop = () => {
         rows[0]?.scrollIntoView({ behavior: "auto", block: "start" });
         scrollContainer.scrollTop = 0;
+        setFocusedRow();
     };
 })();
