@@ -1,0 +1,5 @@
+**/bin/
+**/obj/
+**/.vs/
+**/wwwroot/_framework/
+**/wwwroot/_content/

@@ -1,0 +1,21 @@
+@using NianiakoudisSite.Models
+
+<section class="hero">
+    <div class="hero-card">
+        <p class="eyebrow">@Content.Title</p>
+        <h1>@Content.Hero</h1>
+        <p class="summary">@Content.Summary</p>
+
+        <ul class="highlights">
+            @foreach (var highlight in Content.Highlights)
+            {
+                <li>@highlight</li>
+            }
+        </ul>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public required PageContent Content { get; set; }
+}
