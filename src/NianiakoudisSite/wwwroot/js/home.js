@@ -1,20 +1,27 @@
 (() => {
     const scrollContainer = document.querySelector(".home-scroll");
     const rows = document.querySelectorAll(".home-row");
+    const footer = document.querySelector(".home-scroll-footer");
 
     if (!scrollContainer || rows.length === 0) {
         return;
     }
 
     document.body.classList.add("scroll-animate");
+    document.body.classList.add("home-scrollbars-hidden");
+    const seenRows = new Set();
 
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("is-visible");
+                    seenRows.add(entry.target);
                 }
             });
+            if (footer) {
+                footer.classList.toggle("is-visible", seenRows.size === rows.length);
+            }
         },
         {
             root: scrollContainer,
