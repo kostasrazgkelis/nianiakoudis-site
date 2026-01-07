@@ -1,4 +1,70 @@
 @page "/"
 @inject IPageContentService ContentService
 
-<PageHero Content="ContentService.GetHome()" />
+<div class="home-stack">
+    <PageHero Content="ContentService.GetHome()" />
+
+    <section class="home-scroll">
+        <div class="home-row">
+            <div class="home-content">
+                <h2>Lorem ipsum dolor</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat
+                    vehicula felis, sed pretium dolor finibus vitae.
+                </p>
+                <a class="info-button" href="/info-1">Πληροφορίες</a>
+            </div>
+            <div class="home-visual">
+                <img src="https://via.placeholder.com/480x320" alt="Placeholder 1" />
+            </div>
+        </div>
+
+        <div class="home-row reverse">
+            <div class="home-visual">
+                <img src="https://via.placeholder.com/480x320" alt="Placeholder 2" />
+            </div>
+            <div class="home-content">
+                <h2>Dolor sit amet</h2>
+                <p>
+                    Integer hendrerit, justo ac suscipit posuere, orci lectus fermentum
+                    ligula, at pretium lorem felis vitae massa.
+                </p>
+                <a class="info-button" href="/info-2">Πληροφορίες</a>
+            </div>
+        </div>
+
+        <div class="home-row">
+            <div class="home-content">
+                <h2>Consectetur adipiscing</h2>
+                <p>
+                    Nulla facilisi. Vivamus id magna eu velit bibendum dictum sed sed
+                    lectus.
+                </p>
+                <a class="info-button" href="/info-3">Πληροφορίες</a>
+            </div>
+            <div class="home-visual">
+                <img src="https://via.placeholder.com/480x320" alt="Placeholder 3" />
+            </div>
+        </div>
+
+        <div class="home-row reverse">
+            <div class="home-visual">
+                <img src="https://via.placeholder.com/480x320" alt="Placeholder 4" />
+            </div>
+            <div class="home-content">
+                <h2>Elit sed do</h2>
+                <p>
+                    Curabitur faucibus nulla et nibh vehicula, nec convallis mauris
+                    vulputate.
+                </p>
+                <a class="info-button" href="/info-4">Πληροφορίες</a>
+            </div>
+        </div>
+
+        <div class="home-scroll-footer">
+            <button class="scroll-top-button" type="button" onclick="scrollHomeTop()">
+                Go Up
+            </button>
+        </div>
+    </section>
+</div>
