@@ -89,17 +89,21 @@ body::-webkit-scrollbar {
 .content {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 3rem 1.25rem;
+    padding: 0;
     margin-top: 6rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
 }
 
 .home-stack {
-    width: min(1200px, 100%);
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 0;
 }
 
 .home-scroll {
@@ -135,13 +139,16 @@ body.home-scrollbars-hidden::-webkit-scrollbar {
     gap: 2rem;
     align-items: center;
     background: white;
-    border-radius: 24px;
-    padding: 2rem;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    min-height: 420px;
+    border-radius: 0;
+    padding: 3rem;
+    box-shadow: none;
+    min-height: calc(100vh - 6rem);
+    height: calc(100vh - 6rem);
     scroll-snap-align: start;
-    cursor: pointer;
+    scroll-snap-stop: always;
+    width: 80%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 body.scroll-animate .home-row {
@@ -174,6 +181,14 @@ body.scroll-animate .home-row:not(.is-visible) {
 .home-content p {
     color: var(--color-muted);
     line-height: 1.7;
+}
+
+.home-row.reverse .home-content {
+    text-align: right;
+}
+
+.home-row.reverse .home-content .info-button {
+    float: right;
 }
 
 .home-visual img {
@@ -221,30 +236,54 @@ body.scroll-animate .home-row:not(.is-visible) {
 }
 
 .scroll-top-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
     border: none;
     background: var(--color-primary);
     color: white;
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 2rem;
     border-radius: 999px;
     font-weight: 700;
     cursor: pointer;
+    z-index: 10000;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    font-size: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-top-button.visible {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .scroll-top-button:hover {
     background: #186272;
+    transform: scale(1.05);
 }
 
 .hero {
-    width: 70%;
-    height: 80vh;
+    width: 80%;
+    max-width: 1400px;
+    height: calc(100vh - 6rem);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .hero-card {
     background: white;
-    padding: 3rem;
+    padding: 4rem;
     border-radius: 24px;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-    height: 100%;
+    width: 100%;
+    max-height: 90%;
+    overflow-y: auto;
 }
 
 .eyebrow {
