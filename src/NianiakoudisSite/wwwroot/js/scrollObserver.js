@@ -32,6 +32,7 @@ export function observeLastRow(dotNetHelper) {
 export function initScrollAnimations(dotNetHelper) {
     const content = document.querySelector('.content');
     const rows = Array.from(document.querySelectorAll('.home-row'));
+    const rowsContainer = document.querySelector('.home-rows');
     const sections = Array.from(document.querySelectorAll('.hero, .home-row'));
     const pagerDots = Array.from(document.querySelectorAll('.pager-dot'));
 
@@ -52,10 +53,42 @@ export function initScrollAnimations(dotNetHelper) {
         }
     );
 
-    const smoothScrollTo = (targetTop, durationMs) => {
+    if (rowsContainer) {
+        const containerObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        containerObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                root: content,
+                threshold: 0.15
+            }
+        );
+        containerObserver.observe(rowsContainer);
+    }
+
+    let activeAnimation = null;
+    const getTargetTop = (target) => {
+        const contentRect = content.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        return content.scrollTop + (targetRect.top - contentRect.top);
+    };
+    const smoothScrollTo = (target, durationMs) => {
+        if (!target) {
+            return;
+        }
+        if (activeAnimation) {
+            window.cancelAnimationFrame(activeAnimation.frameId);
+        }
+        const targetTop = getTargetTop(target);
         const startTop = content.scrollTop;
         const distance = targetTop - startTop;
         const startTime = window.performance.now();
+        const animation = { frameId: 0 };
 
         const tick = (now) => {
             const elapsed = now - startTime;
@@ -63,11 +96,14 @@ export function initScrollAnimations(dotNetHelper) {
             const eased = 1 - Math.pow(1 - progress, 3);
             content.scrollTop = startTop + distance * eased;
             if (progress < 1) {
-                window.requestAnimationFrame(tick);
+                animation.frameId = window.requestAnimationFrame(tick);
+            } else {
+                activeAnimation = null;
             }
         };
 
-        window.requestAnimationFrame(tick);
+        activeAnimation = animation;
+        animation.frameId = window.requestAnimationFrame(tick);
     };
 
     const startAutoRotate = () => {
@@ -94,7 +130,7 @@ export function initScrollAnimations(dotNetHelper) {
             const target = sections[currentIndex % sections.length];
             currentIndex += 1;
             if (target) {
-                smoothScrollTo(Math.max(0, target.offsetTop), 2000);
+                smoothScrollTo(target, 2000);
             }
         }, 8000);
 
@@ -118,7 +154,7 @@ export function initScrollAnimations(dotNetHelper) {
             dot.addEventListener('click', () => {
                 rotation.pauseRotation();
                 rotation.setNextIndexFromSection(index);
-                smoothScrollTo(Math.max(0, sections[index].offsetTop), 1600);
+                smoothScrollTo(sections[index], 1600);
             });
         });
     });

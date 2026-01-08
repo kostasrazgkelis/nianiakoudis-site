@@ -13,7 +13,7 @@
         </MudList>
 
         <MudBox Class="pager" aria-hidden="true">
-            @for (var dotIndex = 0; dotIndex < 5; dotIndex++)
+            @for (var dotIndex = 0; dotIndex < (SectionCount > 0 ? SectionCount : 5); dotIndex++)
             {
                 <button type="button" class="pager-dot @(dotIndex == 0 ? "is-active" : "")" data-section-index="@dotIndex"></button>
             }
@@ -24,6 +24,9 @@
 @code {
     [Parameter]
     public required PageContent Content { get; set; }
+
+    [Parameter]
+    public int SectionCount { get; set; }
 
     private static string GetRevealStyle(int index)
     {

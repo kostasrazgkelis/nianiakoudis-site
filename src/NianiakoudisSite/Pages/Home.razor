@@ -5,7 +5,7 @@
 
 <MudBox Class="home-stack" Id="home-stack">
     <MudBox Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
-        <PageHero Content="ContentService.GetHome()" />
+        <PageHero Content="ContentService.GetHome()" SectionCount="@(Rows.Count + 1)" />
     </MudBox>
 
     <MudBox Class="home-rows">
@@ -13,6 +13,7 @@
         {
             var row = Rows[index];
             var rowClass = index % 2 == 1 ? "home-row reverse" : "home-row";
+            rowClass = IsRowVisible(index) ? $"{rowClass} is-visible" : rowClass;
             var activeDot = index + 1;
 
             <MudTransition Class="@rowClass" Transition="Transition.Fade" Duration="@TransitionDuration" Visible="@IsRowVisible(index)">
@@ -31,7 +32,7 @@
                     </MudGrid>
 
                     <MudBox Class="pager" aria-hidden="true">
-                        @for (var dotIndex = 0; dotIndex < 5; dotIndex++)
+                        @for (var dotIndex = 0; dotIndex < Rows.Count + 1; dotIndex++)
                         {
                             <button type="button" class="pager-dot @(dotIndex == activeDot ? "is-active" : "")" data-section-index="@dotIndex"></button>
                         }

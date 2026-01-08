@@ -39,6 +39,14 @@ body::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.home-rows.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .hero-transition {
@@ -139,9 +147,7 @@ body::-webkit-scrollbar {
     height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    transition: opacity 0.5s ease, transform 0.5s ease;
 }
-
 
 .home-row-card {
     width: 90%;
@@ -153,6 +159,14 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.home-row.is-visible .home-row-card {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .home-row-grid {
