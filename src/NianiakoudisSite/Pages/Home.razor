@@ -1,75 +1,74 @@
-@page "/"
+﻿@page "/"
 @inject IPageContentService ContentService
 @inject IJSRuntime JSRuntime
 @implements IDisposable
 
-<div class="home-stack" id="home-stack">
+<MudBox Class="home-stack" Id="home-stack">
     <PageHero Content="ContentService.GetHome()" />
 
-    <div class="home-row">
-        <div class="home-content">
-            <h2>Lorem ipsum dolor</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat
-                vehicula felis, sed pretium dolor finibus vitae.
-            </p>
-            <a class="info-button" href="/info-1">Μάθετε περισσότερα</a>
-        </div>
-        <div class="home-visual">
-            <img src="https://via.placeholder.com/480x320" alt="Placeholder 1" />
-        </div>
-    </div>
+    <MudBox Class="home-rows">
+        @for (var index = 0; index < Rows.Count; index++)
+        {
+            var row = Rows[index];
+            var rowClass = index % 2 == 1 ? "home-row reverse" : "home-row";
 
-    <div class="home-row reverse">
-        <div class="home-visual">
-            <img src="https://via.placeholder.com/480x320" alt="Placeholder 2" />
-        </div>
-        <div class="home-content">
-            <h2>Dolor sit amet</h2>
-            <p>
-                Integer hendrerit, justo ac suscipit posuere, orci lectus fermentum
-                ligula, at pretium lorem felis vitae massa.
-            </p>
-            <a class="info-button" href="/info-2">Μάθετε περισσότερα</a>
-        </div>
-    </div>
+            <MudTransition Class="@rowClass" Transition="Transition.Fade" Duration="@TransitionDuration" Visible="@IsRowVisible(index)">
+                <MudPaper Class="home-row-card" Square="true" Elevation="1">
+                    <MudGrid Class="home-row-grid">
+                        <MudItem xs="12" md="6" Class="home-copy">
+                            <MudText Typo="Typo.h5">@row.Title</MudText>
+                            <MudText Typo="Typo.body1" Class="home-body">@row.Body</MudText>
+                            <MudButton Class="info-button" Variant="Variant.Filled" Color="Color.Secondary" Href="@row.Link">
+                                &#x039C;&#x03AC;&#x03B8;&#x03B5;&#x03C4;&#x03B5; &#x03C0;&#x03B5;&#x03C1;&#x03B9;&#x03C3;&#x03C3;&#x03CC;&#x03C4;&#x03B5;&#x03C1;&#x03B1;
+                            </MudButton>
+                        </MudItem>
+                        <MudItem xs="12" md="6" Class="home-visual">
+                            <MudImage Src="@row.ImageUrl" Alt="@row.ImageAlt" Class="home-image" />
+                        </MudItem>
+                    </MudGrid>
+                </MudPaper>
+            </MudTransition>
+        }
+    </MudBox>
+</MudBox>
 
-    <div class="home-row">
-        <div class="home-content">
-            <h2>Consectetur adipiscing</h2>
-            <p>
-                Nulla facilisi. Vivamus id magna eu velit bibendum dictum sed sed
-                lectus.
-            </p>
-            <a class="info-button" href="/info-3">Μάθετε περισσότερα</a>
-        </div>
-        <div class="home-visual">
-            <img src="https://via.placeholder.com/480x320" alt="Placeholder 3" />
-        </div>
-    </div>
-
-    <div class="home-row reverse">
-        <div class="home-visual">
-            <img src="https://via.placeholder.com/480x320" alt="Placeholder 4" />
-        </div>
-        <div class="home-content">
-            <h2>Elit sed do</h2>
-            <p>
-                Curabitur faucibus nulla et nibh vehicula, nec convallis mauris
-                vulputate.
-            </p>
-            <a class="info-button" href="/info-4">Μάθετε περισσότερα</a>
-        </div>
-    </div>
-</div>
-
-<button class="scroll-top-button" @onclick="ScrollToTop" id="scroll-top-button">
-    Πίσω στην κορυφή
-</button>
+<MudFab Label="Πήγαινε Επάνω" Color="Color.Primary" Class="scroll-top-button" Id="scroll-top-button" OnClick="ScrollToTop" />
 
 @code {
+    private const int TransitionDuration = 1400;
+    private static readonly List<HomeRow> Rows = new()
+    {
+        new HomeRow(
+            "Lorem ipsum dolor",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat vehicula felis, sed pretium dolor finibus vitae.",
+            "/info-1",
+            "https://via.placeholder.com/480x320",
+            "Placeholder 1"),
+        new HomeRow(
+            "Dolor sit amet",
+            "Integer hendrerit, justo ac suscipit posuere, orci lectus fermentum ligula, at pretium lorem felis vitae massa.",
+            "/info-2",
+            "https://via.placeholder.com/480x320",
+            "Placeholder 2"),
+        new HomeRow(
+            "Consectetur adipiscing",
+            "Nulla facilisi. Vivamus id magna eu velit bibendum dictum sed sed lectus.",
+            "/info-3",
+            "https://via.placeholder.com/480x320",
+            "Placeholder 3"),
+        new HomeRow(
+            "Elit sed do",
+            "Curabitur faucibus nulla et nibh vehicula, nec convallis mauris vulputate.",
+            "/info-4",
+            "https://via.placeholder.com/480x320",
+            "Placeholder 4")
+    };
+
+    private sealed record HomeRow(string Title, string Body, string Link, string ImageUrl, string ImageAlt);
+
     private DotNetObjectReference<Home>? _objRef;
     private IJSObjectReference? _jsModule;
+    private readonly List<bool> _rowVisible = new();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -78,20 +77,36 @@
             _objRef = DotNetObjectReference.Create(this);
             _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/scrollObserver.js");
             await _jsModule.InvokeVoidAsync("observeLastRow", _objRef);
+            await _jsModule.InvokeVoidAsync("initScrollAnimations", _objRef);
         }
     }
 
     [JSInvokable]
     public void ShowScrollButton()
     {
-        // This will be called from JavaScript when the last row becomes visible
         var button = (Microsoft.AspNetCore.Components.ElementReference)default;
-        // We'll handle this via CSS class toggle in JavaScript
+    }
+
+    [JSInvokable]
+    public Task SetRowVisible(int index, bool isVisible)
+    {
+        while (_rowVisible.Count <= index)
+        {
+            _rowVisible.Add(false);
+        }
+
+        if (_rowVisible[index] == isVisible)
+        {
+            return Task.CompletedTask;
+        }
+
+        _rowVisible[index] = isVisible;
+        return InvokeAsync(StateHasChanged);
     }
 
     private async Task ScrollToTop()
     {
-        await JSRuntime.InvokeVoidAsync("eval", "window.scrollTo({ top: 0, behavior: 'smooth' })");
+        await JSRuntime.InvokeVoidAsync("eval", "document.querySelector('.content')?.scrollTo({ top: 0, behavior: 'smooth' })");
     }
 
     public void Dispose()
@@ -99,4 +114,6 @@
         _objRef?.Dispose();
         _jsModule?.DisposeAsync();
     }
+
+    private bool IsRowVisible(int index) => index < _rowVisible.Count && _rowVisible[index];
 }

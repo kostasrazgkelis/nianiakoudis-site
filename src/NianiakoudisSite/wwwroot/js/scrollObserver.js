@@ -28,3 +28,60 @@ export function observeLastRow(dotNetHelper) {
     // Listen for scroll events
     content.addEventListener('scroll', checkScrollPosition);
 }
+
+export function initScrollAnimations(dotNetHelper) {
+    const content = document.querySelector('.content');
+    const rows = Array.from(document.querySelectorAll('.home-row'));
+
+    if (!content || rows.length === 0 || !dotNetHelper) {
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                const index = Number(entry.target.dataset.rowIndex || 0);
+                dotNetHelper.invokeMethodAsync('SetRowVisible', index, entry.isIntersecting);
+            });
+        },
+        {
+            root: content,
+            threshold: 0.25
+        }
+    );
+
+    const startAutoRotate = () => {
+        let currentIndex = 0;
+        let pauseUntil = 0;
+        const pauseRotation = () => {
+            pauseUntil = window.performance.now() + 30000;
+        };
+
+        window.setInterval(() => {
+            if (rows.length === 0) {
+                return;
+            }
+            if (window.performance.now() < pauseUntil) {
+                return;
+            }
+            const target = rows[currentIndex % rows.length];
+            currentIndex += 1;
+            if (target) {
+                content.scrollTo({ top: Math.max(0, target.offsetTop), behavior: 'smooth' });
+            }
+        }, 8000);
+
+        return pauseRotation;
+    };
+
+    window.requestAnimationFrame(() => {
+        rows.forEach((row, index) => {
+            row.dataset.rowIndex = String(index);
+            observer.observe(row);
+        });
+        const pauseRotation = startAutoRotate();
+        content.addEventListener('wheel', pauseRotation, { passive: true });
+        content.addEventListener('touchstart', pauseRotation, { passive: true });
+        content.addEventListener('keydown', pauseRotation);
+    });
+}

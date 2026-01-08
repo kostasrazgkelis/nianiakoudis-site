@@ -1,26 +1,24 @@
 @inherits LayoutComponentBase
 
-<div class="page">
-    <header class="top-bar">
-        <NavLink href="/" class="brand-link">
-            <span class="brand-icon" aria-hidden="true">◆</span>
-            <span class="brand-text">TCS CONSULTING SERVICES</span>
-        </NavLink>
+<MudLayout>
+    <MudAppBar Class="app-bar" Color="Color.Default" Fixed="true" Elevation="0">
+        <MudText Typo="Typo.h6" Class="brand-text">TCS CONSULTING SERVICES</MudText>
+        <MudSpacer />
         <NavMenu />
-    </header>
+    </MudAppBar>
 
-    <main class="content">
-        @Body
-    </main>
+    <MudMainContent Class="app-main">
+        <MudBox Class="content">
+            @Body
+        </MudBox>
+    </MudMainContent>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <span>© 2024 TCS CONSULTING SERVICES</span>
-            <div class="footer-contact">
-                <span>Telephone: <a href="tel:+302311234567">+30 231 123 4567</a></span>
-                <span>Email: <a href="mailto:info@nianiakoudis.gr">info@nianiakoudis.gr</a></span>
-                <span>LinkedIn: <a href="https://www.linkedin.com/company/nianiakoudis" target="_blank" rel="noopener noreferrer">linkedin.com/company/nianiakoudis</a></span>
-            </div>
-        </div>
-    </footer>
-</div>
+    <MudPaper Class="app-footer" Square="true" Elevation="0">
+        <MudText Typo="Typo.subtitle2">&copy; 2024 TCS CONSULTING SERVICES</MudText>
+        <MudStack Class="footer-contact" Row="true" Spacing="2">
+            <MudText Typo="Typo.body2">Telephone: <MudLink Href="tel:+302311234567">+30 231 123 4567</MudLink></MudText>
+            <MudText Typo="Typo.body2">Email: <MudLink Href="mailto:info@nianiakoudis.gr">info@nianiakoudis.gr</MudLink></MudText>
+            <MudText Typo="Typo.body2">LinkedIn: <MudLink Href="https://www.linkedin.com/company/nianiakoudis" Target="_blank" Rel="noopener noreferrer">linkedin.com/company/nianiakoudis</MudLink></MudText>
+        </MudStack>
+    </MudPaper>
+</MudLayout>

@@ -1,17 +1,17 @@
 @using NianiakoudisSite.Models
 
 <section class="hero">
-    <div class="hero-card">
-        <h1>@Content.Hero</h1>
-        <p class="summary">@Content.Summary</p>
+    <MudPaper Class="hero-card" Square="true" Elevation="1">
+        <MudText Typo="Typo.h3">@Content.Hero</MudText>
+        <MudText Typo="Typo.subtitle1" Class="summary">@Content.Summary</MudText>
 
-        <ul class="highlights">
+        <MudList T="string" Class="highlights">
             @foreach (var highlight in Content.Highlights)
             {
-                <li>@highlight</li>
+                <MudListItem T="string">@highlight</MudListItem>
             }
-        </ul>
-    </div>
+        </MudList>
+    </MudPaper>
 </section>
 
 @code {
