@@ -4,6 +4,9 @@
     --color-soft: #f4f1de;
     --color-text: #1d1d1f;
     --color-muted: #596275;
+    --top-bar-height: 6rem;
+    --content-pad: 1.5rem;
+    --content-bottom-pad: 3rem;
 }
 
 * {
@@ -91,9 +94,11 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 0;
-    margin-top: 6rem;
-    padding-bottom: 3rem;
+    width: 100%;
+    height: calc(100vh - var(--top-bar-height));
+    padding: var(--content-pad);
+    margin-top: var(--top-bar-height);
+    padding-bottom: var(--content-bottom-pad);
     overflow-y: auto;
     overflow-x: hidden;
     scroll-snap-type: y mandatory;
@@ -144,8 +149,8 @@ body.home-scrollbars-hidden::-webkit-scrollbar {
     border: 1px solid rgba(0, 0, 0, 0.06);
     padding: 3rem;
     box-shadow: none;
-    min-height: calc(100vh - 6rem);
-    height: calc(100vh - 6rem);
+    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     scroll-snap-align: start;
     scroll-snap-stop: always;
     width: 80%;
@@ -277,10 +282,11 @@ body.scroll-animate .home-row:not(.is-visible) {
 }
 
 .hero {
-    width: 80%;
-    max-width: 1400px;
-    height: calc(100vh - 6rem);
+    width: 100%;
+    height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     margin: 0 auto;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -290,11 +296,12 @@ body.scroll-animate .home-row:not(.is-visible) {
 
 .hero-card {
     background: white;
-    padding: 4rem;
-    border-radius: 24px;
+    padding: 5rem 4rem;
+    border-radius: 0;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
     width: 100%;
-    max-height: 90%;
+    height: 100%;
+    max-height: none;
     overflow-y: auto;
 }
 
@@ -372,8 +379,16 @@ body.scroll-animate .home-row:not(.is-visible) {
         gap: 1rem;
     }
 
+    .hero {
+        height: auto;
+        min-height: calc(100vh - 6rem);
+    }
+
     .hero-card {
         padding: 2rem;
+        height: 100%;
+        max-height: none;
+        overflow: visible;
     }
 
     .hero h1 {

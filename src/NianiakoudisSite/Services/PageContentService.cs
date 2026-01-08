@@ -7,7 +7,6 @@ public sealed class PageContentService : IPageContentService
     public PageContent GetHome()
     {
         return new PageContent(
-            "Αρχική",
             "Απλή, καθαρή παρουσία στο web.",
             new[]
             {
@@ -22,7 +21,6 @@ public sealed class PageContentService : IPageContentService
     public PageContent GetAbout()
     {
         return new PageContent(
-            "Σχετικά",
             "Εμπιστοσύνη, συνέπεια, απλότητα.",
             new[]
             {
