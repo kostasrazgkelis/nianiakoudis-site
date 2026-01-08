@@ -109,13 +109,13 @@
             _rowVisible.Add(false);
         }
 
-        if (_rowVisible[index] == isVisible)
+        if (isVisible && !_rowVisible[index])
         {
-            return Task.CompletedTask;
+            _rowVisible[index] = true;
+            return InvokeAsync(StateHasChanged);
         }
 
-        _rowVisible[index] = isVisible;
-        return InvokeAsync(StateHasChanged);
+        return Task.CompletedTask;
     }
 
     private async Task ScrollToTop()

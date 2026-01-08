@@ -44,7 +44,10 @@ export function initScrollAnimations(dotNetHelper) {
         (entries) => {
             entries.forEach((entry) => {
                 const index = Number(entry.target.dataset.rowIndex || 0);
-                dotNetHelper.invokeMethodAsync('SetRowVisible', index, entry.isIntersecting);
+                if (entry.isIntersecting) {
+                    dotNetHelper.invokeMethodAsync('SetRowVisible', index, true);
+                    observer.unobserve(entry.target);
+                }
             });
         },
         {
@@ -106,6 +109,17 @@ export function initScrollAnimations(dotNetHelper) {
         animation.frameId = window.requestAnimationFrame(tick);
     };
 
+    const jumpTo = (target) => {
+        if (!target) {
+            return;
+        }
+        if (activeAnimation) {
+            window.cancelAnimationFrame(activeAnimation.frameId);
+            activeAnimation = null;
+        }
+        content.scrollTop = getTargetTop(target);
+    };
+
     const startAutoRotate = () => {
         let currentIndex = 0;
         let pauseUntil = 0;
@@ -127,10 +141,15 @@ export function initScrollAnimations(dotNetHelper) {
             if (window.performance.now() < pauseUntil) {
                 return;
             }
-            const target = sections[currentIndex % sections.length];
+            const targetIndex = currentIndex % sections.length;
+            const target = sections[targetIndex];
             currentIndex += 1;
             if (target) {
-                smoothScrollTo(target, 2000);
+                if (currentIndex > sections.length && targetIndex === 0) {
+                    jumpTo(target);
+                } else {
+                    smoothScrollTo(target, 2000);
+                }
             }
         }, 8000);
 
@@ -154,7 +173,7 @@ export function initScrollAnimations(dotNetHelper) {
             dot.addEventListener('click', () => {
                 rotation.pauseRotation();
                 rotation.setNextIndexFromSection(index);
-                smoothScrollTo(sections[index], 1600);
+                jumpTo(sections[index]);
             });
         });
     });
