@@ -54,7 +54,7 @@ export function initScrollAnimations(dotNetHelper) {
         let currentIndex = 0;
         let pauseUntil = 0;
         const pauseRotation = () => {
-            pauseUntil = window.performance.now() + 30000;
+            pauseUntil = window.performance.now() + 20000;
         };
 
         window.setInterval(() => {
