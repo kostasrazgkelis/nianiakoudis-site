@@ -41,6 +41,32 @@ body::-webkit-scrollbar {
     gap: 2rem;
 }
 
+.hero-transition {
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.hero-transition.is-visible {
+    opacity: 1;
+}
+
+.hero-transition.is-visible .hero-reveal,
+.hero-transition.is-visible .hero-reveal-item {
+    animation: hero-fade-up 0.8s ease both;
+    animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes hero-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .app-bar {
     background: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -51,6 +77,15 @@ body::-webkit-scrollbar {
     letter-spacing: 0.04rem;
     font-weight: 700;
     color: var(--color-primary);
+}
+
+.brand-link {
+    text-decoration: none;
+}
+
+.brand-link:hover,
+.brand-link:focus-visible {
+    text-decoration: none;
 }
 
 .brand-stack {
@@ -100,8 +135,8 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: calc(85vh - var(--top-bar-height));
-    height: calc(85vh - var(--top-bar-height));
+    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     scroll-snap-align: start;
     scroll-snap-stop: always;
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -117,6 +152,7 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .home-row-grid {
@@ -142,6 +178,7 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
 .home-body {
@@ -153,9 +190,9 @@ body::-webkit-scrollbar {
 .home-image {
     width: 100%;
     height: 100%;
-    border-radius: 18px;
+    min-height: 320px;
+    border-radius: 0;
     display: block;
-    border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     object-fit: cover;
 }
@@ -215,9 +252,10 @@ body::-webkit-scrollbar {
     padding: 5rem 4rem;
     border-radius: 0;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-    width: 85%;
+    width: 90%;
     height: 85%;
     max-height: none;
+    position: relative;
 }
 
 .eyebrow {
@@ -263,6 +301,37 @@ body::-webkit-scrollbar {
     justify-content: center;
     gap: 0.75rem 1.5rem;
     font-size: 0.95rem;
+}
+
+.pager {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.pager-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--color-primary);
+    opacity: 0.4;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.pager-dot.is-active {
+    transform: scale(1.6);
+    opacity: 1;
+}
+
+.pager-dot:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 @media (max-width: 720px) {

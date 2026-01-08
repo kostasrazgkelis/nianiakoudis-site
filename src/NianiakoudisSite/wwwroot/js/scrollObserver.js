@@ -32,6 +32,8 @@ export function observeLastRow(dotNetHelper) {
 export function initScrollAnimations(dotNetHelper) {
     const content = document.querySelector('.content');
     const rows = Array.from(document.querySelectorAll('.home-row'));
+    const sections = Array.from(document.querySelectorAll('.hero, .home-row'));
+    const pagerDots = Array.from(document.querySelectorAll('.pager-dot'));
 
     if (!content || rows.length === 0 || !dotNetHelper) {
         return;
@@ -50,28 +52,53 @@ export function initScrollAnimations(dotNetHelper) {
         }
     );
 
+    const smoothScrollTo = (targetTop, durationMs) => {
+        const startTop = content.scrollTop;
+        const distance = targetTop - startTop;
+        const startTime = window.performance.now();
+
+        const tick = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / durationMs, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            content.scrollTop = startTop + distance * eased;
+            if (progress < 1) {
+                window.requestAnimationFrame(tick);
+            }
+        };
+
+        window.requestAnimationFrame(tick);
+    };
+
     const startAutoRotate = () => {
         let currentIndex = 0;
         let pauseUntil = 0;
         const pauseRotation = () => {
-            pauseUntil = window.performance.now() + 20000;
+            pauseUntil = window.performance.now() + 15000;
+        };
+        const setNextIndexFromSection = (sectionIndex) => {
+            if (sections.length === 0) {
+                return;
+            }
+            const safeIndex = Math.max(0, Math.min(sections.length - 1, sectionIndex));
+            currentIndex = (safeIndex + 1) % sections.length;
         };
 
         window.setInterval(() => {
-            if (rows.length === 0) {
+            if (sections.length === 0) {
                 return;
             }
             if (window.performance.now() < pauseUntil) {
                 return;
             }
-            const target = rows[currentIndex % rows.length];
+            const target = sections[currentIndex % sections.length];
             currentIndex += 1;
             if (target) {
-                content.scrollTo({ top: Math.max(0, target.offsetTop), behavior: 'smooth' });
+                smoothScrollTo(Math.max(0, target.offsetTop), 2000);
             }
         }, 8000);
 
-        return pauseRotation;
+        return { pauseRotation, setNextIndexFromSection };
     };
 
     window.requestAnimationFrame(() => {
@@ -79,9 +106,20 @@ export function initScrollAnimations(dotNetHelper) {
             row.dataset.rowIndex = String(index);
             observer.observe(row);
         });
-        const pauseRotation = startAutoRotate();
-        content.addEventListener('wheel', pauseRotation, { passive: true });
-        content.addEventListener('touchstart', pauseRotation, { passive: true });
-        content.addEventListener('keydown', pauseRotation);
+        const rotation = startAutoRotate();
+        content.addEventListener('wheel', rotation.pauseRotation, { passive: true });
+        content.addEventListener('touchstart', rotation.pauseRotation, { passive: true });
+        content.addEventListener('keydown', rotation.pauseRotation);
+        pagerDots.forEach((dot) => {
+            const index = Number(dot.dataset.sectionIndex);
+            if (Number.isNaN(index) || !sections[index]) {
+                return;
+            }
+            dot.addEventListener('click', () => {
+                rotation.pauseRotation();
+                rotation.setNextIndexFromSection(index);
+                smoothScrollTo(Math.max(0, sections[index].offsetTop), 1600);
+            });
+        });
     });
 }

@@ -2,19 +2,32 @@
 
 <section class="hero">
     <MudPaper Class="hero-card" Square="true" Elevation="1">
-        <MudText Typo="Typo.h3">@Content.Hero</MudText>
-        <MudText Typo="Typo.subtitle1" Class="summary">@Content.Summary</MudText>
+        <MudText Typo="Typo.h3" Class="hero-reveal" Style="--reveal-delay: 0ms;">@Content.Hero</MudText>
+        <MudText Typo="Typo.subtitle1" Class="summary hero-reveal" Style="--reveal-delay: 140ms;">@Content.Summary</MudText>
 
         <MudList T="string" Class="highlights">
-            @foreach (var highlight in Content.Highlights)
+            @for (var index = 0; index < Content.Highlights.Length; index++)
             {
-                <MudListItem T="string">@highlight</MudListItem>
+                <MudListItem T="string" Class="hero-reveal-item" Style="@GetRevealStyle(index)" Text="@Content.Highlights[index]" />
             }
         </MudList>
+
+        <MudBox Class="pager" aria-hidden="true">
+            @for (var dotIndex = 0; dotIndex < 5; dotIndex++)
+            {
+                <button type="button" class="pager-dot @(dotIndex == 0 ? "is-active" : "")" data-section-index="@dotIndex"></button>
+            }
+        </MudBox>
     </MudPaper>
 </section>
 
 @code {
     [Parameter]
     public required PageContent Content { get; set; }
+
+    private static string GetRevealStyle(int index)
+    {
+        var delay = 300 + (index * 140);
+        return $"--reveal-delay: {delay}ms;";
+    }
 }

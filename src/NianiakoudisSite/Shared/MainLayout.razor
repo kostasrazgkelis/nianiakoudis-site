@@ -2,10 +2,12 @@
 
 <MudLayout>
     <MudAppBar Class="app-bar" Color="Color.Default" Fixed="true" Elevation="0">
-        <MudStack Class="brand-stack" Row="true" Spacing="1" AlignItems="AlignItems.Center">
-            <MudIcon Icon="@Icons.Material.Filled.Business" Class="brand-icon" />
-            <MudText Typo="Typo.h6" Class="brand-text">TCS CONSULTING SERVICES</MudText>
-        </MudStack>
+        <MudLink Href="/" Class="brand-link">
+            <MudStack Class="brand-stack" Row="true" Spacing="1" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Material.Filled.Business" Class="brand-icon" />
+                <MudText Typo="Typo.h6" Class="brand-text">TCS CONSULTING SERVICES</MudText>
+            </MudStack>
+        </MudLink>
         <MudSpacer />
         <NavMenu />
     </MudAppBar>
