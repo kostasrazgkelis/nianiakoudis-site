@@ -65,8 +65,7 @@
     setFocusedRow();
 
     window.scrollHomeTop = () => {
-        rows[0]?.scrollIntoView({ behavior: "auto", block: "start" });
-        scrollContainer.scrollTop = 0;
+        rows[0]?.scrollIntoView({ behavior: "smooth", block: "start" });
         setFocusedRow();
     };
 })();

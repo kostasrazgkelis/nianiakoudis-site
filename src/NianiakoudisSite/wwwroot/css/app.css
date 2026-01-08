@@ -15,6 +15,13 @@ body {
     font-family: "Segoe UI", system-ui, sans-serif;
     background: var(--color-soft);
     color: var(--color-text);
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 .page {
@@ -30,6 +37,11 @@ body {
     padding: 1.5rem 3rem;
     background: white;
     border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .brand-link {
@@ -80,6 +92,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 3rem 1.25rem;
+    margin-top: 6rem;
 }
 
 .home-stack {
@@ -222,7 +235,8 @@ body.scroll-animate .home-row:not(.is-visible) {
 }
 
 .hero {
-    width: min(960px, 100%);
+    width: 70%;
+    height: 80vh;
 }
 
 .hero-card {
@@ -230,6 +244,7 @@ body.scroll-animate .home-row:not(.is-visible) {
     padding: 3rem;
     border-radius: 24px;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    height: 100%;
 }
 
 .eyebrow {
