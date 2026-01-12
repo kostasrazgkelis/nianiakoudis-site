@@ -38,18 +38,28 @@ body::-webkit-scrollbar {
     gap: 0;
 }
 
-.home-rows {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+.home-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
 }
 
-.home-rows.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+.home-carousel .mud-carousel-nav {
+    z-index: 2;
+}
+
+.home-carousel .mud-carousel-nav button {
+    background: var(--color-primary);
+    color: #ffffff;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+}
+
+.home-carousel .mud-carousel-nav button:hover {
+    filter: brightness(0.9);
 }
 
 .hero-transition {
@@ -264,8 +274,7 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
-    height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    height: 100%;
     scroll-snap-align: start;
     scroll-snap-stop: always;
 }
@@ -274,7 +283,6 @@ body::-webkit-scrollbar {
     width: 100%;
     max-width: none;
     height: 100%;
-    padding: clamp(1.25rem, 2vw + 1rem, 3rem);
     border: 1px solid rgba(0, 0, 0, 0.06);
     background: var(--color-secondary);
     display: flex;
@@ -287,6 +295,11 @@ body::-webkit-scrollbar {
 }
 
 .home-row.is-visible .home-row-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.home-carousel .home-row-card {
     opacity: 1;
     transform: translateY(0);
 }
@@ -316,6 +329,7 @@ body::-webkit-scrollbar {
     align-items: stretch;
     justify-content: center;
     height: 100%;
+    padding: 0;
 }
 
 .home-body {
@@ -367,12 +381,19 @@ body::-webkit-scrollbar {
 }
 
 .contact-page {
-    width: min(1400px, 100%);
-    background: var(--color-secondary);
+    width: 100%;
     border-radius: 0;
-    padding: 3rem;
+    padding: 0;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
+    max-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.contact-page::-webkit-scrollbar {
+    display: none;
 }
 
 .contact-title {
@@ -381,13 +402,12 @@ body::-webkit-scrollbar {
 }
 
 .contact-hero {
-    width: calc(100% + 6rem);
+    width: 100%;
+    height: 100%;
     background: var(--color-secondary);
     height: auto;
-    margin: -3rem -3rem 1.5rem;
     border-radius: 0;
     overflow: visible;
-    max-height: 640px;
 }
 
 .contact-hero img {
@@ -404,7 +424,7 @@ body::-webkit-scrollbar {
 
 .contact-slide-up {
     opacity: 0;
-    animation: contact-slide-up 1s ease forwards;
+    animation: contact-slide-up 2s ease forwards;
     animation-delay: 0.3s;
 }
 
@@ -509,26 +529,6 @@ body::-webkit-scrollbar {
     font-weight: 700;
 }
 
-.scroll-top-button {
-    position: fixed;
-    bottom: calc(var(--footer-height) + 0.5rem);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.scroll-top-button.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.scroll-top-button:hover {
-    transform: translateX(-50%) translateY(-2px) scale(1.03);
-}
-
 .hero {
     width: 100%;
     height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
@@ -598,37 +598,6 @@ body::-webkit-scrollbar {
     font-size: 0.95rem;
 }
 
-.pager {
-    position: absolute;
-    right: 1.5rem;
-    bottom: 1.5rem;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.pager-dot {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 999px;
-    background: var(--color-primary);
-    opacity: 0.4;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.pager-dot.is-active {
-    transform: scale(1.6);
-    opacity: 1;
-}
-
-.pager-dot:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-}
-
 @media (max-width: 900px) {
     .home-row {
         height: auto;
@@ -696,6 +665,8 @@ body::-webkit-scrollbar {
 
     .contact-page {
         padding: 2rem;
+        max-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+        overflow-y: auto;
     }
 }
 

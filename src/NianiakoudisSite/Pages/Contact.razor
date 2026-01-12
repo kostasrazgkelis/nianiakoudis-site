@@ -1,7 +1,8 @@
 @page "/contact"
 
 <MudPaper Class="contact-page" Square="true" Elevation="1">
-    <MudImage Src="/assets/pictures/contact-us.jpg" Alt="Contact us" Class="contact-hero contact-slide-up" />
+    
+    <MudImage ObjectFit="ObjectFit.Cover" Src="/assets/pictures/contact-us.jpg" Alt="Contact us" Class="contact-hero contact-slide-up" />
     <MudText Typo="Typo.h4" Class="contact-title contact-fade-title">&#x0395;&#x03A0;&#x0399;&#x039A;&#x039F;&#x0399;&#x039D;&#x03A9;&#x039D;&#x0399;&#x0391;</MudText>
     <MudText Typo="Typo.body1" Class="contact-subtitle contact-slide-down">
         &#x0395;&#x03AF;&#x03BC;&#x03B1;&#x03C3;&#x03C4;&#x03B5; &#x03B4;&#x03AF;&#x03C0;&#x03BB;&#x03B1; &#x03C3;&#x03B1;&#x03C2; &#x03B3;&#x03B9;&#x03B1; &#x03BA;&#x03AC;&#x03B8;&#x03B5; &#x03B5;&#x03C1;&#x03CE;&#x03C4;&#x03B7;&#x03C3;&#x03B7; &#x03AE; &#x03B1;&#x03AF;&#x03C4;&#x03B7;&#x03BC;&#x03B1;.
@@ -100,9 +101,10 @@
     {
         get
         {
-            var subject = string.IsNullOrWhiteSpace(Subject) ? "Contact request" : Subject;
+            string? subject = string.IsNullOrWhiteSpace(Subject) ? "Contact request" : Subject;
             var body = $"Name: {FullName}\nEmail: {Email}\nPhone: {Phone}\n\nMessage:\n{Message}";
             return $"mailto:info@nianiakoudis.gr?subject={Uri.EscapeDataString(subject)}&body={Uri.EscapeDataString(body)}";
         }
     }
+
 }

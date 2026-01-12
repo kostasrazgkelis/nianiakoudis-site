@@ -1,41 +1,33 @@
 ﻿@page "/"
 @inject IJSRuntime JSRuntime
-@implements IDisposable
 @using MudBlazor
 
 <MudBox Class="home-stack" Id="home-stack">
-    <MudBox Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
-        <MudPaper Class="home-hero hero" Square="true" Elevation="1" Padding="0">
-            <MudImage Src="/assets/pictures/homepage-handshake.jpg" Alt="Handshake" Class="home-hero-image" />
-            <MudBox Class="home-hero-text">
-                <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-first">
-                    TCS CONSULTING SERVICES
-                </MudText>
-                <MudText Typo="Typo.h6" Class="home-hero-paragraph home-hero-paragraph-second">
-                    ΛΟΓΙΣΤΙΚΟ & ΦΟΡΟΤΕΧΝΙΚΟ ΓΡΑΦΕΙΟ
-                </MudText>
-                <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-third">
-                    20 Χρόνια Εμπειρίας <span class="home-hero-paragraph-delayed">μαζί σας</span>
-                </MudText>
-            </MudBox>
-            <MudBox Class="pager" aria-hidden="true">
-                @for (var dotIndex = 0; dotIndex < Rows.Count + 1; dotIndex++)
-                {
-                    <button type="button" class="pager-dot @(dotIndex == 0 ? "is-active" : "")" data-section-index="@dotIndex"></button>
-                }
-            </MudBox>
-        </MudPaper>
-    </MudBox>
 
-    <MudBox Class="home-rows">
+    <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="true" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(10)" Interval="20000" BulletsColor="Color.Primary" ArrowColor="Color.Primary">
+        <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
+            <MudPaper Class="home-hero hero" Square="true" Elevation="1" Padding="0">
+                <MudImage Src="/assets/pictures/homepage-handshake.jpg" Alt="Handshake" Class="home-hero-image" />
+                <MudBox Class="home-hero-text">
+                    <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-first">
+                        TCS CONSULTING SERVICES
+                    </MudText>
+                    <MudText Typo="Typo.h6" Class="home-hero-paragraph home-hero-paragraph-second">
+                        ΛΟΓΙΣΤΙΚΟ & ΦΟΡΟΤΕΧΝΙΚΟ ΓΡΑΦΕΙΟ
+                    </MudText>
+                    <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-third">
+                        20 Χρόνια Εμπειρίας <span class="home-hero-paragraph-delayed">μαζί σας</span>
+                    </MudText>
+                </MudBox>
+        </MudPaper>
+        </MudCarouselItem>
+
         @for (var index = 0; index < Rows.Count; index++)
         {
             var row = Rows[index];
             var rowClass = index % 2 == 1 ? "home-row reverse" : "home-row";
-            rowClass = IsRowVisible(index) ? $"{rowClass} is-visible" : rowClass;
-            var activeDot = index + 1;
 
-            <MudTransition Class="@rowClass" Transition="Transition.Fade" Duration="@TransitionDuration" Visible="@IsRowVisible(index)">
+            <MudCarouselItem Class="@rowClass">
                 <MudPaper Class="home-row-card" Square="true" Elevation="1">
                     <MudGrid Class="home-row-grid">
                         <MudItem xs="12" md="6" Class="home-copy">
@@ -50,22 +42,13 @@
                         </MudItem>
                     </MudGrid>
 
-                    <MudBox Class="pager" aria-hidden="true">
-                        @for (var dotIndex = 0; dotIndex < Rows.Count + 1; dotIndex++)
-                        {
-                            <button type="button" class="pager-dot @(dotIndex == activeDot ? "is-active" : "")" data-section-index="@dotIndex"></button>
-                        }
-                    </MudBox>
                 </MudPaper>
-            </MudTransition>
+            </MudCarouselItem>
         }
-    </MudBox>
+    </MudCarousel>
 </MudBox>
 
-<MudFab Label="???a??e ?p???" Color="Color.Primary" Class="scroll-top-button" Id="scroll-top-button" OnClick="ScrollToTop" />
-
 @code {
-    private const int TransitionDuration = 10000;
     private static readonly List<HomeRow> Rows = new()
     {
         new HomeRow(
@@ -96,59 +79,21 @@
 
     private sealed record HomeRow(string Title, string Body, string Link, string ImageUrl, string ImageAlt);
 
-    private DotNetObjectReference<Home>? _objRef;
-    private IJSObjectReference? _jsModule;
-    private readonly List<bool> _rowVisible = new();
     private bool HeroVisible { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            _objRef = DotNetObjectReference.Create(this);
-            _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/scrollObserver.js");
-            await _jsModule.InvokeVoidAsync("observeLastRow", _objRef);
-            await _jsModule.InvokeVoidAsync("initScrollAnimations", _objRef);
             HeroVisible = true;
             await InvokeAsync(StateHasChanged);
         }
-    }
-
-    [JSInvokable]
-    public void ShowScrollButton()
-    {
-        var button = (Microsoft.AspNetCore.Components.ElementReference)default;
-    }
-
-    [JSInvokable]
-    public Task SetRowVisible(int index, bool isVisible)
-    {
-        while (_rowVisible.Count <= index)
-        {
-            _rowVisible.Add(false);
-        }
-
-        if (isVisible && !_rowVisible[index])
-        {
-            _rowVisible[index] = true;
-            return InvokeAsync(StateHasChanged);
-        }
-
-        return Task.CompletedTask;
     }
 
     private async Task ScrollToTop()
     {
         await JSRuntime.InvokeVoidAsync("eval", "document.querySelector('.content')?.scrollTo({ top: 0, behavior: 'smooth' })");
     }
-
-    public void Dispose()
-    {
-        _objRef?.Dispose();
-        _jsModule?.DisposeAsync();
-    }
-
-    private bool IsRowVisible(int index) => index < _rowVisible.Count && _rowVisible[index];
 }
 
 
