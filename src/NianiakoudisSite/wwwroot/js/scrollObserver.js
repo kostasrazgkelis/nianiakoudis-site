@@ -75,6 +75,7 @@ export function initScrollAnimations(dotNetHelper) {
     }
 
     let activeAnimation = null;
+    let scrollLock = false;
     const getTargetTop = (target) => {
         const contentRect = content.getBoundingClientRect();
         const targetRect = target.getBoundingClientRect();
@@ -87,6 +88,7 @@ export function initScrollAnimations(dotNetHelper) {
         if (activeAnimation) {
             window.cancelAnimationFrame(activeAnimation.frameId);
         }
+        scrollLock = true;
         const targetTop = getTargetTop(target);
         const startTop = content.scrollTop;
         const distance = targetTop - startTop;
@@ -102,6 +104,7 @@ export function initScrollAnimations(dotNetHelper) {
                 animation.frameId = window.requestAnimationFrame(tick);
             } else {
                 activeAnimation = null;
+                scrollLock = false;
             }
         };
 
@@ -117,6 +120,7 @@ export function initScrollAnimations(dotNetHelper) {
             window.cancelAnimationFrame(activeAnimation.frameId);
             activeAnimation = null;
         }
+        scrollLock = false;
         content.scrollTop = getTargetTop(target);
     };
 
@@ -156,15 +160,81 @@ export function initScrollAnimations(dotNetHelper) {
         return { pauseRotation, setNextIndexFromSection };
     };
 
+    const getClosestSectionIndex = () => {
+        if (sections.length === 0) {
+            return 0;
+        }
+        let closestIndex = 0;
+        let closestDistance = Number.POSITIVE_INFINITY;
+        sections.forEach((section, index) => {
+            const distance = Math.abs(getTargetTop(section) - content.scrollTop);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = index;
+            }
+        });
+        return closestIndex;
+    };
+
+    const scrollToSection = (direction) => {
+        if (scrollLock || sections.length === 0) {
+            return;
+        }
+        const currentIndex = getClosestSectionIndex();
+        const nextIndex = Math.max(0, Math.min(sections.length - 1, currentIndex + direction));
+        if (nextIndex === currentIndex) {
+            return;
+        }
+        smoothScrollTo(sections[nextIndex], 1200);
+    };
+
+    let touchStartY = null;
+
     window.requestAnimationFrame(() => {
         rows.forEach((row, index) => {
             row.dataset.rowIndex = String(index);
             observer.observe(row);
         });
         const rotation = startAutoRotate();
-        content.addEventListener('wheel', rotation.pauseRotation, { passive: true });
-        content.addEventListener('touchstart', rotation.pauseRotation, { passive: true });
-        content.addEventListener('keydown', rotation.pauseRotation);
+        content.addEventListener('wheel', (event) => {
+            rotation.pauseRotation();
+            if (scrollLock) {
+                event.preventDefault();
+                return;
+            }
+            const direction = event.deltaY > 0 ? 1 : -1;
+            scrollToSection(direction);
+            event.preventDefault();
+        }, { passive: false });
+        content.addEventListener('touchstart', (event) => {
+            rotation.pauseRotation();
+            touchStartY = event.touches[0]?.clientY ?? null;
+        }, { passive: true });
+        content.addEventListener('touchmove', (event) => {
+            if (touchStartY == null) {
+                return;
+            }
+            if (scrollLock) {
+                event.preventDefault();
+                return;
+            }
+            const currentY = event.touches[0]?.clientY ?? touchStartY;
+            const direction = currentY < touchStartY ? 1 : -1;
+            scrollToSection(direction);
+            touchStartY = null;
+            event.preventDefault();
+        }, { passive: false });
+        content.addEventListener('keydown', (event) => {
+            rotation.pauseRotation();
+            if (scrollLock) {
+                return;
+            }
+            if (event.key === 'ArrowDown' || event.key === 'PageDown' || event.key === ' ') {
+                scrollToSection(1);
+            } else if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+                scrollToSection(-1);
+            }
+        });
         pagerDots.forEach((dot) => {
             const index = Number(dot.dataset.sectionIndex);
             if (Number.isNaN(index) || !sections[index]) {

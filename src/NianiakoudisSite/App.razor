@@ -1,4 +1,4 @@
-<MudThemeProvider />
+<MudThemeProvider Theme="@theme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -14,3 +14,16 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+    private readonly MudBlazor.MudTheme theme = new MudTheme()
+    {
+        Typography = new MudBlazor.Typography
+        {
+            Default = new MudBlazor.Default
+            {
+                FontFamily = new[] { "Noto Sans", "Inter", "Roboto", "Arial", "sans-serif" }
+            }
+        }
+    };
+}

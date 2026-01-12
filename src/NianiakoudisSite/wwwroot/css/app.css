@@ -1,11 +1,13 @@
 :root {
     --color-primary: #1f7a8c;
+    --color-secondary: #E7ECEF;
     --color-accent: #e76f51;
-    --color-soft: #f4f1de;
+    --color-soft: #ffffff;
     --color-text: #1d1d1f;
     --color-muted: #596275;
     --top-bar-height: 4.5rem;
-    --content-pad: 0rem;
+    --content-pad: 1rem;
+    --content-pad-x: 2rem;
     --content-bottom-pad: 5rem;
     --footer-height: 4.5rem;
 }
@@ -16,7 +18,7 @@
 
 body {
     margin: 0;
-    font-family: "Arial", "Helvetica", sans-serif;
+    font-family: var(--mud-typography-default-family);
     background: var(--color-soft);
     color: var(--color-text);
     overflow-y: scroll;
@@ -30,6 +32,7 @@ body::-webkit-scrollbar {
 
 .home-stack {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -52,6 +55,7 @@ body::-webkit-scrollbar {
 .hero-transition {
     opacity: 0;
     transition: opacity 1.2s ease;
+
 }
 
 .hero-transition.is-visible {
@@ -63,6 +67,113 @@ body::-webkit-scrollbar {
     animation: hero-fade-up 0.8s ease both;
     animation-delay: var(--reveal-delay, 0ms);
 }
+
+.home-hero {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.home-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.home-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.home-hero-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 1;
+    text-align: center;
+}
+
+.home-hero-paragraph {
+    font-weight: 600;
+    font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+    opacity: 1;
+    color: whitesmoke;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    border-radius: 10px;
+    -webkit-text-stroke: 1px #000000;
+    text-shadow:
+        1px 1px 0 #000000,
+        -1px 1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px -1px 0 #000000;
+    opacity: 0;
+    animation: home-hero-text-fade 2s ease forwards;
+    animation-delay: 2s;
+}
+
+.home-hero-paragraph-second {
+    animation-delay: 4s;
+    letter-spacing: 0.08em;
+
+}
+
+.home-hero-paragraph-first {
+    font-size: clamp(1.1rem, 1.2vw + 0.9rem, 1.8rem);
+}
+
+.home-hero-paragraph-third {
+    animation-delay: 6s;
+    font-size: clamp(1.05rem, 1vw + 0.85rem, 1.6rem);
+}
+
+.home-hero-paragraph-delayed {
+    opacity: 0;
+    display: inline-block;
+    animation: home-hero-text-fade 2s ease forwards;
+    animation-delay: 7.5s;
+    font-size: inherit;
+}
+@keyframes home-hero-text-fade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.home-hero-ticks {
+    position: absolute;
+    right: 2.5rem;
+    bottom: 1.5rem;
+    display: flex;
+    gap: 0.4rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+}
+
+.home-hero-ticks .mud-icon-root {
+    font-size: 1.25rem;
+}
+
 
 @keyframes hero-fade-up {
     from {
@@ -77,8 +188,10 @@ body::-webkit-scrollbar {
 
 .app-bar {
     background: white;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    height: var(--top-bar-height);
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .brand-text {
@@ -97,7 +210,7 @@ body::-webkit-scrollbar {
 }
 
 .brand-stack {
-    gap: 0.5rem;
+    gap: 0rem;
 }
 
 .brand-icon {
@@ -122,9 +235,10 @@ body::-webkit-scrollbar {
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    height: calc(100vh - var(--top-bar-height));
-    padding: var(--content-pad);
-    margin-top: var(--top-bar-height);
+    height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    padding-top: var(--content-pad);
+    padding-left: var(--content-pad-x);
+    padding-right: var(--content-pad-x);
     padding-bottom: var(--content-bottom-pad);
     overflow-y: auto;
     overflow-x: hidden;
@@ -136,6 +250,13 @@ body::-webkit-scrollbar {
 
 .content::-webkit-scrollbar {
     display: none;
+}
+
+.app-main {
+    margin-top: var(--top-bar-height);
+    margin-bottom: var(--top-bar-height);
+    padding-top: 0rem;
+
 }
 
 
@@ -150,11 +271,12 @@ body::-webkit-scrollbar {
 }
 
 .home-row-card {
-    width: 90%;
+    width: 100%;
     max-width: none;
-    height: 85%;
-    padding: 3rem;
+    height: 100%;
+    padding: clamp(1.25rem, 2vw + 1rem, 3rem);
     border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--color-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -173,6 +295,7 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: 100%;
 }
 
 .home-copy {
@@ -190,24 +313,40 @@ body::-webkit-scrollbar {
 
 .home-visual {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     height: 100%;
 }
 
 .home-body {
-    color: var(--color-muted);
-    line-height: 1.7;
+    color: var(--color-text);
+    line-height: 1.65;
     margin-bottom: 1.25rem;
+}
+
+.home-row-card .mud-typography-h5 {
+    color: var(--color-text);
+}
+
+.home-row-card .info-button {
+    background: var(--color-primary);
+    color: white;
 }
 
 .home-image {
     width: 100%;
     height: 100%;
-    min-height: 320px;
     border-radius: 0;
     display: block;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.home-visual .mud-image,
+.home-visual .mud-image img,
+.home-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -225,6 +364,149 @@ body::-webkit-scrollbar {
     padding: 3rem;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
+}
+
+.contact-page {
+    width: min(1400px, 100%);
+    background: var(--color-secondary);
+    border-radius: 0;
+    padding: 3rem;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    margin: 0 auto;
+}
+
+.contact-title {
+    letter-spacing: 0.08rem;
+    font-weight: 700;
+}
+
+.contact-hero {
+    width: calc(100% + 6rem);
+    background: var(--color-secondary);
+    height: auto;
+    margin: -3rem -3rem 1.5rem;
+    border-radius: 0;
+    overflow: visible;
+    max-height: 640px;
+}
+
+.contact-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.contact-fade-title {
+    opacity: 0;
+    animation: contact-fade-title 0.8s ease forwards;
+}
+
+.contact-slide-up {
+    opacity: 0;
+    animation: contact-slide-up 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.contact-slide-down {
+    opacity: 0;
+    animation: contact-slide-down 1s ease forwards;
+    animation-delay: 0.6s;
+}
+
+@keyframes contact-fade-title {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes contact-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes contact-slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-subtitle {
+    color: var(--color-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.contact-grid {
+    row-gap: 1.5rem;
+}
+
+.contact-card {
+    background: var(--color-soft);
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    height: 100%;
+}
+
+.contact-section-title {
+    font-weight: 700;
+    letter-spacing: 0.06rem;
+    margin-bottom: 1rem;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.6rem;
+}
+
+.contact-detail-icon {
+    color: var(--color-primary);
+    font-size: 1.4rem;
+    flex: 0 0 auto;
+}
+
+.contact-detail .mud-link {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.contact-field .mud-input-control {
+    background: white;
+    border-radius: 8px;
+}
+
+.contact-field .mud-input-control .mud-input-root,
+.contact-field .mud-input-control .mud-input-slot,
+.contact-field .mud-input-control .mud-input,
+.contact-field .mud-input-control .mud-input-input,
+.contact-field .mud-input-control input,
+.contact-field .mud-input-control textarea {
+    background-color: #ffffff !important;
+}
+
+.contact-submit {
+    margin-top: 0.75rem;
+    border-radius: 999px;
+    padding: 0.65rem 1.6rem;
+    text-transform: none;
+    font-weight: 700;
 }
 
 .scroll-top-button {
@@ -258,11 +540,10 @@ body::-webkit-scrollbar {
     justify-content: center;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    padding: 0 1rem;
 }
 
 .hero-card {
-    background: white;
+    background: var(--color-secondary);
     padding: 5rem 4rem;
     border-radius: 0;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
@@ -348,7 +629,35 @@ body::-webkit-scrollbar {
     outline-offset: 2px;
 }
 
+@media (max-width: 900px) {
+    .home-row {
+        height: auto;
+        min-height: calc(100vh - var(--top-bar-height));
+    }
+
+    .home-row-card {
+        height: auto;
+    }
+
+    .home-copy .mud-typography-h5 {
+        font-size: clamp(1.1rem, 2.2vw + 0.7rem, 1.5rem);
+    }
+
+    .home-copy .mud-typography-body1 {
+        font-size: clamp(0.9rem, 1.2vw + 0.6rem, 1.05rem);
+    }
+}
+
 @media (max-width: 720px) {
+    .home-hero {
+        height: calc(100vh - var(--top-bar-height));
+        min-height: calc(100vh - var(--top-bar-height));
+    }
+
+    .home-hero-image img {
+        object-position: 60% center;
+    }
+
     .hero {
         height: auto;
         min-height: calc(100vh - var(--top-bar-height));
@@ -362,7 +671,7 @@ body::-webkit-scrollbar {
     }
 
     .home-row {
-        min-height: 360px;
+        min-height: auto;
     }
 
     .home-row-card {
@@ -371,10 +680,40 @@ body::-webkit-scrollbar {
     }
 
     .home-row-grid {
-        flex-direction: column;
+        flex-direction: row;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .home-row-grid .mud-grid-item {
+        flex-basis: 50%;
+        max-width: 50%;
     }
 
     .info-page {
         padding: 2rem;
+    }
+
+    .contact-page {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .home-row-grid {
+        gap: 0.75rem;
+    }
+
+    .home-row-card {
+        padding: 1rem;
+    }
+
+    .home-body {
+        margin-bottom: 1rem;
+    }
+
+    .info-button {
+        padding: 0.55rem 1.1rem;
+        font-size: 0.85rem;
     }
 }

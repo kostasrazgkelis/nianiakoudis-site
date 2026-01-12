@@ -1,11 +1,30 @@
 ﻿@page "/"
-@inject IPageContentService ContentService
 @inject IJSRuntime JSRuntime
 @implements IDisposable
+@using MudBlazor
 
 <MudBox Class="home-stack" Id="home-stack">
     <MudBox Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
-        <PageHero Content="ContentService.GetHome()" SectionCount="@(Rows.Count + 1)" />
+        <MudPaper Class="home-hero hero" Square="true" Elevation="1" Padding="0">
+            <MudImage Src="/assets/pictures/homepage-handshake.jpg" Alt="Handshake" Class="home-hero-image" />
+            <MudBox Class="home-hero-text">
+                <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-first">
+                    TCS CONSULTING SERVICES
+                </MudText>
+                <MudText Typo="Typo.h6" Class="home-hero-paragraph home-hero-paragraph-second">
+                    ΛΟΓΙΣΤΙΚΟ & ΦΟΡΟΤΕΧΝΙΚΟ ΓΡΑΦΕΙΟ
+                </MudText>
+                <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-third">
+                    20 Χρόνια Εμπειρίας <span class="home-hero-paragraph-delayed">μαζί σας</span>
+                </MudText>
+            </MudBox>
+            <MudBox Class="pager" aria-hidden="true">
+                @for (var dotIndex = 0; dotIndex < Rows.Count + 1; dotIndex++)
+                {
+                    <button type="button" class="pager-dot @(dotIndex == 0 ? "is-active" : "")" data-section-index="@dotIndex"></button>
+                }
+            </MudBox>
+        </MudPaper>
     </MudBox>
 
     <MudBox Class="home-rows">
@@ -43,7 +62,7 @@
     </MudBox>
 </MudBox>
 
-<MudFab Label="Πήγαινε Επάνω" Color="Color.Primary" Class="scroll-top-button" Id="scroll-top-button" OnClick="ScrollToTop" />
+<MudFab Label="???a??e ?p???" Color="Color.Primary" Class="scroll-top-button" Id="scroll-top-button" OnClick="ScrollToTop" />
 
 @code {
     private const int TransitionDuration = 10000;
@@ -131,3 +150,5 @@
 
     private bool IsRowVisible(int index) => index < _rowVisible.Count && _rowVisible[index];
 }
+
+

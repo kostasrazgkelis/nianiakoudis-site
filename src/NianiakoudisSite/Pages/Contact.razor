@@ -1,0 +1,108 @@
+@page "/contact"
+
+<MudPaper Class="contact-page" Square="true" Elevation="1">
+    <MudImage Src="/assets/pictures/contact-us.jpg" Alt="Contact us" Class="contact-hero contact-slide-up" />
+    <MudText Typo="Typo.h4" Class="contact-title contact-fade-title">&#x0395;&#x03A0;&#x0399;&#x039A;&#x039F;&#x0399;&#x039D;&#x03A9;&#x039D;&#x0399;&#x0391;</MudText>
+    <MudText Typo="Typo.body1" Class="contact-subtitle contact-slide-down">
+        &#x0395;&#x03AF;&#x03BC;&#x03B1;&#x03C3;&#x03C4;&#x03B5; &#x03B4;&#x03AF;&#x03C0;&#x03BB;&#x03B1; &#x03C3;&#x03B1;&#x03C2; &#x03B3;&#x03B9;&#x03B1; &#x03BA;&#x03AC;&#x03B8;&#x03B5; &#x03B5;&#x03C1;&#x03CE;&#x03C4;&#x03B7;&#x03C3;&#x03B7; &#x03AE; &#x03B1;&#x03AF;&#x03C4;&#x03B7;&#x03BC;&#x03B1;.
+    </MudText>
+
+    <MudGrid Class="contact-grid contact-slide-down">
+        <MudItem xs="12" md="5">
+            <MudPaper Class="contact-card" Square="true" Elevation="0">
+                <MudText Typo="Typo.subtitle1" Class="contact-section-title">&#x03A3;&#x03A4;&#x039F;&#x0399;&#x03A7;&#x0395;&#x0399;&#x0391; &#x0395;&#x03A0;&#x0399;&#x039A;&#x039F;&#x0399;&#x039D;&#x03A9;&#x039D;&#x0399;&#x0391;&#x03A3;</MudText>
+                <MudText Typo="Typo.body2" Class="contact-detail">
+                    <MudIcon Icon="@Icons.Material.Filled.Phone" Class="contact-detail-icon" />
+                    &#x03A4;&#x03B7;&#x03BB;&#x03AD;&#x03C6;&#x03C9;&#x03BD;&#x03BF;:
+                    <MudLink Href="tel:+302311234567">+30 231 123 4567</MudLink>
+                </MudText>
+                <MudText Typo="Typo.body2" Class="contact-detail">
+                    <MudIcon Icon="@Icons.Material.Filled.Email" Class="contact-detail-icon" />
+                    Email:
+                    <MudLink Href="mailto:info@nianiakoudis.gr">info@nianiakoudis.gr</MudLink>
+                </MudText>
+                <MudText Typo="Typo.body2" Class="contact-detail">
+                    <MudIcon Icon="@Icons.Material.Filled.Language" Class="contact-detail-icon" />
+                    LinkedIn:
+                    <MudLink Href="https://www.linkedin.com/company/nianiakoudis" Target="_blank" Rel="noopener noreferrer">
+                        linkedin.com/company/nianiakoudis
+                    </MudLink>
+                </MudText>
+            </MudPaper>
+        </MudItem>
+
+        <MudItem xs="12" md="7">
+            <MudPaper Class="contact-card" Square="true" Elevation="0">
+                <MudText Typo="Typo.subtitle1" Class="contact-section-title">&#x03A6;&#x039F;&#x03A1;&#x039C;&#x0391; &#x0391;&#x0399;&#x03A4;&#x0397;&#x039C;&#x0391;&#x03A4;&#x039F;&#x03A3;</MudText>
+
+                <MudForm @ref="ContactForm">
+                    <MudTextField @bind-Value="FullName"
+                                  Label="&#x039F;&#x03BD;&#x03BF;&#x03BC;&#x03B1;&#x03C4;&#x03B5;&#x03C0;&#x03CE;&#x03BD;&#x03C5;&#x03BC;&#x03BF;"
+                                  Variant="Variant.Outlined"
+                                  Margin="Margin.Dense"
+                                  Class="contact-field"
+                                  Immediate="true" />
+                    <MudTextField @bind-Value="Email"
+                                  Label="Email"
+                                  Variant="Variant.Outlined"
+                                  Margin="Margin.Dense"
+                                  Class="contact-field"
+                                  Immediate="true"
+                                  InputType="InputType.Email"
+                                  Required="true" />
+                    <MudTextField @bind-Value="Phone"
+                                  Label="&#x03A4;&#x03B7;&#x03BB;&#x03AD;&#x03C6;&#x03C9;&#x03BD;&#x03BF;"
+                                  Variant="Variant.Outlined"
+                                  Margin="Margin.Dense"
+                                  Class="contact-field"
+                                  Immediate="true" />
+                    <MudTextField @bind-Value="Subject"
+                                  Label="&#x0398;&#x03AD;&#x03BC;&#x03B1;"
+                                  Variant="Variant.Outlined"
+                                  Margin="Margin.Dense"
+                                  Class="contact-field"
+                                  Immediate="true" />
+                    <MudTextField @bind-Value="Message"
+                                  Label="&#x039C;&#x03AE;&#x03BD;&#x03C5;&#x03BC;&#x03B1;"
+                                  Variant="Variant.Outlined"
+                                  Margin="Margin.Dense"
+                                  Class="contact-field"
+                                  Immediate="true"
+                                  Lines="5"
+                                  Required="true" />
+
+                    <MudButton Class="contact-submit"
+                               Variant="Variant.Filled"
+                               Color="Color.Secondary"
+                               Disabled="@(!CanSend)"
+                               Href="@MailToHref">
+                        &#x0391;&#x03A0;&#x039F;&#x03A3;&#x03A4;&#x039F;&#x039B;&#x0397; &#x039C;&#x0397;&#x039D;&#x03A5;&#x039C;&#x0391;&#x03A4;&#x039F;&#x03A3;
+                    </MudButton>
+                </MudForm>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+@code {
+    private MudForm? ContactForm;
+    private string FullName = string.Empty;
+    private string Email = string.Empty;
+    private string Phone = string.Empty;
+    private string Subject = string.Empty;
+    private string Message = string.Empty;
+
+    private bool CanSend =>
+        !string.IsNullOrWhiteSpace(Email)
+        && !string.IsNullOrWhiteSpace(Message);
+
+    private string MailToHref
+    {
+        get
+        {
+            var subject = string.IsNullOrWhiteSpace(Subject) ? "Contact request" : Subject;
+            var body = $"Name: {FullName}\nEmail: {Email}\nPhone: {Phone}\n\nMessage:\n{Message}";
+            return $"mailto:info@nianiakoudis.gr?subject={Uri.EscapeDataString(subject)}&body={Uri.EscapeDataString(body)}";
+        }
+    }
+}
