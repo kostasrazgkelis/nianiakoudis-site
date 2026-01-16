@@ -32,34 +32,231 @@ body::-webkit-scrollbar {
 
 .home-stack {
     width: 100%;
-    height: 100%;
+    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 12rem;
 }
 
 .home-carousel {
     width: 100%;
-    height: 100%;
+    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     position: relative;
-    padding: 0;
     overflow: hidden;
+    padding: 0;
+    margin: 0;
 }
 
-.home-carousel .mud-carousel-nav {
-    z-index: 2;
+.home-second {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem 4rem;
+    align-items: center;
+
 }
 
-.home-carousel .mud-carousel-nav button {
-    background: var(--color-primary);
-    color: #ffffff;
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: 999px;
+
+.home-section-icon {
+    color: var(--color-accent);
 }
 
-.home-carousel .mud-carousel-nav button:hover {
-    filter: brightness(0.9);
+.home-sections {
+    width: 80%;
+    align-items: center;
+    align-self: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, auto);
+    gap: 0rem;
+    padding: 0 1rem 3rem;
+    
+}
+
+.home-container-1,
+.home-container-2,
+.home-container-3 {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+.home-container-1.is-visible,
+.home-container-2.is-visible,
+.home-container-3.is-visible {
+    animation: home-section-rise 1400ms ease forwards;
+}
+
+.home-container-2.is-visible {
+    animation-delay: 120ms;
+}
+
+.home-container-3.is-visible {
+    animation-delay: 240ms;
+}
+
+@keyframes home-section-rise {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.home-container-1 {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+
+}
+
+.home-container-2 {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.home-container-3 {
+    grid-column: 3;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+
+@media (max-width: 900px) {
+    .home-sections {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .home-container-1,
+    .home-container-2,
+    .home-container-3 {
+        grid-column: auto;
+        grid-row: auto;
+        max-width: 720px;
+        width: 100%;
+    }
+}
+
+.home-second-title {
+    color: var(--color-primary);
+    line-height: 1.7;
+    padding-bottom: 2rem;
+    text-align: center;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-primary);
+    text-underline-offset: 0.25em;
+}
+
+.home-second-body {
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin-top: 1rem;
+    text-align: center;
+
+}
+
+.box-1 {
+    background: var(--color-secondary);
+    border-radius: 0;
+    min-height: 100px;
+    align-self: center;
+    width: 100%;
+    margin: 0;
+    padding: 2.5rem 2rem;
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+.box-1.is-visible {
+    animation: box-1-rise 1400ms ease forwards;
+}
+
+.box-1-grid {
+    align-items: center;
+}
+
+.box-1-left {
+    text-align: left;
+}
+
+.box-1-title {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.box-1-subtitle {
+    color: var(--color-muted);
+    line-height: 1.6;
+}
+
+.box-1-cards {
+    width: 100%;
+}
+
+.box-1-card {
+    height: 100%;
+    background: var(--color-soft);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    text-align: center;
+}
+
+.box-1-card-icon {
+    color: var(--color-accent);
+    font-size: 2rem;
+}
+
+.box-1-card-title {
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.box-1-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.box-1-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .box-1-left {
+        text-align: center;
+    }
+}
+
+@keyframes box-1-rise {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-transition {
@@ -119,7 +316,7 @@ body::-webkit-scrollbar {
     opacity: 1;
     color: whitesmoke;
     letter-spacing: 0.08em;
-    white-space: nowrap;
+    white-space: normal;
     text-align: center;
     padding: 0.75rem 1.5rem;
     width: 100%;
@@ -133,6 +330,10 @@ body::-webkit-scrollbar {
     opacity: 0;
     animation: home-hero-text-fade 2s ease forwards;
     animation-delay: 2s;
+}
+
+.home-hero-paragraph {
+    overflow-wrap: anywhere;
 }
 
 .home-hero-paragraph-second {
@@ -245,12 +446,10 @@ body::-webkit-scrollbar {
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
-    padding-top: var(--content-pad);
-    padding-left: var(--content-pad-x);
-    padding-right: var(--content-pad-x);
-    padding-bottom: var(--content-bottom-pad);
-    overflow-y: auto;
+    height: auto;
+    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    padding: 0;
+    overflow-y: visible;
     overflow-x: hidden;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
@@ -263,9 +462,10 @@ body::-webkit-scrollbar {
 }
 
 .app-main {
-    margin-top: var(--top-bar-height);
-    margin-bottom: var(--top-bar-height);
     padding-top: 0rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 6rem;
 
 }
 
@@ -282,7 +482,9 @@ body::-webkit-scrollbar {
 .home-row-card {
     width: 100%;
     max-width: none;
+    max-height: none;
     height: 100%;
+    padding: 0;
     border: 1px solid rgba(0, 0, 0, 0.06);
     background: var(--color-secondary);
     display: flex;
@@ -290,18 +492,58 @@ body::-webkit-scrollbar {
     justify-content: center;
     position: relative;
     opacity: 0;
-    transform: translateY(20px);
     transition: opacity 1.5s ease, transform 1.5s ease;
 }
 
 .home-row.is-visible .home-row-card {
     opacity: 1;
-    transform: translateY(0);
 }
 
 .home-carousel .home-row-card {
     opacity: 1;
-    transform: translateY(0);
+}
+
+.home-carousel .home-bullets {
+    background-color: var(--color-accent);
+    opacity: 0.1;
+    margin-bottom: 1rem;
+    transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    transform: scale(1);
+    cursor: pointer;
+    margin-inline: 0.4rem;
+}
+
+.home-carousel .home-bullets:hover {
+    opacity: 0.6;
+    transform: scale(1.15);
+    box-shadow: 0 0 0 3px rgba(31, 122, 140, 0.2);
+}
+
+.home-carousel .mud-carousel-indicators {
+    position: absolute;
+    left: 50%;
+    bottom: 1.25rem;
+    transform: translateX(-50%);
+    padding-bottom: 0;
+}
+
+.home-carousel .home-arrows .mud-icon-button,
+.home-carousel .home-arrows.mud-icon-button,
+.home-carousel .mud-carousel-arrow.home-arrows .mud-icon-button {
+    background-color: var(--color-accent);
+    opacity: 0.2;
+    margin-inline: 0.4rem;
+    transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    transform: scale(1);
+    box-shadow: 0 0 0 3px rgba(31, 122, 140, 0.2);
+}
+
+.home-carousel .home-arrows:hover .mud-icon-button,
+.home-carousel .home-arrows.mud-icon-button:hover,
+.home-carousel .mud-carousel-arrow.home-arrows:hover .mud-icon-button {
+    opacity: 0.7;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 5px rgba(31, 122, 140, 0.2);
 }
 
 .home-row-grid {
@@ -309,6 +551,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     width: 100%;
     height: 100%;
+    gap: 0;
 }
 
 .home-copy {
@@ -322,6 +565,10 @@ body::-webkit-scrollbar {
 
 .home-row.reverse .home-row-grid {
     flex-direction: row-reverse;
+}
+
+.home-row-grid .mud-grid-item {
+    padding: 0;
 }
 
 .home-visual {
@@ -386,6 +633,8 @@ body::-webkit-scrollbar {
     padding: 0;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
+    position: relative;
+    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad) + 6rem);
     max-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     overflow-y: auto;
     scrollbar-width: none;
@@ -399,39 +648,58 @@ body::-webkit-scrollbar {
 .contact-title {
     letter-spacing: 0.08rem;
     font-weight: 700;
+    padding: 0rem, 1rem;
 }
 
 .contact-hero {
     width: 100%;
-    height: 100%;
+    height: 80%;
     background: var(--color-secondary);
-    height: auto;
     border-radius: 0;
     overflow: visible;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
 }
 
 .contact-hero img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
 }
 
 .contact-fade-title {
+    color: var(--color-text);
     opacity: 0;
-    animation: contact-fade-title 0.8s ease forwards;
+    padding: 1rem;
+    animation-delay: 0.5;
+    animation: contact-fade-title 1.5s ease forwards;
 }
 
 .contact-slide-up {
     opacity: 0;
-    animation: contact-slide-up 2s ease forwards;
-    animation-delay: 0.3s;
+    animation-delay: 1.5;
+    animation: contact-slide-up 1.5s ease forwards;
+    padding: 0rem;
 }
 
 .contact-slide-down {
+    padding: 1rem;
     opacity: 0;
     animation: contact-slide-down 1s ease forwards;
     animation-delay: 0.6s;
+    
+}
+
+.contact-content {
+    position: relative;
+    padding: 2rem 2.5rem 3rem;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    min-height: 100%;
+    width: 100%;
 }
 
 @keyframes contact-fade-title {
@@ -469,6 +737,7 @@ body::-webkit-scrollbar {
     color: var(--color-muted);
     margin-bottom: 2rem;
     line-height: 1.6;
+    padding: 0 1rem 1rem;
 }
 
 .contact-grid {
@@ -477,9 +746,13 @@ body::-webkit-scrollbar {
 
 .contact-card {
     background: var(--color-soft);
+    opacity: 0.95;
     padding: 1.5rem;
     border: 1px solid rgba(0, 0, 0, 0.06);
     height: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+
 }
 
 .contact-section-title {
@@ -584,10 +857,10 @@ body::-webkit-scrollbar {
 .app-footer {
     padding: 1.5rem 3rem;
     text-align: center;
-    color: var(--color-muted);
-    background: white;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    min-height: var(--footer-height);
+    color: var(--color-soft);
+    background: var(--color-accent);
+    opacity: 0.95;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .footer-contact {
@@ -623,8 +896,14 @@ body::-webkit-scrollbar {
         min-height: calc(100vh - var(--top-bar-height));
     }
 
+    .home-hero-image,
     .home-hero-image img {
-        object-position: 60% center;
+        min-height: 70vh;
+    }
+
+    .home-hero-image img {
+        object-position: 50% center;
+        height: 100%;
     }
 
     .hero {
@@ -645,13 +924,14 @@ body::-webkit-scrollbar {
 
     .home-row-card {
         width: 100%;
-        padding: 1.5rem;
+        padding: 0;
     }
 
     .home-row-grid {
         flex-direction: row;
         align-items: stretch;
-        gap: 1rem;
+        gap: 0;
+        height: 100%;
     }
 
     .home-row-grid .mud-grid-item {
@@ -664,19 +944,23 @@ body::-webkit-scrollbar {
     }
 
     .contact-page {
-        padding: 2rem;
+        padding: 0rem;
         max-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
         overflow-y: auto;
+    }
+
+    .contact-content {
+        padding: 1.5rem 1.25rem 2rem;
     }
 }
 
 @media (max-width: 520px) {
     .home-row-grid {
-        gap: 0.75rem;
+        gap: 0;
     }
 
     .home-row-card {
-        padding: 1rem;
+        padding: 0;
     }
 
     .home-body {

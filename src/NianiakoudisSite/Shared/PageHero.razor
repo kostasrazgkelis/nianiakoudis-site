@@ -11,13 +11,6 @@
                 <MudListItem T="string" Class="hero-reveal-item" Style="@GetRevealStyle(index)" Text="@Content.Highlights[index]" />
             }
         </MudList>
-
-        <MudBox Class="pager" aria-hidden="true">
-            @for (var dotIndex = 0; dotIndex < (SectionCount > 0 ? SectionCount : 5); dotIndex++)
-            {
-                <button type="button" class="pager-dot @(dotIndex == 0 ? "is-active" : "")" data-section-index="@dotIndex"></button>
-            }
-        </MudBox>
     </MudPaper>
 </section>
 
