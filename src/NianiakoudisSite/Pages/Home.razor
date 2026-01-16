@@ -50,99 +50,121 @@
     </MudCarousel>
 
 
-    <MudBox Class="home-sections">
-        <MudContainer MaxWidth="MaxWidth.False" Class="home-container-1">
-            <MudText Typo="Typo.h3" Class="home-second-title">
-                WHO WE ARE
-            </MudText>
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudBox Class="home-flow">
+            <svg class="home-flow-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <path id="home-flow-track" class="home-flow-track" d="@AnimatedSections" />
+                <path class="home-flow-trail" d="@AnimatedSections">
+                    <animate class="home-flow-trail-draw" attributeName="stroke-dashoffset" dur="5.5s" begin="indefinite" fill="freeze" />
+                </path>
+                <g class="home-flow-head">
+                    <circle class="home-flow-head-glow" cx="0" cy="0" r="6" />
+                    <circle class="home-flow-head-core" cx="0" cy="0" r="3" />
+                    <animateMotion class="home-flow-head-motion" dur="5.5s" begin="indefinite" fill="freeze" rotate="auto">
+                        <mpath href="#home-flow-track" />
+                    </animateMotion>
+                </g>
+            </svg>
 
-            <MudIcon Icon="@Icons.Material.Filled.ArrowDownward" Class="home-section-icon" Size="Size.Large" />
+        <MudBox  Class="home-sections">
 
-            <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                We partner with teams on strategy, finance, and operations to turn insight into action.
-                From discovery to delivery, we focus on measurable outcomes and clear next steps.
-            </MudText>
-            <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                Explore case studies and service details below, or contact us for a tailored engagement.
-            </MudText>
+            <MudContainer Class="home-container-1">
+                <MudPaper Class="box-1-card" Square="true" Elevation="3">
+
+                    <MudText Typo="Typo.h3" Class="home-second-title">
+                        WHO WE ARE
+                    </MudText>
+
+                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
+                        We partner with teams on strategy, finance, and operations to turn insight into action.
+                        From discovery to delivery, we focus on measurable outcomes and clear next steps.
+                    </MudText>
+                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
+                        Explore case studies and service details below, or contact us for a tailored engagement.
+                    </MudText>
+
+                </MudPaper>
+            </MudContainer>
+
+            <MudContainer Class="home-container-2">
+
+                <MudPaper Class="box-1-card" Square="true" Elevation="3">
+
+                    <MudText Typo="Typo.h3" Class="home-second-title">
+                        WHAT WE DO
+                    </MudText>
+
+                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
+                        We partner with teams on strategy, finance, and operations to turn insight into action.
+                        From discovery to delivery, we focus on measurable outcomes and clear next steps.
+                    </MudText>
+                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
+                        Explore case studies and service details below, or contact us for a tailored engagement.
+                    </MudText>
+                </MudPaper>
+
+            </MudContainer>
+
+            <MudContainer MaxWidth="MaxWidth.False" Class="home-container-3">
+                <MudPaper Class="box-1-card" Square="true" Elevation="3">
+                    <MudText Typo="Typo.h3" Class="home-second-title">
+                        WHAT WE DO
+                    </MudText>
+    
+                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
+                        We partner with teams on strategy, finance, and operations to turn insight into action.
+                        From discovery to delivery, we focus on measurable outcomes and clear next steps.
+                    </MudText>
+                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
+                        Explore case studies and service details below, or contact us for a tailored engagement.
+                    </MudText>
+                </MudPaper>
+            </MudContainer>
+        </MudBox>
+
+        <MudContainer Square="true" Class="box-1" Gutter="false">
+            <MudGrid Class="box-1-grid" Spacing="2">
+                <MudItem xs="12" md="4" Class="box-1-left">
+                    <MudText Typo="Typo.h5" Class="box-1-title">How to contact us?</MudText>
+                    <MudText Typo="Typo.body1" Class="box-1-subtitle">
+                        Reach us by email, phone, or LinkedIn.
+                    </MudText>
+                </MudItem>
+                <MudItem xs="12" md="8">
+                    <MudGrid Class="box-1-cards" Spacing="2">
+                        <MudItem xs="12" md="4">
+                            <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Email" Class="box-1-card-icon" />
+                                <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Email</MudText>
+                                <MudLink Href="mailto:info@nianiakoudis.gr" Class="box-1-link">
+                                    info@nianiakoudis.gr
+                                </MudLink>
+                            </MudPaper>
+                        </MudItem>
+                        <MudItem xs="12" md="4">
+                            <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Phone" Class="box-1-card-icon" />
+                                <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Phone</MudText>
+                                <MudLink Href="tel:+302311234567" Class="box-1-link">
+                                    +30 231 123 4567
+                                </MudLink>
+                            </MudPaper>
+                        </MudItem>
+                        <MudItem xs="12" md="4">
+                            <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Business" Class="box-1-card-icon" />
+                                <MudText Typo="Typo.subtitle2" Class="box-1-card-title">LinkedIn</MudText>
+                                <MudLink Href="https://www.linkedin.com/company/nianiakoudis" Target="_blank" Rel="noopener noreferrer" Class="box-1-link">
+                                    linkedin.com/nianiakoudis
+                                </MudLink>
+                            </MudPaper>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            </MudGrid>
         </MudContainer>
-
-        <MudContainer MaxWidth="MaxWidth.False" Class="home-container-2">
-
-            <MudText Typo="Typo.h3" Class="home-second-title">
-                WHAT WE DO
-            </MudText>
-
-             <MudIcon Icon="@Icons.Material.Filled.ArrowDownward" Class="home-section-icon" Size="Size.Large" />
-
-            <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                We partner with teams on strategy, finance, and operations to turn insight into action.
-                From discovery to delivery, we focus on measurable outcomes and clear next steps.
-            </MudText>
-            <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                Explore case studies and service details below, or contact us for a tailored engagement.
-            </MudText>
-        </MudContainer>
-
-        <MudContainer MaxWidth="MaxWidth.False" Class="home-container-3">
-            <MudText Typo="Typo.h3" Class="home-second-title">
-                WHAT WE DO
-            </MudText>
-
-            <MudIcon Icon="@Icons.Material.Filled.ArrowDownward" Class="home-section-icon" Size="Size.Large" />
-
-            <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                We partner with teams on strategy, finance, and operations to turn insight into action.
-                From discovery to delivery, we focus on measurable outcomes and clear next steps.
-            </MudText>
-            <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                Explore case studies and service details below, or contact us for a tailored engagement.
-            </MudText>
-        </MudContainer>
-    </MudBox>
-
-    <MudContainer Square="true" Class="box-1" Gutter="false">
-        <MudGrid Class="box-1-grid" Spacing="2">
-            <MudItem xs="12" md="4" Class="box-1-left">
-                <MudText Typo="Typo.h5" Class="box-1-title">How to contact us?</MudText>
-                <MudText Typo="Typo.body1" Class="box-1-subtitle">
-                    Reach us by email, phone, or LinkedIn.
-                </MudText>
-            </MudItem>
-            <MudItem xs="12" md="8">
-                <MudGrid Class="box-1-cards" Spacing="2">
-                    <MudItem xs="12" md="4">
-                        <MudPaper Class="box-1-card" Square="true" Elevation="1">
-                            <MudIcon Icon="@Icons.Material.Filled.Email" Class="box-1-card-icon" />
-                            <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Email</MudText>
-                            <MudLink Href="mailto:info@nianiakoudis.gr" Class="box-1-link">
-                                info@nianiakoudis.gr
-                            </MudLink>
-                        </MudPaper>
-                    </MudItem>
-                    <MudItem xs="12" md="4">
-                        <MudPaper Class="box-1-card" Square="true" Elevation="1">
-                            <MudIcon Icon="@Icons.Material.Filled.Phone" Class="box-1-card-icon" />
-                            <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Phone</MudText>
-                            <MudLink Href="tel:+302311234567" Class="box-1-link">
-                                +30 231 123 4567
-                            </MudLink>
-                        </MudPaper>
-                    </MudItem>
-                    <MudItem xs="12" md="4">
-                        <MudPaper Class="box-1-card" Square="true" Elevation="1">
-                            <MudIcon Icon="@Icons.Material.Filled.Business" Class="box-1-card-icon" />
-                            <MudText Typo="Typo.subtitle2" Class="box-1-card-title">LinkedIn</MudText>
-                            <MudLink Href="https://www.linkedin.com/company/nianiakoudis" Target="_blank" Rel="noopener noreferrer" Class="box-1-link">
-                                linkedin.com/nianiakoudis
-                            </MudLink>
-                        </MudPaper>
-                    </MudItem>
-                </MudGrid>
-            </MudItem>
-        </MudGrid>
+        </MudBox>
     </MudContainer>
-
 </MudBox>
 
 @code {
@@ -177,13 +199,15 @@
     private sealed record HomeRow(string Title, string Body, string Link, string ImageUrl, string ImageAlt);
 
     private bool HeroVisible { get; set; }
+    
+    private string AnimatedSections { get; } = "M78 6 L78 16 Q78 26 74 26 L20 26 Q16 26 16 30 L16 56 Q16 60 20 60 L84 60 Q88 60 88 64 L88 80 Q88 84 84 84 L20 84 Q16 84 16 88 Q16 92 20 92 L52 92";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             HeroVisible = true;
-            await JSRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-container-1, .home-container-2, .home-container-3, .box-1");
+            await JSRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow, .box-1");
             await InvokeAsync(StateHasChanged);
         }
     }
