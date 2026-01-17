@@ -282,8 +282,8 @@ body::-webkit-scrollbar {
 .home-flow-extra-card:focus-within {
     transform: translateY(-6px);
     box-shadow: 0 16px 28px rgba(31, 122, 140, 0.18);
-    border-color: rgba(31, 122, 140, 0.45);
-    background-color: rgba(255, 255, 255, 0.95);
+    border-color: rgba(31, 122, 140, 0.22);
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 .home-flow-extra-card-title {
@@ -554,28 +554,6 @@ body::-webkit-scrollbar {
     color: var(--color-accent);
 }
 
-.content {
-    flex: 1;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
-    padding: 0, 1rem;
-    margin: 0, 1rem;
-    overflow-y: visible;
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-}
-
-.content::-webkit-scrollbar {
-    display: none;
-}
 
 .app-main {
     padding-top: 0rem;
