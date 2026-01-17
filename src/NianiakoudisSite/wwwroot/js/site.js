@@ -132,8 +132,8 @@ window.homeSectionsObserver = {
             var svg = flow.querySelector(".home-flow-line");
             var track = flow.querySelector(".home-flow-track");
             var trail = flow.querySelector(".home-flow-trail");
-            var containers = flow.querySelectorAll(".home-container-1, .home-container-2, .home-container-3");
-            if (!svg || !track || !trail || containers.length < 3) {
+            var containerNodes = Array.prototype.slice.call(flow.querySelectorAll(".home-container"));
+            if (!svg || !track || !trail || containerNodes.length < 1) {
                 return false;
             }
 
@@ -149,8 +149,23 @@ window.homeSectionsObserver = {
                 flow.style.setProperty("--flow-head-scale-x", (scaleY / scaleX).toFixed(4));
             }
 
+            var ordered = containerNodes.slice();
+            var hasIndex = ordered.some(function (container) {
+                return container.hasAttribute("data-flow-index");
+            });
+            if (hasIndex) {
+                ordered.sort(function (a, b) {
+                    var aIndex = parseInt(a.getAttribute("data-flow-index") || "0", 10);
+                    var bIndex = parseInt(b.getAttribute("data-flow-index") || "0", 10);
+                    if (Number.isNaN(aIndex) || Number.isNaN(bIndex)) {
+                        return 0;
+                    }
+                    return aIndex - bIndex;
+                });
+            }
+
             var centers = [];
-            containers.forEach(function (container) {
+            ordered.forEach(function (container) {
                 var rect = container.getBoundingClientRect();
                 var mapped = mapClientToViewBox(
                     svgRect,
@@ -163,69 +178,35 @@ window.homeSectionsObserver = {
                 }
             });
 
-            if (centers.length < 3) {
+            if (centers.length < 1) {
                 return false;
             }
 
-            var cols = centers.slice().sort(function (a, b) { return a.x - b.x; });
-            var rows = centers.slice().sort(function (a, b) { return a.y - b.y; });
-
-            var col1 = cols[0].x;
-            var col2 = cols[1].x;
-            var col3 = cols[2].x;
-            var row1 = rows[0].y;
-            var row2 = rows[1].y;
-            var row3 = rows[2].y;
-
-            var gapTop = row2 - row1;
-            var gapBottom = row3 - row2;
-            if (gapTop <= 0 || gapBottom <= 0) {
-                return false;
-            }
-
-            var row0 = row1 - (gapTop * (20 / 34));
-            var row4 = row3 + (gapBottom * (8 / 24));
-
-            var endPoint = null;
-            var box = flow.querySelector(".box-1");
-            if (box) {
-                var boxRect = box.getBoundingClientRect();
-                var mappedEnd = mapClientToViewBox(
-                    svgRect,
-                    viewBox,
-                    boxRect.left,
-                    boxRect.top
-                );
-                if (mappedEnd) {
-                    row4 = mappedEnd.y;
-                    endPoint = {
-                        x: clamp(mappedEnd.x, viewBox.x, viewBox.x + viewBox.width),
-                        y: mappedEnd.y
-                    };
+            var points = [centers[0]];
+            for (var i = 1; i < centers.length; i++) {
+                var prevPoint = points[points.length - 1];
+                var nextPoint = centers[i];
+                if (prevPoint.x !== nextPoint.x && prevPoint.y !== nextPoint.y) {
+                    points.push({ x: nextPoint.x, y: prevPoint.y });
                 }
+                points.push(nextPoint);
             }
 
-            row0 = clamp(row0, viewBox.y, viewBox.y + viewBox.height);
-            row4 = clamp(row4, viewBox.y, viewBox.y + viewBox.height);
+            var minX = centers[0].x;
+            var maxX = centers[0].x;
+            var minY = centers[0].y;
+            var maxY = centers[0].y;
+            centers.forEach(function (center) {
+                minX = Math.min(minX, center.x);
+                maxX = Math.max(maxX, center.x);
+                minY = Math.min(minY, center.y);
+                maxY = Math.max(maxY, center.y);
+            });
 
-            if (!endPoint) {
-                endPoint = { x: col2, y: row4 };
-            }
-
-            var points = [
-                { x: col3, y: row0 },
-                { x: col3, y: row1 },
-                { x: col1, y: row1 },
-                { x: col1, y: row2 },
-                { x: col3, y: row2 },
-                { x: col3, y: row3 },
-                { x: col1, y: row3 },
-                { x: col1, y: row4 },
-                endPoint
-            ];
-
-            var radius = Math.min(Math.abs(col3 - col1), gapTop, gapBottom) * 0.15;
-            radius = clamp(radius, 2, 8);
+            var spanX = maxX - minX;
+            var spanY = maxY - minY;
+            var radius = Math.min(spanX, spanY) * 0.12;
+            radius = clamp(radius, 2, 10);
 
             var d = buildRoundedPath(points, radius);
             if (!d) {
@@ -285,7 +266,7 @@ window.homeSectionsObserver = {
         }
 
         function scheduleFlowContainers(flow) {
-            var containers = flow.querySelectorAll(".home-container-1, .home-container-2, .home-container-3");
+            var containers = flow.querySelectorAll(".home-container");
             if (!containers.length) {
                 return;
             }

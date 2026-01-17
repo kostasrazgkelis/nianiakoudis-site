@@ -50,78 +50,7 @@
     </MudCarousel>
 
 
-    <MudContainer MaxWidth="MaxWidth.Large">
-        <MudBox Class="home-flow">
-            <svg class="home-flow-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <path id="home-flow-track" class="home-flow-track" d="@AnimatedSections" />
-                <path class="home-flow-trail" d="@AnimatedSections">
-                    <animate class="home-flow-trail-draw" attributeName="stroke-dashoffset" dur="5.5s" begin="indefinite" fill="freeze" />
-                </path>
-                <g class="home-flow-head">
-                    <circle class="home-flow-head-glow" cx="0" cy="0" r="6" />
-                    <circle class="home-flow-head-core" cx="0" cy="0" r="3" />
-                    <animateMotion class="home-flow-head-motion" dur="5.5s" begin="indefinite" fill="freeze" rotate="auto">
-                        <mpath href="#home-flow-track" />
-                    </animateMotion>
-                </g>
-            </svg>
-
-        <MudBox  Class="home-sections">
-
-            <MudContainer Class="home-container-1">
-                <MudPaper Class="box-1-card" Square="true" Elevation="3">
-
-                    <MudText Typo="Typo.h3" Class="home-second-title">
-                        WHO WE ARE
-                    </MudText>
-
-                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                        We partner with teams on strategy, finance, and operations to turn insight into action.
-                        From discovery to delivery, we focus on measurable outcomes and clear next steps.
-                    </MudText>
-                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                        Explore case studies and service details below, or contact us for a tailored engagement.
-                    </MudText>
-
-                </MudPaper>
-            </MudContainer>
-
-            <MudContainer Class="home-container-2">
-
-                <MudPaper Class="box-1-card" Square="true" Elevation="3">
-
-                    <MudText Typo="Typo.h3" Class="home-second-title">
-                        WHAT WE DO
-                    </MudText>
-
-                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                        We partner with teams on strategy, finance, and operations to turn insight into action.
-                        From discovery to delivery, we focus on measurable outcomes and clear next steps.
-                    </MudText>
-                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                        Explore case studies and service details below, or contact us for a tailored engagement.
-                    </MudText>
-                </MudPaper>
-
-            </MudContainer>
-
-            <MudContainer MaxWidth="MaxWidth.False" Class="home-container-3">
-                <MudPaper Class="box-1-card" Square="true" Elevation="3">
-                    <MudText Typo="Typo.h3" Class="home-second-title">
-                        WHAT WE DO
-                    </MudText>
-    
-                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                        We partner with teams on strategy, finance, and operations to turn insight into action.
-                        From discovery to delivery, we focus on measurable outcomes and clear next steps.
-                    </MudText>
-                    <MudText Typo="Typo.subtitle1" Class="home-second-body">
-                        Explore case studies and service details below, or contact us for a tailored engagement.
-                    </MudText>
-                </MudPaper>
-            </MudContainer>
-        </MudBox>
-
+    <HomeFlow Items="FlowItems">
         <MudContainer Square="true" Class="box-1" Gutter="false">
             <MudGrid Class="box-1-grid" Spacing="2">
                 <MudItem xs="12" md="4" Class="box-1-left">
@@ -163,8 +92,33 @@
                 </MudItem>
             </MudGrid>
         </MudContainer>
+
+        <MudBox Class="home-flow-extra">
+            <MudText Typo="Typo.h4" Class="home-flow-extra-title">
+                Additional Insights
+            </MudText>
+            <MudText Typo="Typo.subtitle1" Class="home-flow-extra-body">
+                A quick snapshot of how we support clients across core focus areas.
+            </MudText>
+
+            <MudBox Class="home-flow-extra-grid">
+                @foreach (var card in FlowExtraCards)
+                {
+                    <MudPaper Class="box-1-card home-container home-flow-extra-card"
+                              Square="true"
+                              Elevation="2"
+                              data-flow-index="@card.FlowIndex">
+                        <MudText Typo="Typo.h6" Class="home-flow-extra-card-title">
+                            @card.Title
+                        </MudText>
+                        <MudText Typo="Typo.subtitle2" Class="home-flow-extra-card-body">
+                            @card.Body
+                        </MudText>
+                    </MudPaper>
+                }
+            </MudBox>
         </MudBox>
-    </MudContainer>
+    </HomeFlow>
 </MudBox>
 
 @code {
@@ -199,8 +153,66 @@
     private sealed record HomeRow(string Title, string Body, string Link, string ImageUrl, string ImageAlt);
 
     private bool HeroVisible { get; set; }
-    
-    private string AnimatedSections { get; } = "M78 6 L78 16 Q78 26 74 26 L20 26 Q16 26 16 30 L16 56 Q16 60 20 60 L84 60 Q88 60 88 64 L88 80 Q88 84 84 84 L20 84 Q16 84 16 88 Q16 92 20 92 L52 92";
+
+    private sealed record FlowExtraCard(string Title, string Body, int FlowIndex);
+
+    private static readonly IReadOnlyList<HomeFlowItem> FlowItems = new[]
+    {
+        new HomeFlowItem(
+            "WHO WE ARE",
+            new[]
+            {
+                "We partner with teams on strategy, finance, and operations to turn insight into action.",
+                "From discovery to delivery, we focus on measurable outcomes and clear next steps."
+            },
+            GridColumn: 1,
+            GridRow: 1,
+            FlowIndex: 0),
+        new HomeFlowItem(
+            "WHAT WE DO",
+            new[]
+            {
+                "We partner with teams on strategy, finance, and operations to turn insight into action.",
+                "From discovery to delivery, we focus on measurable outcomes and clear next steps."
+            },
+            GridColumn: 3,
+            GridRow: 2,
+            FlowIndex: 1),
+        new HomeFlowItem(
+            "WHAT WE DO",
+            new[]
+            {
+                "We partner with teams on strategy, finance, and operations to turn insight into action.",
+                "From discovery to delivery, we focus on measurable outcomes and clear next steps."
+            },
+            GridColumn: 2,
+            GridRow: 3,
+            FlowIndex: 2)
+    };
+
+    private static readonly IReadOnlyList<FlowExtraCard> FlowExtraCards = new[]
+    {
+        new FlowExtraCard(
+            "Strategy Alignment",
+            "Clarify goals, scope, and success metrics early.",
+            3),
+        new FlowExtraCard(
+            "Financial Planning",
+            "Build scenarios and budget models with confidence.",
+            4),
+        new FlowExtraCard(
+            "Operational Design",
+            "Map processes and identify efficiency gains.",
+            5),
+        new FlowExtraCard(
+            "Execution Support",
+            "Hands-on delivery alongside your teams.",
+            6),
+        new FlowExtraCard(
+            "Performance Review",
+            "Track KPIs and iterate on results.",
+            7)
+    };
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

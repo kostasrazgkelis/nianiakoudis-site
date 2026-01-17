@@ -1,0 +1,60 @@
+@using MudBlazor
+@using NianiakoudisSite.Models
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudBox Class="home-flow">
+        <svg class="home-flow-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path id="home-flow-track" class="home-flow-track" d="@InitialPath" />
+            <path class="home-flow-trail" d="@InitialPath">
+                <animate class="home-flow-trail-draw" attributeName="stroke-dashoffset" dur="@Duration" begin="indefinite" repeatCount="1" fill="freeze" />
+            </path>
+            <g class="home-flow-head">
+                <circle class="home-flow-head-glow" cx="0" cy="0" r="6" />
+                <circle class="home-flow-head-core" cx="0" cy="0" r="3" />
+                <animateMotion class="home-flow-head-motion" dur="@Duration" begin="indefinite" repeatCount="1" fill="freeze" rotate="auto">
+                    <mpath href="#home-flow-track" />
+                </animateMotion>
+            </g>
+        </svg>
+
+        <MudBox Class="home-sections">
+            @if (Items is not null)
+            {
+                for (var index = 0; index < Items.Count; index++)
+                {
+                    var item = Items[index];
+                    <MudContainer Class="home-container"
+                                  Style="@($"grid-column: {item.GridColumn}; grid-row: {item.GridRow};")"
+                                  data-flow-index="@item.FlowIndex">
+                        <MudPaper Class="box-1-card" Square="true" Elevation="3">
+                            <MudText Typo="Typo.h3" Class="home-second-title">
+                                @item.Title
+                            </MudText>
+                            @foreach (var line in item.BodyLines)
+                            {
+                                <MudText Typo="Typo.subtitle1" Class="home-second-body">
+                                    @line
+                                </MudText>
+                            }
+                        </MudPaper>
+                    </MudContainer>
+                }
+            }
+        </MudBox>
+
+        @ChildContent
+    </MudBox>
+</MudContainer>
+
+@code {
+    private const string InitialPath = "M0 0 L100 100";
+
+    [Parameter]
+    public IReadOnlyList<HomeFlowItem>? Items { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string Duration { get; set; } = "8s";
+}
