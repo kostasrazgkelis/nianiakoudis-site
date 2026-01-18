@@ -4,7 +4,7 @@
 
 <MudBox Class="home-stack" Id="home-stack">
 
-    <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="true" ShowBullets="true" AutoCycle="false" AutoCycleTime="@TimeSpan.FromSeconds(10)" Interval="20000" BulletsColor="Color.Primary" BulletsClass="home-bullets" ArrowsClass="home-arrows">
+    <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowBullets="true" AutoCycle="false" AutoCycleTime="@TimeSpan.FromSeconds(10)" Interval="20000" BulletsColor="Color.Primary" BulletsClass="home-bullets" ArrowsClass="home-arrows">
 
 
         <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
@@ -49,75 +49,103 @@
         }
     </MudCarousel>
 
-
     <HomeFlow Items="FlowItems">
-        <MudContainer Square="true" Class="box-1" Gutter="false">
-            <MudGrid Class="box-1-grid" Spacing="2">
-                <MudItem xs="12" md="4" Class="box-1-left">
-                    <MudText Typo="Typo.h5" Class="box-1-title">How to contact us?</MudText>
-                    <MudText Typo="Typo.body1" Class="box-1-subtitle">
-                        Reach us by email, phone, or LinkedIn.
-                    </MudText>
-                </MudItem>
-                <MudItem xs="12" md="8">
-                    <MudGrid Class="box-1-cards" Spacing="2">
-                        <MudItem xs="12" md="4">
-                            <MudPaper Class="box-1-card" Square="true" Elevation="1">
-                                <MudIcon Icon="@Icons.Material.Filled.Email" Class="box-1-card-icon" />
-                                <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Email</MudText>
-                                <MudLink Href="mailto:info@nianiakoudis.gr" Class="box-1-link">
-                                    info@nianiakoudis.gr
-                                </MudLink>
-                            </MudPaper>
-                        </MudItem>
-                        <MudItem xs="12" md="4">
-                            <MudPaper Class="box-1-card" Square="true" Elevation="1">
-                                <MudIcon Icon="@Icons.Material.Filled.Phone" Class="box-1-card-icon" />
-                                <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Phone</MudText>
-                                <MudLink Href="tel:+302311234567" Class="box-1-link">
-                                    +30 231 123 4567
-                                </MudLink>
-                            </MudPaper>
-                        </MudItem>
-                        <MudItem xs="12" md="4">
-                            <MudPaper Class="box-1-card" Square="true" Elevation="1">
-                                <MudIcon Icon="@Icons.Material.Filled.Business" Class="box-1-card-icon" />
-                                <MudText Typo="Typo.subtitle2" Class="box-1-card-title">LinkedIn</MudText>
-                                <MudLink Href="https://www.linkedin.com/company/nianiakoudis" Target="_blank" Rel="noopener noreferrer" Class="box-1-link">
-                                    linkedin.com/nianiakoudis
-                                </MudLink>
-                            </MudPaper>
-                        </MudItem>
-                    </MudGrid>
-                </MudItem>
-            </MudGrid>
-        </MudContainer>
-
-        <MudBox Class="home-flow-extra">
-            <MudText Typo="Typo.h4" Class="home-flow-extra-title">
-                Additional Insights
-            </MudText>
-            <MudText Typo="Typo.subtitle1" Class="home-flow-extra-body">
-                A quick snapshot of how we support clients across core focus areas.
-            </MudText>
-
-            <MudBox Class="home-flow-extra-grid">
-                @foreach (var card in FlowExtraCards)
-                {
-                    <MudPaper Class="box-1-card home-container home-flow-extra-card"
-                              Square="true"
-                              Elevation="2"
-                              data-flow-index="@card.FlowIndex">
-                        <MudText Typo="Typo.h6" Class="home-flow-extra-card-title">
-                            @card.Title
-                        </MudText>
-                        <MudText Typo="Typo.subtitle2" Class="home-flow-extra-card-body">
-                            @card.Body
-                        </MudText>
-                    </MudPaper>
-                }
+        <HeaderContent>
+            <MudBox Class="home-flow-header home-container" data-flow-index="0">
+                <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                    Welcome to TCS CONSULTING SERVICES
+                </MudText>
             </MudBox>
-        </MudBox>
+        </HeaderContent>
+        <ChildContent>
+            <MudBox Class="home-flow-longform home-container" data-flow-index="4">
+                <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                    Overview
+                </MudText>
+                <MudText Typo="Typo.body1" Class="home-flow-longform-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur malesuada, purus non tempor vulputate,
+                    mauris nisl suscipit lorem, sed tempus urna erat quis ipsum. Integer consequat metus nec lectus viverra,
+                    at finibus velit feugiat. Sed feugiat posuere porta. Duis consequat mauris ac sem pulvinar, eget varius
+                    dolor volutpat. Vivamus mollis dignissim elit, at tristique enim pretium sed. Nulla facilisi. Proin
+                    eleifend sapien in lectus sagittis, ac pretium lacus blandit. Donec lacinia lorem quis purus dignissim
+                    mollis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                </MudText>
+                <MudText Typo="Typo.body1" Class="home-flow-longform-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur malesuada, purus non tempor vulputate,
+                    mauris nisl suscipit lorem, sed tempus urna erat quis ipsum. Integer consequat metus nec lectus viverra,
+                    at finibus velit feugiat. Sed feugiat posuere porta. Duis consequat mauris ac sem pulvinar, eget varius
+                    dolor volutpat. Vivamus mollis dignissim elit, at tristique enim pretium sed. Nulla facilisi.
+                </MudText>
+            </MudBox>
+
+            <MudBox Class="home-flow-extra">
+                <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                    Additional Insights
+                </MudText>
+                <MudText Typo="Typo.subtitle1" Class="home-flow-extra-body">
+                    A quick snapshot of how we support clients across core focus areas.
+                </MudText>
+
+                <MudBox Class="home-flow-extra-grid">
+                    @foreach (var card in FlowExtraCards)
+                    {
+                        <MudPaper Class="box-1-card home-container home-flow-extra-card"
+                                  Square="true"
+                                  Elevation="2"
+                                  data-flow-index="@card.FlowIndex">
+                            <MudText Typo="Typo.h6" Class="home-flow-extra-card-title">
+                                @card.Title
+                            </MudText>
+                            <MudText Typo="Typo.subtitle2" Class="home-flow-extra-card-body">
+                                @card.Body
+                            </MudText>
+                        </MudPaper>
+                    }
+                </MudBox>
+            </MudBox>
+
+            <MudContainer Square="true" Class="box-1 home-container" Gutter="false" data-flow-index="10">
+                <MudGrid Class="box-1-grid" Spacing="2">
+                    <MudItem xs="12" md="4" Class="box-1-left">
+                        <MudText Typo="Typo.h5" Class="box-1-title">How to contact us?</MudText>
+                        <MudText Typo="Typo.body1" Class="box-1-subtitle">
+                            Reach us by email, phone, or LinkedIn.
+                        </MudText>
+                    </MudItem>
+                    <MudItem xs="12" md="8">
+                        <MudGrid Class="box-1-cards" Spacing="2">
+                            <MudItem xs="12" md="4">
+                                <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                    <MudIcon Icon="@Icons.Material.Filled.Email" Class="box-1-card-icon" />
+                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Email</MudText>
+                                    <MudLink Href="mailto:info@nianiakoudis.gr" Class="box-1-link">
+                                        info@nianiakoudis.gr
+                                    </MudLink>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" md="4">
+                                <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                    <MudIcon Icon="@Icons.Material.Filled.Phone" Class="box-1-card-icon" />
+                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Phone</MudText>
+                                    <MudLink Href="tel:+302311234567" Class="box-1-link">
+                                        +30 231 123 4567
+                                    </MudLink>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" md="4">
+                                <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                    <MudIcon Icon="@Icons.Material.Filled.Business" Class="box-1-card-icon" />
+                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">LinkedIn</MudText>
+                                    <MudLink Href="https://www.linkedin.com/company/nianiakoudis" Target="_blank" Rel="noopener noreferrer" Class="box-1-link">
+                                        linkedin.com/nianiakoudis
+                                    </MudLink>
+                                </MudPaper>
+                            </MudItem>
+                        </MudGrid>
+                    </MudItem>
+                </MudGrid>
+            </MudContainer>
+        </ChildContent>
     </HomeFlow>
 </MudBox>
 
@@ -167,7 +195,7 @@
             },
             GridColumn: 1,
             GridRow: 1,
-            FlowIndex: 0),
+            FlowIndex: 1),
         new HomeFlowItem(
             "WHAT WE DO",
             new[]
@@ -177,7 +205,7 @@
             },
             GridColumn: 3,
             GridRow: 2,
-            FlowIndex: 1),
+            FlowIndex: 2),
         new HomeFlowItem(
             "WHAT WE DO",
             new[]
@@ -187,7 +215,7 @@
             },
             GridColumn: 2,
             GridRow: 3,
-            FlowIndex: 2)
+            FlowIndex: 3)
     };
 
     private static readonly IReadOnlyList<FlowExtraCard> FlowExtraCards = new[]
@@ -195,23 +223,23 @@
         new FlowExtraCard(
             "Strategy Alignment",
             "Clarify goals, scope, and success metrics early.",
-            3),
+            5),
         new FlowExtraCard(
             "Financial Planning",
             "Build scenarios and budget models with confidence.",
-            4),
+            6),
         new FlowExtraCard(
             "Operational Design",
             "Map processes and identify efficiency gains.",
-            5),
+            7),
         new FlowExtraCard(
             "Execution Support",
             "Hands-on delivery alongside your teams.",
-            6),
+            8),
         new FlowExtraCard(
             "Performance Review",
             "Track KPIs and iterate on results.",
-            7)
+            9)
     };
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -219,7 +247,7 @@
         if (firstRender)
         {
             HeroVisible = true;
-            await JSRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow, .box-1");
+            await JSRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow");
             await InvokeAsync(StateHasChanged);
         }
     }

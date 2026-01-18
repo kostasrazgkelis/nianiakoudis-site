@@ -69,7 +69,8 @@ body::-webkit-scrollbar {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(3, auto);
-    gap: 0rem;
+    column-gap: 4rem;
+    row-gap: 12 rem;
     padding: 0 1rem 3rem;
     
 }
@@ -86,6 +87,7 @@ body::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 3rem;
 }
 
 .home-flow-line {
@@ -127,6 +129,9 @@ body::-webkit-scrollbar {
 .home-flow-head {
     opacity: 0;
     transition: opacity 300ms ease;
+}
+
+.home-flow-head-shape {
     transform-origin: center;
     transform-box: fill-box;
     transform: scale(var(--flow-head-scale-x, 1), 1);
@@ -231,6 +236,7 @@ body::-webkit-scrollbar {
     border-radius: 0;
     min-height: 100px;
     align-self: center;
+    display: block;
     width: 100%;
     margin: 0;
     padding: 2.5rem 2rem;
@@ -248,7 +254,51 @@ body::-webkit-scrollbar {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    margin-top: 5rem;
     padding: 2rem 1rem 0;
+}
+
+.home-flow-header {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 2rem 1rem 1rem;
+}
+
+.home-flow-longform {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 1rem 1rem 0;
+    text-align: left;
+}
+
+.home-flow-longform-title {
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.home-flow-longform .home-flow-longform-title {
+    margin-bottom: 3rem;
+}
+
+.home-flow-longform-body {
+    color: var(--color-muted);
+    line-height: 1.75;
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.home-flow-longform-body + .home-flow-longform-body {
+    margin-top: 1.5rem;
 }
 
 .home-flow-extra-title {
@@ -275,15 +325,36 @@ body::-webkit-scrollbar {
     width: 100%;
     min-height: 220px;
     background-color: rgba(255, 255, 255, 0.85);
+    position: relative;
+    top: 16px;
+    transform: none;
     transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease, border-color 220ms ease;
+}
+
+.home-flow-extra-card.is-visible {
+    animation: home-flow-extra-rise 1400ms ease forwards;
+    opacity: 1;
+    top: 0;
 }
 
 .home-flow-extra-card:hover,
 .home-flow-extra-card:focus-within {
-    transform: translateY(-6px);
+    transform: translateY(-6px) scale(1.10);
     box-shadow: 0 16px 28px rgba(31, 122, 140, 0.18);
     border-color: rgba(31, 122, 140, 0.22);
     background-color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+@keyframes home-flow-extra-rise {
+    from {
+        opacity: 0;
+        top: 16px;
+    }
+    to {
+        opacity: 1;
+        top: 0;
+    }
 }
 
 .home-flow-extra-card-title {
@@ -620,25 +691,6 @@ body::-webkit-scrollbar {
     bottom: 1.25rem;
     transform: translateX(-50%);
     padding-bottom: 0;
-}
-
-.home-carousel .home-arrows .mud-icon-button,
-.home-carousel .home-arrows.mud-icon-button,
-.home-carousel .mud-carousel-arrow.home-arrows .mud-icon-button {
-    background-color: var(--color-accent);
-    opacity: 0.2;
-    margin-inline: 0.4rem;
-    transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease;
-    transform: scale(1);
-    box-shadow: 0 0 0 3px rgba(31, 122, 140, 0.2);
-}
-
-.home-carousel .home-arrows:hover .mud-icon-button,
-.home-carousel .home-arrows.mud-icon-button:hover,
-.home-carousel .mud-carousel-arrow.home-arrows:hover .mud-icon-button {
-    opacity: 0.7;
-    transform: scale(1.1);
-    box-shadow: 0 0 0 5px rgba(31, 122, 140, 0.2);
 }
 
 .home-row-grid {
