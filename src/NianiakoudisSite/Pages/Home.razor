@@ -89,17 +89,19 @@
                 <MudBox Class="home-flow-extra-grid">
                     @foreach (var card in FlowExtraCards)
                     {
-                        <MudPaper Class="box-1-card home-container home-flow-extra-card"
-                                  Square="true"
-                                  Elevation="2"
-                                  data-flow-index="@card.FlowIndex">
-                            <MudText Typo="Typo.h6" Class="home-flow-extra-card-title">
-                                @card.Title
-                            </MudText>
-                            <MudText Typo="Typo.subtitle2" Class="home-flow-extra-card-body">
-                                @card.Body
-                            </MudText>
-                        </MudPaper>
+                        <MudLink Href="@card.Link" Class="home-flow-extra-link" Underline="Underline.None">
+                            <MudPaper Class="box-1-card home-container home-flow-extra-card"
+                                      Square="true"
+                                      Elevation="2"
+                                      data-flow-index="@card.FlowIndex">
+                                <MudText Typo="Typo.h6" Class="home-flow-extra-card-title">
+                                    @card.Title
+                                </MudText>
+                                <MudText Typo="Typo.subtitle2" Class="home-flow-extra-card-body">
+                                    @card.Body
+                                </MudText>
+                            </MudPaper>
+                        </MudLink>
                     }
                 </MudBox>
             </MudBox>
@@ -175,14 +177,20 @@
             "Curabitur faucibus nulla et nibh vehicula, nec convallis mauris vulputate.",
             "/info-4",
             "/assets/pictures/workspace-laptop.jpg",
-            "Workspace laptop")
+            "Workspace laptop"),
+        new HomeRow(
+            "Tempor incididunt",
+            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "/info-5",
+            "/assets/pictures/contact-us.jpg",
+            "Contact us")
     };
 
     private sealed record HomeRow(string Title, string Body, string Link, string ImageUrl, string ImageAlt);
 
     private bool HeroVisible { get; set; }
 
-    private sealed record FlowExtraCard(string Title, string Body, int FlowIndex);
+    private sealed record FlowExtraCard(string Title, string Body, int FlowIndex, string Link);
 
     private static readonly IReadOnlyList<HomeFlowItem> FlowItems = new[]
     {
@@ -223,23 +231,28 @@
         new FlowExtraCard(
             "Strategy Alignment",
             "Clarify goals, scope, and success metrics early.",
-            5),
+            5,
+            "/info-1"),
         new FlowExtraCard(
             "Financial Planning",
             "Build scenarios and budget models with confidence.",
-            6),
+            6,
+            "/info-2"),
         new FlowExtraCard(
             "Operational Design",
             "Map processes and identify efficiency gains.",
-            7),
+            7,
+            "/info-3"),
         new FlowExtraCard(
             "Execution Support",
             "Hands-on delivery alongside your teams.",
-            8),
+            8,
+            "/info-4"),
         new FlowExtraCard(
             "Performance Review",
             "Track KPIs and iterate on results.",
-            9)
+            9,
+            "/info-5")
     };
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
