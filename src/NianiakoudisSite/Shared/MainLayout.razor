@@ -7,8 +7,8 @@
             <MudStack Class="brand-stack" Row="true" Spacing="1" AlignItems="AlignItems.Center">
                 <MudIcon Icon="@Icons.Material.Filled.Business" Class="brand-icon" />
                 <MudText Typo="Typo.h6" Class="brand-text">
-                    <span class="brand-text-full">TCS CONSULTING SERVICES</span>
-                    <span class="brand-text-short">TCS</span>
+                    <span class="brand-text-full">@L["Brand.Full"]</span>
+                    <span class="brand-text-short">@L["Brand.Short"]</span>
                 </MudText>
             </MudStack>
         </MudLink>
@@ -24,13 +24,13 @@
         <MudButton Class="footer-scroll-button"
                    Variant="Variant.Text"
                    OnClick="ScrollToTop">
-            &#x03A0;&#x0397;&#x0393;&#x0391;&#x0399;&#x039D;&#x0395;&#x0399; &#x03A0;&#x0391;&#x039D;&#x03A9;
+            @L["Footer.ScrollTop"]
         </MudButton>
-        <MudText Typo="Typo.subtitle1">&copy; 2024 TCS CONSULTING SERVICES</MudText>
+        <MudText Typo="Typo.subtitle1">@string.Format(L["Footer.Copyright"], DateTime.Now.Year)</MudText>
         <MudStack Class="footer-contact" Row="true" Spacing="2">
-            <MudText Typo="Typo.body1">Telephone: <MudLink Href="tel:+302311234567">+30 231 123 4567</MudLink></MudText>
-            <MudText Typo="Typo.body1">Email: <MudLink Href="mailto:info@nianiakoudis.gr">info@nianiakoudis.gr</MudLink></MudText>
-            <MudText Typo="Typo.body1">LinkedIn: <MudLink Href="https://www.linkedin.com/company/nianiakoudis" Target="_blank" Rel="noopener noreferrer">linkedin.com/company/nianiakoudis</MudLink></MudText>
+            <MudText Typo="Typo.body1">@L["Footer.TelephoneLabel"] <MudLink Href="@($"tel:{L["Common.PhoneHref"]}")">@L["Common.PhoneText"]</MudLink></MudText>
+            <MudText Typo="Typo.body1">@L["Footer.EmailLabel"] <MudLink Href="@($"mailto:{L["Common.Email"]}")">@L["Common.Email"]</MudLink></MudText>
+            <MudText Typo="Typo.body1">@L["Footer.LinkedInLabel"] <MudLink Href="@L["Common.LinkedInHref"]" Target="_blank" Rel="noopener noreferrer">@L["Common.LinkedInText"]</MudLink></MudText>
         </MudStack>
     </MudPaper>
 </MudLayout>

@@ -9,16 +9,16 @@
 
         <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
             <MudPaper Class="home-hero hero" Square="true" Elevation="1" Padding="0">
-                <MudImage Src="/assets/pictures/homepage-handshake.jpg" Alt="Handshake" Class="home-hero-image" />
+                <MudImage Src="/assets/pictures/homepage-handshake.jpg" Alt="@L["Home.Hero.ImageAlt"]" Class="home-hero-image" />
                 <MudBox Class="home-hero-text">
                     <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-first">
-                        TCS CONSULTING SERVICES
+                        @L["Home.Hero.Line1"]
                     </MudText>
                     <MudText Typo="Typo.h6" Class="home-hero-paragraph home-hero-paragraph-second">
-                        ΛΟΓΙΣΤΙΚΟ & ΦΟΡΟΤΕΧΝΙΚΟ ΓΡΑΦΕΙΟ
+                        @L["Home.Hero.Line2"]
                     </MudText>
                     <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-third">
-                        20 Χρόνια Εμπειρίας <span class="home-hero-paragraph-delayed">μαζί σας</span>
+                        @L["Home.Hero.Line3Prefix"] <span class="home-hero-paragraph-delayed">@L["Home.Hero.Line3Suffix"]</span>
                     </MudText>
                 </MudBox>
         </MudPaper>
@@ -36,7 +36,7 @@
                             <MudText Typo="Typo.h5">@row.Title</MudText>
                             <MudText Typo="Typo.body1" Class="home-body">@row.Body</MudText>
                             <MudButton Class="info-button" Variant="Variant.Filled" Color="Color.Secondary" Href="@row.Link">
-                                &#x039C;&#x03AC;&#x03B8;&#x03B5;&#x03C4;&#x03B5; &#x03C0;&#x03B5;&#x03C1;&#x03B9;&#x03C3;&#x03C3;&#x03CC;&#x03C4;&#x03B5;&#x03C1;&#x03B1;
+                                @L["Home.LearnMore"]
                             </MudButton>
                         </MudItem>
                         <MudItem xs="12" md="6" Class="home-visual">
@@ -54,38 +54,30 @@
         <HeaderContent>
             <MudBox Class="home-flow-header home-container" data-flow-index="0">
                 <MudText Typo="Typo.h4" Class="home-flow-longform-title">
-                    Welcome to TCS CONSULTING SERVICES
+                    @L["Home.Flow.HeaderTitle"]
                 </MudText>
             </MudBox>
         </HeaderContent>
         <ChildContent>
             <MudBox Class="home-flow-longform home-container" data-flow-index="4">
                 <MudText Typo="Typo.h4" Class="home-flow-longform-title">
-                    Overview
+                    @L["Home.Flow.OverviewTitle"]
                 </MudText>
                 <MudText Typo="Typo.body1" Class="home-flow-longform-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur malesuada, purus non tempor vulputate,
-                    mauris nisl suscipit lorem, sed tempus urna erat quis ipsum. Integer consequat metus nec lectus viverra,
-                    at finibus velit feugiat. Sed feugiat posuere porta. Duis consequat mauris ac sem pulvinar, eget varius
-                    dolor volutpat. Vivamus mollis dignissim elit, at tristique enim pretium sed. Nulla facilisi. Proin
-                    eleifend sapien in lectus sagittis, ac pretium lacus blandit. Donec lacinia lorem quis purus dignissim
-                    mollis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                    @L["Home.Flow.OverviewParagraph1"]
                 </MudText>
                 <MudText Typo="Typo.body1" Class="home-flow-longform-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur malesuada, purus non tempor vulputate,
-                    mauris nisl suscipit lorem, sed tempus urna erat quis ipsum. Integer consequat metus nec lectus viverra,
-                    at finibus velit feugiat. Sed feugiat posuere porta. Duis consequat mauris ac sem pulvinar, eget varius
-                    dolor volutpat. Vivamus mollis dignissim elit, at tristique enim pretium sed. Nulla facilisi.
+                    @L["Home.Flow.OverviewParagraph2"]
                 </MudText>
             </MudBox>
 
             <MudBox Class="home-flow-extra">
                 <MudBox Class="home-container home-flow-extra-header" data-flow-index="5">
                     <MudText Typo="Typo.h4" Class="home-flow-longform-title">
-                        Additional Insights
+                        @L["Home.Flow.ExtraTitle"]
                     </MudText>
                     <MudText Typo="Typo.subtitle1" Class="home-flow-extra-body">
-                        A quick snapshot of how we support clients across core focus areas.
+                        @L["Home.Flow.ExtraBody"]
                     </MudText>
                 </MudBox>
 
@@ -112,9 +104,9 @@
             <MudContainer Square="true" Class="box-1 home-container" Gutter="false" data-flow-index="11">
                 <MudGrid Class="box-1-grid" Spacing="2">
                     <MudItem xs="12" md="4" Class="box-1-left">
-                        <MudText Typo="Typo.h5" Class="box-1-title">How to contact us?</MudText>
+                        <MudText Typo="Typo.h5" Class="box-1-title">@L["Home.Flow.ContactBoxTitle"]</MudText>
                         <MudText Typo="Typo.body1" Class="box-1-subtitle">
-                            Reach us by email, phone, or LinkedIn.
+                            @L["Home.Flow.ContactBoxBody"]
                         </MudText>
                     </MudItem>
                     <MudItem xs="12" md="8">
@@ -122,27 +114,27 @@
                             <MudItem xs="12" md="4">
                                 <MudPaper Class="box-1-card" Square="true" Elevation="1">
                                     <MudIcon Icon="@Icons.Material.Filled.Email" Class="box-1-card-icon" />
-                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Email</MudText>
-                                    <MudLink Href="mailto:info@nianiakoudis.gr" Class="box-1-link">
-                                        info@nianiakoudis.gr
+                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.EmailTitle"]</MudText>
+                                    <MudLink Href="@($"mailto:{L["Common.Email"]}")" Class="box-1-link">
+                                        @L["Common.Email"]
                                     </MudLink>
                                 </MudPaper>
                             </MudItem>
                             <MudItem xs="12" md="4">
                                 <MudPaper Class="box-1-card" Square="true" Elevation="1">
                                     <MudIcon Icon="@Icons.Material.Filled.Phone" Class="box-1-card-icon" />
-                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">Phone</MudText>
-                                    <MudLink Href="tel:+302311234567" Class="box-1-link">
-                                        +30 231 123 4567
+                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.PhoneTitle"]</MudText>
+                                    <MudLink Href="@($"tel:{L["Common.PhoneHref"]}")" Class="box-1-link">
+                                        @L["Common.PhoneText"]
                                     </MudLink>
                                 </MudPaper>
                             </MudItem>
                             <MudItem xs="12" md="4">
                                 <MudPaper Class="box-1-card" Square="true" Elevation="1">
                                     <MudIcon Icon="@Icons.Material.Filled.Business" Class="box-1-card-icon" />
-                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">LinkedIn</MudText>
-                                    <MudLink Href="https://www.linkedin.com/company/nianiakoudis" Target="_blank" Rel="noopener noreferrer" Class="box-1-link">
-                                        linkedin.com/nianiakoudis
+                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.LinkedInTitle"]</MudText>
+                                    <MudLink Href="@L["Common.LinkedInHref"]" Target="_blank" Rel="noopener noreferrer" Class="box-1-link">
+                                        @L["Home.Contact.LinkedInText"]
                                     </MudLink>
                                 </MudPaper>
                             </MudItem>
@@ -155,39 +147,7 @@
 </MudBox>
 
 @code {
-    private static readonly List<HomeRow> Rows = new()
-    {
-        new HomeRow(
-            "Lorem ipsum dolor",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat vehicula felis, sed pretium dolor finibus vitae.",
-            "/info-1",
-            ImageUrl: "/assets/pictures/finance-calculator.jpg",
-            "Finance calculator"),
-        new HomeRow(
-            "Dolor sit amet",
-            "Integer hendrerit, justo ac suscipit posuere, orci lectus fermentum ligula, at pretium lorem felis vitae massa.",
-            "/info-2",
-            "/assets/pictures/analytics-dashboard.jpg",
-            "Analytics dashboard"),
-        new HomeRow(
-            "Consectetur adipiscing",
-            "Nulla facilisi. Vivamus id magna eu velit bibendum dictum sed sed lectus.",
-            "/info-3",
-            "/assets/pictures/consulting-contract.jpg",
-            "Consulting contract"),
-        new HomeRow(
-            "Elit sed do",
-            "Curabitur faucibus nulla et nibh vehicula, nec convallis mauris vulputate.",
-            "/info-4",
-            "/assets/pictures/workspace-laptop.jpg",
-            "Workspace laptop"),
-        new HomeRow(
-            "Tempor incididunt",
-            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "/info-5",
-            "/assets/pictures/contact-us.jpg",
-            "Contact us")
-    };
+    private IReadOnlyList<HomeRow> Rows { get; set; } = Array.Empty<HomeRow>();
 
     private sealed record HomeRow(string Title, string Body, string Link, string ImageUrl, string ImageAlt);
 
@@ -195,68 +155,109 @@
 
     private sealed record FlowExtraCard(string Title, string Body, int FlowIndex, string Link);
 
-    private static readonly IReadOnlyList<HomeFlowItem> FlowItems = new[]
-    {
-        new HomeFlowItem(
-            "WHO WE ARE",
-            new[]
-            {
-                "We partner with teams on strategy, finance, and operations to turn insight into action.",
-                "From discovery to delivery, we focus on measurable outcomes and clear next steps."
-            },
-            GridColumn: 1,
-            GridRow: 1,
-            FlowIndex: 1),
-        new HomeFlowItem(
-            "WHAT WE DO",
-            new[]
-            {
-                "We partner with teams on strategy, finance, and operations to turn insight into action.",
-                "From discovery to delivery, we focus on measurable outcomes and clear next steps."
-            },
-            GridColumn: 3,
-            GridRow: 2,
-            FlowIndex: 2),
-        new HomeFlowItem(
-            "WHAT WE DO",
-            new[]
-            {
-                "We partner with teams on strategy, finance, and operations to turn insight into action.",
-                "From discovery to delivery, we focus on measurable outcomes and clear next steps."
-            },
-            GridColumn: 2,
-            GridRow: 3,
-            FlowIndex: 3)
-    };
+    private IReadOnlyList<HomeFlowItem> FlowItems { get; set; } = Array.Empty<HomeFlowItem>();
 
-    private static readonly IReadOnlyList<FlowExtraCard> FlowExtraCards = new[]
+    private IReadOnlyList<FlowExtraCard> FlowExtraCards { get; set; } = Array.Empty<FlowExtraCard>();
+
+    protected override void OnInitialized()
     {
-        new FlowExtraCard(
-            "Strategy Alignment",
-            "Clarify goals, scope, and success metrics early.",
-            6,
-            "/info-1"),
-        new FlowExtraCard(
-            "Financial Planning",
-            "Build scenarios and budget models with confidence.",
-            7,
-            "/info-2"),
-        new FlowExtraCard(
-            "Operational Design",
-            "Map processes and identify efficiency gains.",
-            8,
-            "/info-3"),
-        new FlowExtraCard(
-            "Execution Support",
-            "Hands-on delivery alongside your teams.",
-            9,
-            "/info-4"),
-        new FlowExtraCard(
-            "Performance Review",
-            "Track KPIs and iterate on results.",
-            10,
-            "/info-5")
-    };
+        Rows = new List<HomeRow>
+        {
+            new HomeRow(
+                L["Home.Row1.Title"].Value,
+                L["Home.Row1.Body"].Value,
+                "/info-1",
+                "/assets/pictures/finance-calculator.jpg",
+                L["Home.Row1.ImageAlt"].Value),
+            new HomeRow(
+                L["Home.Row2.Title"].Value,
+                L["Home.Row2.Body"].Value,
+                "/info-2",
+                "/assets/pictures/analytics-dashboard.jpg",
+                L["Home.Row2.ImageAlt"].Value),
+            new HomeRow(
+                L["Home.Row3.Title"].Value,
+                L["Home.Row3.Body"].Value,
+                "/info-3",
+                "/assets/pictures/consulting-contract.jpg",
+                L["Home.Row3.ImageAlt"].Value),
+            new HomeRow(
+                L["Home.Row4.Title"].Value,
+                L["Home.Row4.Body"].Value,
+                "/info-4",
+                "/assets/pictures/workspace-laptop.jpg",
+                L["Home.Row4.ImageAlt"].Value),
+            new HomeRow(
+                L["Home.Row5.Title"].Value,
+                L["Home.Row5.Body"].Value,
+                "/info-5",
+                "/assets/pictures/contact-us.jpg",
+                L["Home.Row5.ImageAlt"].Value)
+        };
+
+        FlowItems = new[]
+        {
+            new HomeFlowItem(
+                L["Home.FlowItem1.Title"].Value,
+                new[]
+                {
+                    L["Home.FlowItem1.Line1"].Value,
+                    L["Home.FlowItem1.Line2"].Value
+                },
+                GridColumn: 1,
+                GridRow: 1,
+                FlowIndex: 1),
+            new HomeFlowItem(
+                L["Home.FlowItem2.Title"].Value,
+                new[]
+                {
+                    L["Home.FlowItem2.Line1"].Value,
+                    L["Home.FlowItem2.Line2"].Value
+                },
+                GridColumn: 3,
+                GridRow: 2,
+                FlowIndex: 2),
+            new HomeFlowItem(
+                L["Home.FlowItem3.Title"].Value,
+                new[]
+                {
+                    L["Home.FlowItem3.Line1"].Value,
+                    L["Home.FlowItem3.Line2"].Value
+                },
+                GridColumn: 2,
+                GridRow: 3,
+                FlowIndex: 3)
+        };
+
+        FlowExtraCards = new[]
+        {
+            new FlowExtraCard(
+                L["Home.FlowExtra1.Title"].Value,
+                L["Home.FlowExtra1.Body"].Value,
+                6,
+                "/info-1"),
+            new FlowExtraCard(
+                L["Home.FlowExtra2.Title"].Value,
+                L["Home.FlowExtra2.Body"].Value,
+                7,
+                "/info-2"),
+            new FlowExtraCard(
+                L["Home.FlowExtra3.Title"].Value,
+                L["Home.FlowExtra3.Body"].Value,
+                8,
+                "/info-3"),
+            new FlowExtraCard(
+                L["Home.FlowExtra4.Title"].Value,
+                L["Home.FlowExtra4.Body"].Value,
+                9,
+                "/info-4"),
+            new FlowExtraCard(
+                L["Home.FlowExtra5.Title"].Value,
+                L["Home.FlowExtra5.Body"].Value,
+                10,
+                "/info-5")
+        };
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

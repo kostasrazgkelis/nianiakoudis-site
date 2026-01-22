@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Brand.Full" xml:space="preserve">
+    <value>TCS CONSULTING SERVICES</value>
+  </data>
+  <data name="Brand.Short" xml:space="preserve">
+    <value>TCS</value>
+  </data>
+  <data name="App.NotFound" xml:space="preserve">
+    <value>Η σελίδα δεν βρέθηκε.</value>
+  </data>
+  <data name="Common.Email" xml:space="preserve">
+    <value>info@nianiakoudis.gr</value>
+  </data>
+  <data name="Common.LinkedInHref" xml:space="preserve">
+    <value>https://www.linkedin.com/company/nianiakoudis</value>
+  </data>
+  <data name="Common.LinkedInText" xml:space="preserve">
+    <value>linkedin.com/company/nianiakoudis</value>
+  </data>
+  <data name="Common.PhoneHref" xml:space="preserve">
+    <value>+302311234567</value>
+  </data>
+  <data name="Common.PhoneText" xml:space="preserve">
+    <value>+30 231 123 4567</value>
+  </data>
+  <data name="Contact.DetailsTitle" xml:space="preserve">
+    <value>ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</value>
+  </data>
+  <data name="Contact.EmailLabel" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="Contact.Form.EmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Contact.Form.FullNameLabel" xml:space="preserve">
+    <value>Ονοματεπώνυμο</value>
+  </data>
+  <data name="Contact.Form.MessageLabel" xml:space="preserve">
+    <value>Μήνυμα</value>
+  </data>
+  <data name="Contact.Form.PhoneLabel" xml:space="preserve">
+    <value>Τηλέφωνο</value>
+  </data>
+  <data name="Contact.Form.SubjectLabel" xml:space="preserve">
+    <value>Θέμα</value>
+  </data>
+  <data name="Contact.Form.Submit" xml:space="preserve">
+    <value>ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ</value>
+  </data>
+  <data name="Contact.FormTitle" xml:space="preserve">
+    <value>ΦΟΡΜΑ ΑΙΤΗΜΑΤΟΣ</value>
+  </data>
+  <data name="Contact.HeroImageAlt" xml:space="preserve">
+    <value>Επικοινωνία</value>
+  </data>
+  <data name="Contact.LinkedInLabel" xml:space="preserve">
+    <value>LinkedIn:</value>
+  </data>
+  <data name="Contact.Mail.EmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Contact.Mail.MessageLabel" xml:space="preserve">
+    <value>Μήνυμα</value>
+  </data>
+  <data name="Contact.Mail.NameLabel" xml:space="preserve">
+    <value>Όνομα</value>
+  </data>
+  <data name="Contact.Mail.PhoneLabel" xml:space="preserve">
+    <value>Τηλέφωνο</value>
+  </data>
+  <data name="Contact.Mail.SubjectDefault" xml:space="preserve">
+    <value>Αίτημα επικοινωνίας</value>
+  </data>
+  <data name="Contact.PhoneLabel" xml:space="preserve">
+    <value>Τηλέφωνο:</value>
+  </data>
+  <data name="Contact.Subtitle" xml:space="preserve">
+    <value>Είμαστε δίπλα σας για κάθε ερώτηση ή αίτημα.</value>
+  </data>
+  <data name="Contact.Title" xml:space="preserve">
+    <value>ΕΠΙΚΟΙΝΩΝΙΑ</value>
+  </data>
+  <data name="Footer.Copyright" xml:space="preserve">
+    <value>© {0} TCS CONSULTING SERVICES</value>
+  </data>
+  <data name="Footer.EmailLabel" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="Footer.LinkedInLabel" xml:space="preserve">
+    <value>LinkedIn:</value>
+  </data>
+  <data name="Footer.ScrollTop" xml:space="preserve">
+    <value>ΠΗΓΑΙΝΕ ΠΑΝΩ</value>
+  </data>
+  <data name="Footer.TelephoneLabel" xml:space="preserve">
+    <value>Τηλέφωνο:</value>
+  </data>
+  <data name="Home.Contact.EmailTitle" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Home.Contact.LinkedInText" xml:space="preserve">
+    <value>linkedin.com/nianiakoudis</value>
+  </data>
+  <data name="Home.Contact.LinkedInTitle" xml:space="preserve">
+    <value>LinkedIn</value>
+  </data>
+  <data name="Home.Contact.PhoneTitle" xml:space="preserve">
+    <value>Τηλέφωνο</value>
+  </data>
+  <data name="Home.Flow.ContactBoxBody" xml:space="preserve">
+    <value>Επικοινωνήστε μαζί μας μέσω email, τηλεφώνου ή LinkedIn.</value>
+  </data>
+  <data name="Home.Flow.ContactBoxTitle" xml:space="preserve">
+    <value>Πώς να επικοινωνήσετε μαζί μας;</value>
+  </data>
+  <data name="Home.Flow.ExtraBody" xml:space="preserve">
+    <value>Μια σύντομη εικόνα για το πώς υποστηρίζουμε τους πελάτες στους βασικούς τομείς.</value>
+  </data>
+  <data name="Home.Flow.ExtraTitle" xml:space="preserve">
+    <value>Επιπλέον Πληροφορίες</value>
+  </data>
+  <data name="Home.Flow.HeaderTitle" xml:space="preserve">
+    <value>Καλώς ήρθατε στην TCS CONSULTING SERVICES</value>
+  </data>
+  <data name="Home.Flow.OverviewParagraph1" xml:space="preserve">
+    <value>Παρέχουμε ολοκληρωμένη υποστήριξη σε στρατηγική, οικονομικά και λειτουργίες, μετατρέποντας την πληροφορία σε δράση.</value>
+  </data>
+  <data name="Home.Flow.OverviewParagraph2" xml:space="preserve">
+    <value>Συνεργαζόμαστε στενά με την ομάδα σας, από την ανάλυση έως την υλοποίηση, με έμφαση στη συνέπεια και την αξιοπιστία.</value>
+  </data>
+  <data name="Home.Flow.OverviewTitle" xml:space="preserve">
+    <value>Επισκόπηση</value>
+  </data>
+  <data name="Home.FlowExtra1.Body" xml:space="preserve">
+    <value>Ξεκαθαρίζουμε στόχους, εύρος και κριτήρια επιτυχίας από την αρχή.</value>
+  </data>
+  <data name="Home.FlowExtra1.Title" xml:space="preserve">
+    <value>Στρατηγική Ευθυγράμμιση</value>
+  </data>
+  <data name="Home.FlowExtra2.Body" xml:space="preserve">
+    <value>Δημιουργούμε σενάρια και προϋπολογισμούς με σιγουριά.</value>
+  </data>
+  <data name="Home.FlowExtra2.Title" xml:space="preserve">
+    <value>Οικονομικός Σχεδιασμός</value>
+  </data>
+  <data name="Home.FlowExtra3.Body" xml:space="preserve">
+    <value>Χαρτογραφούμε διαδικασίες και εντοπίζουμε βελτιώσεις.</value>
+  </data>
+  <data name="Home.FlowExtra3.Title" xml:space="preserve">
+    <value>Σχεδιασμός Λειτουργιών</value>
+  </data>
+  <data name="Home.FlowExtra4.Body" xml:space="preserve">
+    <value>Πρακτική υποστήριξη μαζί με την ομάδα σας.</value>
+  </data>
+  <data name="Home.FlowExtra4.Title" xml:space="preserve">
+    <value>Υποστήριξη Υλοποίησης</value>
+  </data>
+  <data name="Home.FlowExtra5.Body" xml:space="preserve">
+    <value>Παρακολουθούμε KPI και βελτιώνουμε συνεχώς.</value>
+  </data>
+  <data name="Home.FlowExtra5.Title" xml:space="preserve">
+    <value>Αξιολόγηση Απόδοσης</value>
+  </data>
+  <data name="Home.FlowItem1.Line1" xml:space="preserve">
+    <value>Συνεργαζόμαστε με ομάδες σε στρατηγική, οικονομικά και λειτουργίες για να μετατρέπουμε την πληροφορία σε δράση.</value>
+  </data>
+  <data name="Home.FlowItem1.Line2" xml:space="preserve">
+    <value>Από την ανάλυση έως την υλοποίηση, εστιάζουμε σε μετρήσιμα αποτελέσματα και ξεκάθαρα επόμενα βήματα.</value>
+  </data>
+  <data name="Home.FlowItem1.Title" xml:space="preserve">
+    <value>ΠΟΙΟΙ ΕΙΜΑΣΤΕ</value>
+  </data>
+  <data name="Home.FlowItem2.Line1" xml:space="preserve">
+    <value>Σχεδιάζουμε λύσεις που ταιριάζουν στις ανάγκες και στους στόχους σας.</value>
+  </data>
+  <data name="Home.FlowItem2.Line2" xml:space="preserve">
+    <value>Παραδίδουμε ξεκάθαρα πλάνα με πρακτικά βήματα.</value>
+  </data>
+  <data name="Home.FlowItem2.Title" xml:space="preserve">
+    <value>ΤΙ ΚΑΝΟΥΜΕ</value>
+  </data>
+  <data name="Home.FlowItem3.Line1" xml:space="preserve">
+    <value>Σχεδιάζουμε λύσεις που ταιριάζουν στις ανάγκες και στους στόχους σας.</value>
+  </data>
+  <data name="Home.FlowItem3.Line2" xml:space="preserve">
+    <value>Παραδίδουμε ξεκάθαρα πλάνα με πρακτικά βήματα.</value>
+  </data>
+  <data name="Home.FlowItem3.Title" xml:space="preserve">
+    <value>ΤΙ ΚΑΝΟΥΜΕ</value>
+  </data>
+  <data name="Home.Hero.ImageAlt" xml:space="preserve">
+    <value>Χειραψία</value>
+  </data>
+  <data name="Home.Hero.Line1" xml:space="preserve">
+    <value>TCS CONSULTING SERVICES</value>
+  </data>
+  <data name="Home.Hero.Line2" xml:space="preserve">
+    <value>ΛΟΓΙΣΤΙΚΟ &amp; ΦΟΡΟΤΕΧΝΙΚΟ ΓΡΑΦΕΙΟ</value>
+  </data>
+  <data name="Home.Hero.Line3Prefix" xml:space="preserve">
+    <value>20 Χρόνια Εμπειρίας</value>
+  </data>
+  <data name="Home.Hero.Line3Suffix" xml:space="preserve">
+    <value>μαζί σας</value>
+  </data>
+  <data name="Home.LearnMore" xml:space="preserve">
+    <value>Μάθετε περισσότερα</value>
+  </data>
+  <data name="Home.Row1.Body" xml:space="preserve">
+    <value>Σχεδιάζουμε σενάρια και προϋπολογισμούς με έμφαση στη σταθερότητα.</value>
+  </data>
+  <data name="Home.Row1.ImageAlt" xml:space="preserve">
+    <value>Υπολογιστής οικονομικών</value>
+  </data>
+  <data name="Home.Row1.Title" xml:space="preserve">
+    <value>Χρηματοοικονομικός Σχεδιασμός</value>
+  </data>
+  <data name="Home.Row2.Body" xml:space="preserve">
+    <value>Μετατρέπουμε τα δεδομένα σε καθαρές αναφορές και αποφάσεις.</value>
+  </data>
+  <data name="Home.Row2.ImageAlt" xml:space="preserve">
+    <value>Πίνακας αναλυτικών στοιχείων</value>
+  </data>
+  <data name="Home.Row2.Title" xml:space="preserve">
+    <value>Αναλύσεις &amp; Αναφορές</value>
+  </data>
+  <data name="Home.Row3.Body" xml:space="preserve">
+    <value>Καθοδήγηση με σαφείς στόχους και πρακτικές λύσεις.</value>
+  </data>
+  <data name="Home.Row3.ImageAlt" xml:space="preserve">
+    <value>Συμβουλευτική συμφωνία</value>
+  </data>
+  <data name="Home.Row3.Title" xml:space="preserve">
+    <value>Συμβουλευτική Υποστήριξη</value>
+  </data>
+  <data name="Home.Row4.Body" xml:space="preserve">
+    <value>Οργανώνουμε τη ροή εργασιών σας με σύγχρονα εργαλεία.</value>
+  </data>
+  <data name="Home.Row4.ImageAlt" xml:space="preserve">
+    <value>Φορητός υπολογιστής εργασίας</value>
+  </data>
+  <data name="Home.Row4.Title" xml:space="preserve">
+    <value>Ψηφιακή Οργάνωση</value>
+  </data>
+  <data name="Home.Row5.Body" xml:space="preserve">
+    <value>Είμαστε διαθέσιμοι για κάθε σας ερώτηση.</value>
+  </data>
+  <data name="Home.Row5.ImageAlt" xml:space="preserve">
+    <value>Επικοινωνήστε μαζί μας</value>
+  </data>
+  <data name="Home.Row5.Title" xml:space="preserve">
+    <value>Επικοινωνία</value>
+  </data>
+  <data name="Info.1.Paragraph1" xml:space="preserve">
+    <value>Παρουσιάζουμε τις βασικές υπηρεσίες και τον τρόπο που τις προσαρμόζουμε στις ανάγκες σας.</value>
+  </data>
+  <data name="Info.1.Paragraph2" xml:space="preserve">
+    <value>Στόχος μας είναι μια καθαρή, αποτελεσματική και αξιόπιστη παρουσία.</value>
+  </data>
+  <data name="Info.1.Title" xml:space="preserve">
+    <value>Μάθετε περισσότερα - Ενότητα 1</value>
+  </data>
+  <data name="Info.2.Paragraph1" xml:space="preserve">
+    <value>Εστιάζουμε στην εμπειρία του χρήστη και στη σωστή ροή πληροφορίας.</value>
+  </data>
+  <data name="Info.2.Paragraph2" xml:space="preserve">
+    <value>Κάθε λεπτομέρεια έχει σημασία όταν δημιουργείται εμπιστοσύνη.</value>
+  </data>
+  <data name="Info.2.Title" xml:space="preserve">
+    <value>Μάθετε περισσότερα - Ενότητα 2</value>
+  </data>
+  <data name="Info.3.Paragraph1" xml:space="preserve">
+    <value>Συνδυάζουμε αισθητική και λειτουργικότητα με καθαρό, σύγχρονο design.</value>
+  </data>
+  <data name="Info.3.Paragraph2" xml:space="preserve">
+    <value>Η εικόνα σας πρέπει να αποτυπώνει την ποιότητα της δουλειάς σας.</value>
+  </data>
+  <data name="Info.3.Title" xml:space="preserve">
+    <value>Μάθετε περισσότερα - Ενότητα 3</value>
+  </data>
+  <data name="Info.4.Paragraph1" xml:space="preserve">
+    <value>Παρέχουμε συνεχή υποστήριξη και προτείνουμε βελτιώσεις όπου χρειάζεται.</value>
+  </data>
+  <data name="Info.4.Paragraph2" xml:space="preserve">
+    <value>Η συνεργασία μας δεν σταματά στην πρώτη παράδοση.</value>
+  </data>
+  <data name="Info.4.Title" xml:space="preserve">
+    <value>Μάθετε περισσότερα - Ενότητα 4</value>
+  </data>
+  <data name="Info.5.Paragraph1" xml:space="preserve">
+    <value>Παρουσιάζουμε τις βασικές υπηρεσίες και τον τρόπο που τις προσαρμόζουμε στις ανάγκες σας.</value>
+  </data>
+  <data name="Info.5.Paragraph2" xml:space="preserve">
+    <value>Στόχος μας είναι μια καθαρή, αποτελεσματική και αξιόπιστη παρουσία.</value>
+  </data>
+  <data name="Info.5.Title" xml:space="preserve">
+    <value>Μάθετε περισσότερα - Ενότητα 5</value>
+  </data>
+  <data name="Nav.About" xml:space="preserve">
+    <value>ΣΧΕΤΙΚΑ</value>
+  </data>
+  <data name="Nav.Contact" xml:space="preserve">
+    <value>ΕΠΙΚΟΙΝΩΝΙΑ</value>
+  </data>
+  <data name="Nav.Home" xml:space="preserve">
+    <value>ΑΡΧΙΚΗ</value>
+  </data>
+  <data name="Nav.Service1" xml:space="preserve">
+    <value>ΥΠΗΡΕΣΙΑ 1</value>
+  </data>
+  <data name="Nav.Service2" xml:space="preserve">
+    <value>ΥΠΗΡΕΣΙΑ 2</value>
+  </data>
+  <data name="Nav.Service3" xml:space="preserve">
+    <value>ΥΠΗΡΕΣΙΑ 3</value>
+  </data>
+  <data name="Nav.Service4" xml:space="preserve">
+    <value>ΥΠΗΡΕΣΙΑ 4</value>
+  </data>
+  <data name="Nav.Service5" xml:space="preserve">
+    <value>ΥΠΗΡΕΣΙΑ 5</value>
+  </data>
+  <data name="Nav.Services" xml:space="preserve">
+    <value>ΥΠΗΡΕΣΙΕΣ</value>
+  </data>
+  <data name="PageContent.About.Hero" xml:space="preserve">
+    <value>Εμπειρία, μεθοδικότητα και συνεργασία.</value>
+  </data>
+  <data name="PageContent.About.Highlight1" xml:space="preserve">
+    <value>Ανάλυση αναγκών και στοχευμένη στρατηγική.</value>
+  </data>
+  <data name="PageContent.About.Highlight2" xml:space="preserve">
+    <value>Προσεγμένη υλοποίηση με έμφαση στη λεπτομέρεια.</value>
+  </data>
+  <data name="PageContent.About.Highlight3" xml:space="preserve">
+    <value>Συνεχής υποστήριξη και εξέλιξη.</value>
+  </data>
+  <data name="PageContent.About.Summary" xml:space="preserve">
+    <value>Δουλεύουμε δίπλα σας για να μετατρέψουμε τις ιδέες σε αποτελεσματικές λύσεις, με σαφήνεια, αξιοπιστία και διαφάνεια.</value>
+  </data>
+  <data name="PageContent.Home.Hero" xml:space="preserve">
+    <value>Στρατηγική, εμπειρία και σύγχρονο web.</value>
+  </data>
+  <data name="PageContent.Home.Highlight1" xml:space="preserve">
+    <value>Εξειδικευμένες λύσεις για επιχειρήσεις και οργανισμούς.</value>
+  </data>
+  <data name="PageContent.Home.Highlight2" xml:space="preserve">
+    <value>Ποιότητα, συνέπεια και ανθρώπινη προσέγγιση.</value>
+  </data>
+  <data name="PageContent.Home.Highlight3" xml:space="preserve">
+    <value>Σχεδιασμός που κάνει τη διαφορά στην εικόνα σας.</value>
+  </data>
+  <data name="PageContent.Home.Summary" xml:space="preserve">
+    <value>Χτίζουμε μια ξεκάθαρη ψηφιακή παρουσία που στηρίζει τους στόχους σας και ενισχύει την αξιοπιστία του brand σας.</value>
+  </data>
+</root>
