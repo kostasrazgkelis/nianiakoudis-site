@@ -4,7 +4,7 @@
 
 <MudBox Class="home-stack" Id="home-stack">
 
-    <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowBullets="true" AutoCycle="false" AutoCycleTime="@TimeSpan.FromSeconds(10)" Interval="20000" BulletsColor="Color.Primary" BulletsClass="home-bullets" ArrowsClass="home-arrows">
+    <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(10)" Interval="20000" BulletsColor="Color.Primary" BulletsClass="home-bullets">
 
 
         <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
@@ -49,7 +49,7 @@
         }
     </MudCarousel>
 
-    <HomeFlow Items="FlowItems">
+    <HomeFlow Items="FlowItems" Duration="13s">
         <HeaderContent>
             <MudBox Class="home-flow-header home-container" data-flow-index="0">
                 <MudText Typo="Typo.h4" Class="home-flow-longform-title">
@@ -79,12 +79,14 @@
             </MudBox>
 
             <MudBox Class="home-flow-extra">
-                <MudText Typo="Typo.h4" Class="home-flow-longform-title">
-                    Additional Insights
-                </MudText>
-                <MudText Typo="Typo.subtitle1" Class="home-flow-extra-body">
-                    A quick snapshot of how we support clients across core focus areas.
-                </MudText>
+                <MudBox Class="home-container home-flow-extra-header" data-flow-index="5">
+                    <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                        Additional Insights
+                    </MudText>
+                    <MudText Typo="Typo.subtitle1" Class="home-flow-extra-body">
+                        A quick snapshot of how we support clients across core focus areas.
+                    </MudText>
+                </MudBox>
 
                 <MudBox Class="home-flow-extra-grid">
                     @foreach (var card in FlowExtraCards)
@@ -106,7 +108,7 @@
                 </MudBox>
             </MudBox>
 
-            <MudContainer Square="true" Class="box-1 home-container" Gutter="false" data-flow-index="10">
+            <MudContainer Square="true" Class="box-1 home-container" Gutter="false" data-flow-index="11">
                 <MudGrid Class="box-1-grid" Spacing="2">
                     <MudItem xs="12" md="4" Class="box-1-left">
                         <MudText Typo="Typo.h5" Class="box-1-title">How to contact us?</MudText>
@@ -231,27 +233,27 @@
         new FlowExtraCard(
             "Strategy Alignment",
             "Clarify goals, scope, and success metrics early.",
-            5,
+            6,
             "/info-1"),
         new FlowExtraCard(
             "Financial Planning",
             "Build scenarios and budget models with confidence.",
-            6,
+            7,
             "/info-2"),
         new FlowExtraCard(
             "Operational Design",
             "Map processes and identify efficiency gains.",
-            7,
+            8,
             "/info-3"),
         new FlowExtraCard(
             "Execution Support",
             "Hands-on delivery alongside your teams.",
-            8,
+            9,
             "/info-4"),
         new FlowExtraCard(
             "Performance Review",
             "Track KPIs and iterate on results.",
-            9,
+            10,
             "/info-5")
     };
 

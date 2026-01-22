@@ -5,6 +5,8 @@ window.homeSectionsObserver = {
             return;
         }
 
+        var flowStartDelayMs = 1000;
+
         function parseDuration(value) {
             if (!value) {
                 return null;
@@ -218,18 +220,34 @@ window.homeSectionsObserver = {
             return true;
         }
 
+        function positionFlowHeadAtStart(flow) {
+            var track = flow.querySelector(".home-flow-track");
+            var head = flow.querySelector(".home-flow-head");
+            if (!track || !head || typeof track.getPointAtLength !== "function") {
+                return;
+            }
+            var startPoint = track.getPointAtLength(0);
+            head.setAttribute("transform", "translate(" + startPoint.x + " " + startPoint.y + ")");
+        }
+
         function resetFlowTrail(flow) {
+            syncFlowTrailLength(flow, false);
+        }
+
+        function syncFlowTrailLength(flow, preserveOffset) {
             var trails = flow.querySelectorAll(".home-flow-trail");
             trails.forEach(function (trail) {
                 var length = trail.getTotalLength();
                 trail.style.strokeDasharray = length;
-                trail.style.strokeDashoffset = length;
                 trail.style.setProperty("--flow-length", length);
                 var draws = trail.querySelectorAll(".home-flow-trail-draw");
                 draws.forEach(function (draw) {
                     draw.setAttribute("from", length);
                     draw.setAttribute("to", 0);
                 });
+                if (!preserveOffset) {
+                    trail.style.strokeDashoffset = length;
+                }
             });
         }
 
@@ -335,21 +353,46 @@ window.homeSectionsObserver = {
         }
 
         function startFlow(flow) {
+            if (flow.dataset.flowStarted === "1") {
+                updateFlowPath(flow);
+                syncFlowTrailLength(flow, true);
+                return;
+            }
+
             updateFlowPath(flow);
             resetFlowTrail(flow);
+            positionFlowHeadAtStart(flow);
+            flow.dataset.flowStarted = "1";
+            var head = flow.querySelector(".home-flow-head");
             var motions = flow.querySelectorAll(".home-flow-head-motion");
-            motions.forEach(function (motion) {
-                if (typeof motion.beginElement === "function") {
-                    motion.beginElement();
-                }
-            });
             var draws = flow.querySelectorAll(".home-flow-trail-draw");
-            draws.forEach(function (draw) {
-                if (typeof draw.beginElement === "function") {
-                    draw.beginElement();
+            window.setTimeout(function () {
+                if (head) {
+                    head.removeAttribute("transform");
                 }
-            });
+                motions.forEach(function (motion) {
+                    if (typeof motion.beginElement === "function") {
+                        motion.beginElement();
+                    }
+                });
+                draws.forEach(function (draw) {
+                    if (typeof draw.beginElement === "function") {
+                        draw.beginElement();
+                    }
+                });
+            }, flowStartDelayMs);
             scheduleFlowContainers(flow);
+        }
+
+        function handleLayoutChange() {
+            items.forEach(function (item) {
+                if (!item.classList.contains("home-flow")) {
+                    return;
+                }
+                updateFlowPath(item);
+                var started = item.dataset.flowStarted === "1";
+                syncFlowTrailLength(item, started);
+            });
         }
 
         items.forEach(function (item) {
@@ -359,6 +402,21 @@ window.homeSectionsObserver = {
             }
         });
 
+        var resizeTimer = null;
+        function queueLayoutChange() {
+            if (resizeTimer) {
+                window.clearTimeout(resizeTimer);
+            }
+            resizeTimer = window.setTimeout(function () {
+                resizeTimer = null;
+                handleLayoutChange();
+            }, 150);
+        }
+
+        window.addEventListener("resize", queueLayoutChange);
+        window.addEventListener("orientationchange", queueLayoutChange);
+
+        var isNarrowScreen = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
         var observer = new IntersectionObserver(function (entries, obs) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
@@ -369,7 +427,7 @@ window.homeSectionsObserver = {
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.2 });
+        }, { threshold: isNarrowScreen ? 0 : 0.2 });
 
         items.forEach(function (item) {
             observer.observe(item);

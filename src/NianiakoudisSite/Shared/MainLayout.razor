@@ -1,4 +1,5 @@
 @inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
 
 <MudLayout>
     <MudAppBar Class="app-bar" Color="Color.Default" Fixed="true" Elevation="0">
@@ -17,6 +18,11 @@
     </MudMainContent>
 
     <MudPaper Class="app-footer" Square="true" Elevation="0">
+        <MudButton Class="footer-scroll-button"
+                   Variant="Variant.Text"
+                   OnClick="ScrollToTop">
+            &#x03A0;&#x0397;&#x0393;&#x0391;&#x0399;&#x039D;&#x0395;&#x0399; &#x03A0;&#x0391;&#x039D;&#x03A9;
+        </MudButton>
         <MudText Typo="Typo.subtitle1">&copy; 2024 TCS CONSULTING SERVICES</MudText>
         <MudStack Class="footer-contact" Row="true" Spacing="2">
             <MudText Typo="Typo.body1">Telephone: <MudLink Href="tel:+302311234567">+30 231 123 4567</MudLink></MudText>
@@ -25,3 +31,10 @@
         </MudStack>
     </MudPaper>
 </MudLayout>
+
+@code {
+    private async Task ScrollToTop()
+    {
+        await JSRuntime.InvokeVoidAsync("eval", "window.scrollTo({ top: 0, behavior: 'smooth' })");
+    }
+}
