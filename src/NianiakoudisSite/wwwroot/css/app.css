@@ -12,6 +12,7 @@
     --content-pad-x: 2rem;
     --content-bottom-pad: 5rem;
     --footer-height: 4.5rem;
+    --home-section-card-size: 420px;
 }
 
 * {
@@ -53,6 +54,10 @@ body::-webkit-scrollbar {
     overflow: hidden;
     padding: 0;
     margin: 0;
+}
+
+.home-carousel .hero {
+    margin-bottom: 0;
 }
 
 .home-second {
@@ -191,7 +196,7 @@ body::-webkit-scrollbar {
     .home-sections {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
         gap: 2.5rem;
         width: 100%;
         grid-template-columns: 1fr;
@@ -201,13 +206,15 @@ body::-webkit-scrollbar {
 
     .home-sections .home-container {
         width: 100%;
-        max-width: 100%;
+        max-width: var(--home-section-card-size);
         padding: 0;
-        align-items: stretch;
+        align-items: center;
     }
 
     .home-sections .box-1-card {
-        width: 100%;
+        width: var(--home-section-card-size);
+        height: var(--home-section-card-size);
+        margin: 0 auto;
     }
 }
 
@@ -442,6 +449,13 @@ body::-webkit-scrollbar {
     border-radius: 0;
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: inset 0 0 0 6px rgba(31, 122, 140, 0.45), inset 0 0 0 12px rgba(31, 122, 140, 0.22);
+    width: var(--home-section-card-size);
+    height: var(--home-section-card-size);
+    min-width: var(--home-section-card-size);
+    min-height: var(--home-section-card-size);
+    max-width: var(--home-section-card-size);
+    max-height: var(--home-section-card-size);
+    aspect-ratio: 1 / 1;
 }
 
 .box-1-card-icon {
@@ -677,7 +691,9 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    width: 100%;
+    height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     scroll-snap-align: start;
     scroll-snap-stop: always;
 }
@@ -1078,12 +1094,43 @@ body::-webkit-scrollbar {
 
 @media (max-width: 900px) {
     .home-row {
-        height: auto;
-        min-height: calc(100vh - var(--top-bar-height));
+        height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+        min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     }
 
     .home-row-card {
-        height: auto;
+        position: relative;
+        height: 100%;
+    }
+
+    .home-row-grid {
+        position: relative;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .home-row-grid .mud-grid-item {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+
+    .home-carousel .home-row .home-visual {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .home-carousel .home-row .home-visual .mud-image,
+    .home-carousel .home-row .home-visual .mud-image img,
+    .home-carousel .home-row .home-image {
+        height: 100%;
+    }
+
+    .home-carousel .home-row .home-copy {
+        position: relative;
+        z-index: 1;
+        padding: 2rem 1.5rem;
+        background: rgba(255, 255, 255, 0.78);
     }
 
     .home-copy .mud-typography-h5 {
@@ -1101,6 +1148,11 @@ body::-webkit-scrollbar {
         min-height: calc(100vh - var(--top-bar-height));
     }
 
+    .home-row {
+        height: calc(100vh - var(--top-bar-height));
+        min-height: calc(100vh - var(--top-bar-height));
+    }
+
     .home-hero-image,
     .home-hero-image img {
         min-height: 70vh;
@@ -1113,6 +1165,11 @@ body::-webkit-scrollbar {
 
     .hero {
         height: auto;
+        min-height: calc(100vh - var(--top-bar-height));
+    }
+
+    .home-carousel .hero {
+        height: calc(100vh - var(--top-bar-height));
         min-height: calc(100vh - var(--top-bar-height));
     }
 
