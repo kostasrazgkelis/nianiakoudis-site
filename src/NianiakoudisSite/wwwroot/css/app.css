@@ -647,6 +647,10 @@ body::-webkit-scrollbar {
     color: var(--color-primary);
 }
 
+.brand-text-short {
+    display: none;
+}
+
 .brand-link {
     text-decoration: none;
 }
@@ -674,6 +678,10 @@ body::-webkit-scrollbar {
 
 .nav-links .mud-nav-link-active {
     color: var(--color-accent);
+}
+
+.nav-links-mobile {
+    display: none;
 }
 
 
@@ -1093,6 +1101,47 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 900px) {
+    .brand-text-full {
+        display: none;
+    }
+
+    .brand-text-short {
+        display: inline;
+    }
+
+    .app-bar {
+        position: relative;
+        justify-content: center;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .app-bar .nav-links-mobile {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .app-bar .mud-spacer {
+        display: none;
+    }
+
+    .app-bar .brand-link {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .nav-links-desktop {
+        display: none !important;
+    }
+
+    .nav-links-mobile {
+        display: inline-flex !important;
+    }
+
     .home-row {
         height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
         min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
