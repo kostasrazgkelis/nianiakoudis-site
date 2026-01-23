@@ -4,7 +4,8 @@
 
 <MudBox Class="home-stack" Id="home-stack">
 
-    <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(10)" Interval="20000" BulletsColor="Color.Primary" BulletsClass="home-bullets">
+    <MudPaper Class="home-carousel-shell" Square="true" Elevation="2" Padding="0">
+        <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(10)" Interval="20000" BulletsColor="Color.Primary" BulletsClass="home-bullets">
 
 
         <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
@@ -48,7 +49,8 @@
             </MudCarouselItem>
         }
         
-    </MudCarousel>
+        </MudCarousel>
+    </MudPaper>
 
     <HomeFlow Items="FlowItems" Duration="13s">
         <HeaderContent>

@@ -60,6 +60,45 @@ body::-webkit-scrollbar {
     margin-bottom: 0;
 }
 
+.home-carousel-shell {
+    width: 100%;
+}
+
+@keyframes home-carousel-rise-in {
+    from {
+        transform: translate3d(0, 100%, 0);
+        visibility: visible;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes home-carousel-rise-out {
+    from {
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+    to {
+        transform: translate3d(0, -100%, 0);
+    }
+}
+
+.home-carousel .mud-carousel-transition-slide-next-enter,
+.home-carousel .mud-carousel-transition-slide-prev-enter,
+.home-carousel .mud-carousel-transition-slide-next-rtl-enter,
+.home-carousel .mud-carousel-transition-slide-prev-rtl-enter {
+    animation: 1.0s home-carousel-rise-in;
+}
+
+.home-carousel .mud-carousel-transition-slide-next-exit,
+.home-carousel .mud-carousel-transition-slide-prev-exit,
+.home-carousel .mud-carousel-transition-slide-next-rtl-exit,
+.home-carousel .mud-carousel-transition-slide-prev-rtl-exit {
+    animation: 0.5s home-carousel-rise-out;
+    animation-fill-mode: forwards;
+}
+
 .home-second {
     width: 100%;
     display: flex;
@@ -692,6 +731,13 @@ body::-webkit-scrollbar {
     padding-bottom: 6rem;
     margin-bottom: 1rem;
 
+}
+
+@media (max-width: 720px) {
+    .app-main {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
 
 
