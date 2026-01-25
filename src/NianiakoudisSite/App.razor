@@ -10,7 +10,9 @@
     </Found>
     <NotFound>
         <LayoutView Layout="typeof(Shared.MainLayout)">
-            <MudText Typo="Typo.h6" Color="Color.Error" role="alert">@L["App.NotFound"]</MudText>
+            <MudBox Class="not-found">
+                <MudText Typo="Typo.h6" Color="Color.Error" role="alert">@L["App.NotFound"]</MudText>
+            </MudBox>
         </LayoutView>
     </NotFound>
 </Router>

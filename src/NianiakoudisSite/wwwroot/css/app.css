@@ -793,6 +793,15 @@ body::-webkit-scrollbar {
 
 }
 
+.not-found {
+    min-height: calc(var(--viewport-height) - var(--top-bar-height) - var(--footer-height) - var(--content-bottom-pad));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 0;
+}
+
 
 .home-row {
     display: flex;
