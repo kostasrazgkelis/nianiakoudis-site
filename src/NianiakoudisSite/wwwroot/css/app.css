@@ -7,16 +7,42 @@
     
     --color-text: #1d1d1f;
     --color-muted: #596275;
-    --top-bar-height: 5rem;
+    --top-bar-height: 6rem;
     --content-pad: 1rem;
-    --content-pad-x: 2rem;
-    --content-bottom-pad: 5rem;
+    --content-pad-x: clamp(1rem, 3vw, 3rem);
+    --content-bottom-pad: clamp(3rem, 6vw, 6rem);
+    --layout-gap-xl: clamp(4rem, 10vw, 12rem);
+    --layout-gap-lg: clamp(2rem, 6vw, 4rem);
+    --layout-card-pad: clamp(1.5rem, 4vw, 3rem);
+    --viewport-height: 100vh;
     --footer-height: 4.5rem;
-    --home-section-card-size: 420px;
+    --home-section-card-size: 320px;
+}
+
+@supports (height: 100svh) {
+    :root {
+        --viewport-height: 100svh;
+    }
+}
+
+@media (min-width: 900px) {
+    :root {
+        --home-section-card-size: 360px;
+    }
+}
+
+@media (min-width: 1200px) {
+    :root {
+        --home-section-card-size: 420px;
+    }
 }
 
 * {
     box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 body {
@@ -25,8 +51,11 @@ body {
     background: var(--color-soft);
     color: var(--color-text);
     overflow-y: scroll;
+    overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
 }
 
 body::-webkit-scrollbar {
@@ -35,10 +64,12 @@ body::-webkit-scrollbar {
 
 .home-stack {
     width: 100%;
-    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    min-height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     display: flex;
     flex-direction: column;
-    gap: 12rem;
+    gap: var(--layout-gap-xl);
+    margin: 0;
+    padding: 0;
 }
 
 .info-stack {
@@ -49,11 +80,12 @@ body::-webkit-scrollbar {
 
 .home-carousel {
     width: 100%;
-    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    min-height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     position: relative;
     overflow: hidden;
     padding: 0;
     margin: 0;
+    height: 100%;
 }
 
 .home-carousel .hero {
@@ -119,9 +151,10 @@ body::-webkit-scrollbar {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(3, auto);
-    column-gap: 4rem;
-    row-gap: 20rem;
-    padding: 0 1rem 3rem;
+    column-gap: 0rem;
+    row-gap: 0.5rem;
+    padding: 0 3rem 3rem;
+    justify-items: center;
     
 }
 
@@ -137,7 +170,7 @@ body::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: var(--layout-gap-lg);
 }
 
 .home-flow-line {
@@ -212,7 +245,7 @@ body::-webkit-scrollbar {
     opacity: 0;
     transform: translateY(16px);
     justify-content: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 
 }
 
@@ -236,7 +269,7 @@ body::-webkit-scrollbar {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 2.5rem;
+        gap: 1.75rem;
         width: 100%;
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -271,18 +304,34 @@ body::-webkit-scrollbar {
 
 @media (max-width: 600px) {
     .home-flow-extra-grid {
+        grid-auto-flow: row;
+        grid-auto-columns: auto;
         grid-template-columns: 1fr;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        scroll-padding-inline: 0;
+        padding-inline: 0;
+        margin-inline: 0;
+        gap: 1.75rem;
+        scrollbar-width: auto;
+        -ms-overflow-style: auto;
+    }
+
+    .home-flow-extra-card {
+        scroll-snap-align: none;
+        min-height: 260px;
     }
 }
 
 .home-second-title {
     color: var(--color-primary);
-    line-height: 1.7;
-    padding-bottom: 2rem;
+    line-height: 1.3;
+    padding-bottom: 1rem;
     text-align: center;
     text-decoration-line: underline;
     text-decoration-color: var(--color-primary);
     text-underline-offset: 0.25em;
+    font-size: clamp(1.4rem, 1.4vw + 1rem, 2.1rem);
 }
 
 .home-second-body {
@@ -301,7 +350,7 @@ body::-webkit-scrollbar {
     display: block;
     width: 100%;
     margin: 0;
-    padding: 2.5rem 2rem;
+    padding: var(--layout-card-pad);
     opacity: 0;
     transform: translateY(16px);
 }
@@ -317,14 +366,14 @@ body::-webkit-scrollbar {
     align-items: center;
     gap: 1.5rem;
     margin-top: 5rem;
-    padding: 2rem 1rem 0;
+    padding: var(--layout-card-pad) var(--content-pad-x) 0;
 }
 
 .home-flow-header {
     width: 100%;
     position: relative;
     z-index: 1;
-    padding: 0 1rem 0;
+    padding: 0 var(--content-pad-x) 0;
     margin-bottom: 12rem;
     opacity: 1;
     transform: none;
@@ -340,8 +389,8 @@ body::-webkit-scrollbar {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 1rem 1rem 0;
-    text-align: left;
+    padding: var(--content-pad) var(--content-pad-x) 0;
+    text-align: center;
 }
 
 .home-flow-longform-title {
@@ -363,7 +412,7 @@ body::-webkit-scrollbar {
     width: 100%;
     max-width: 920px;
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
 }
 
 .home-flow-longform-body + .home-flow-longform-body {
@@ -387,7 +436,7 @@ body::-webkit-scrollbar {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 1.5rem;
-    align-items: stretch;
+    align-items: center;
 }
 
 .home-flow-extra-link {
@@ -452,6 +501,7 @@ body::-webkit-scrollbar {
 
 .box-1-grid {
     align-items: center;
+    row-gap: 2rem;
 }
 
 .box-1-left {
@@ -461,11 +511,14 @@ body::-webkit-scrollbar {
 .box-1-title {
     color: var(--color-primary);
     margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 .box-1-subtitle {
     color: var(--color-muted);
     line-height: 1.6;
+    text-align: center;
+
 }
 
 .box-1-cards {
@@ -477,10 +530,11 @@ body::-webkit-scrollbar {
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.08);
     padding: 1.5rem 1.25rem;
+    margin: 0;
     display: flex;
+    gap: 0.65rem;
     flex-direction: column;
     align-items: center;
-    gap: 0.65rem;
     text-align: center;
 }
 
@@ -495,6 +549,9 @@ body::-webkit-scrollbar {
     max-width: var(--home-section-card-size);
     max-height: var(--home-section-card-size);
     aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    align-self: center;
+    justify-self: center;
 }
 
 .box-1-card-icon {
@@ -574,6 +631,7 @@ body::-webkit-scrollbar {
 
 .home-hero-text {
     position: absolute;
+    width: 70%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -611,19 +669,20 @@ body::-webkit-scrollbar {
     overflow-wrap: anywhere;
 }
 
+.home-hero-paragraph-first {
+    font-size: clamp(1.1rem, 1.2vw + 0.9rem, 1.8rem);
+    padding: 0rem;
+}
+
 .home-hero-paragraph-second {
     animation-delay: 4s;
     letter-spacing: 0.08em;
-
+    padding: 0rem;
 }
-
-.home-hero-paragraph-first {
-    font-size: clamp(1.1rem, 1.2vw + 0.9rem, 1.8rem);
-}
-
 .home-hero-paragraph-third {
     animation-delay: 6s;
     font-size: clamp(1.05rem, 1vw + 0.85rem, 1.6rem);
+    padding: 0rem;
 }
 
 .home-hero-paragraph-delayed {
@@ -674,9 +733,9 @@ body::-webkit-scrollbar {
 
 .app-bar {
     background: white;
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
-    padding-top: 1rem;
+    padding-left: calc(var(--content-pad-x) + env(safe-area-inset-left));
+    padding-right: calc(var(--content-pad-x) + env(safe-area-inset-right));
+    padding-top: calc(1rem + env(safe-area-inset-top));
     padding-bottom: 1rem;
 }
 
@@ -725,19 +784,13 @@ body::-webkit-scrollbar {
 
 
 .app-main {
-    padding-top: var(--top-bar-height);
-    padding-left: 3rem;
-    padding-right: 3rem;
-    padding-bottom: 6rem;
+    margin-top: var(--top-bar-height);
+    padding-top: env(safe-area-inset-top);
+    padding-left: calc(var(--content-pad-x) + env(safe-area-inset-left));
+    padding-right: calc(var(--content-pad-x) + env(safe-area-inset-right));
+    padding-bottom: calc(var(--content-bottom-pad) + env(safe-area-inset-bottom));
     margin-bottom: 1rem;
 
-}
-
-@media (max-width: 720px) {
-    .app-main {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
 }
 
 
@@ -746,8 +799,8 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
-    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    min-height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     scroll-snap-align: start;
     scroll-snap-stop: always;
 }
@@ -779,7 +832,9 @@ body::-webkit-scrollbar {
 .home-carousel .home-bullets {
     background-color: var(--color-accent);
     opacity: 0.1;
-    margin-bottom: 1rem;
+    width: 8px;
+    height: 8px;
+    margin-bottom: 0.5rem;
     transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease;
     transform: scale(1);
     cursor: pointer;
@@ -815,6 +870,7 @@ body::-webkit-scrollbar {
     text-align: center;
     justify-content: center;
     height: 100%;
+    row-gap: 1rem;
 }
 
 .home-row.reverse .home-row-grid {
@@ -876,7 +932,7 @@ body::-webkit-scrollbar {
     width: min(880px, 100%);
     background: white;
     border-radius: 0;
-    padding: 3rem;
+    padding: var(--layout-card-pad);
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
 }
@@ -889,8 +945,8 @@ body::-webkit-scrollbar {
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
     position: relative;
-    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad) + 6rem);
-    max-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    min-height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad) + 6rem);
+    max-height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -956,7 +1012,7 @@ body::-webkit-scrollbar {
 .contact-content {
     position: relative;
     z-index: 1;
-    padding: 2rem 2.5rem 3rem;
+    padding: var(--layout-card-pad);
     background: rgba(255, 255, 255, 0.75);
     align-self: center;
 }
@@ -1064,8 +1120,8 @@ body::-webkit-scrollbar {
 
 .hero {
     width: 100%;
-    height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
-    min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+    min-height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     margin: 0 auto;
     margin-bottom: 2rem;
     display: flex;
@@ -1158,13 +1214,13 @@ body::-webkit-scrollbar {
     .app-bar {
         position: relative;
         justify-content: center;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
+        padding-left: calc(0.75rem + env(safe-area-inset-left));
+        padding-right: calc(0.75rem + env(safe-area-inset-right));
     }
 
     .app-bar .nav-links-mobile {
         position: absolute;
-        left: 0.75rem;
+        left: calc(0.75rem + env(safe-area-inset-left));
         top: 50%;
         transform: translateY(-50%);
     }
@@ -1175,7 +1231,7 @@ body::-webkit-scrollbar {
 
     .app-bar .brand-link {
         position: absolute;
-        right: 0.75rem;
+        right: calc(0.75rem + env(safe-area-inset-right));
         top: 50%;
         transform: translateY(-50%);
     }
@@ -1189,8 +1245,8 @@ body::-webkit-scrollbar {
     }
 
     .home-row {
-        height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
-        min-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+        height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+        min-height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
     }
 
     .home-row-card {
@@ -1238,14 +1294,48 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 720px) {
+    .home-sections {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        width: 100%;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        scroll-padding-inline: 0;
+        padding-inline: 0;
+        margin-inline: 0;
+        scrollbar-width: none;
+        -ms-overflow-style: auto;
+    }
+
+    .home-sections .home-container {
+        flex: 0 0 auto;
+        scroll-snap-align: none;
+        width: 100%;
+        max-width: var(--home-section-card-size);
+    }
+
+    .home-sections .home-second-title {
+        font-size: clamp(1.1rem, 2.6vw + 0.6rem, 1.6rem);
+        line-height: 1.5;
+        padding-bottom: 1.25rem;
+    }
+
+    .home-sections .home-second-body {
+        font-size: clamp(0.9rem, 2vw + 0.5rem, 1.05rem);
+        line-height: 1.55;
+        margin-top: 0.75rem;
+    }
+
     .home-hero {
-        height: calc(100vh - var(--top-bar-height));
-        min-height: calc(100vh - var(--top-bar-height));
+        height: calc(var(--viewport-height) - var(--top-bar-height));
+        min-height: calc(var(--viewport-height) - var(--top-bar-height));
     }
 
     .home-row {
-        height: calc(100vh - var(--top-bar-height));
-        min-height: calc(100vh - var(--top-bar-height));
+        height: calc(var(--viewport-height) - var(--top-bar-height));
+        min-height: calc(var(--viewport-height) - var(--top-bar-height));
     }
 
     .home-hero-image,
@@ -1260,12 +1350,12 @@ body::-webkit-scrollbar {
 
     .hero {
         height: auto;
-        min-height: calc(100vh - var(--top-bar-height));
+        min-height: calc(var(--viewport-height) - var(--top-bar-height));
     }
 
     .home-carousel .hero {
-        height: calc(100vh - var(--top-bar-height));
-        min-height: calc(100vh - var(--top-bar-height));
+        height: calc(var(--viewport-height) - var(--top-bar-height));
+        min-height: calc(var(--viewport-height) - var(--top-bar-height));
     }
 
     .hero-card {
@@ -1306,7 +1396,7 @@ body::-webkit-scrollbar {
 
     .contact-page {
         padding: 0rem;
-        max-height: calc(100vh - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
+        max-height: calc(var(--viewport-height) - var(--top-bar-height) - var(--content-pad) - var(--content-bottom-pad));
         overflow-y: auto;
     }
 
