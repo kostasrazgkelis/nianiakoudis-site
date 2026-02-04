@@ -1,9 +1,15 @@
 @page "/info-4"
 
 <MudBox Class="home-stack info-stack">
-    <MudPaper Class="info-page" Square="true" Elevation="1">
-        <MudText Typo="Typo.h4">@L["Info.4.Title"]</MudText>
-        <MudText Typo="Typo.body1">@L["Info.4.Paragraph1"]</MudText>
-        <MudText Typo="Typo.body1">@L["Info.4.Paragraph2"]</MudText>
-    </MudPaper>
+
+    <MudContainer Class="info-hero">
+        <MudImage ObjectFit="ObjectFit.Cover" Src="/assets/pictures/our-services-page-4.jpg" Alt="@L["Contact.HeroImageAlt"]" Class="contact-hero contact-slide-up"/>
+
+        <MudPaper Class="info-page" Square="true" Elevation="2">
+            <MudText Typo="Typo.h4">@L["Info.4.Title"]</MudText>
+        </MudPaper>
+    </MudContainer>
+
+    <MudText Typo="Typo.body1">@L["Info.4.Paragraph1"]</MudText>
+    <MudText Typo="Typo.body1">@L["Info.4.Paragraph2"]</MudText>
 </MudBox>

@@ -1,4 +1,18 @@
 @page "/about"
-@inject IPageContentService ContentService
 
-<PageHero Content="ContentService.GetAbout()" />
+<MudBox Class="home-stack info-stack">
+
+    <MudContainer Class="info-hero">
+        <MudImage ObjectFit="ObjectFit.Cover"
+                  Src="/assets/pictures/about-us-page-1.jpg"
+                  Alt="@L["About.HeroImageAlt"]"
+                  Class="contact-hero contact-slide-up"/>
+
+        <MudPaper Class="info-page" Square="true" Elevation="2">
+            <MudText Typo="Typo.h4">@L["About.Title"]</MudText>
+        </MudPaper>
+    </MudContainer>
+
+    <MudText Typo="Typo.body1">@L["About.Paragraph1"]</MudText>
+    <MudText Typo="Typo.body1">@L["About.Paragraph2"]</MudText>
+</MudBox>

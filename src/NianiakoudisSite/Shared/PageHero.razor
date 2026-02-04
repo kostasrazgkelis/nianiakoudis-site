@@ -1,6 +1,10 @@
 @using NianiakoudisSite.Models
 
-<section class="hero">
+<section class="hero page-hero">
+    @if (!string.IsNullOrWhiteSpace(ImageSrc))
+    {
+        <MudImage Src="@ImageSrc" Alt="@ImageAlt" ObjectFit="ObjectFit.Cover" Class="page-hero-image" />
+    }
     <MudPaper Class="hero-card" Square="true" Elevation="1">
         <MudText Typo="Typo.h3" Class="hero-reveal" Style="--reveal-delay: 0ms;">@Content.Hero</MudText>
         <MudText Typo="Typo.subtitle1" Class="summary hero-reveal" Style="--reveal-delay: 140ms;">@Content.Summary</MudText>
@@ -17,6 +21,12 @@
 @code {
     [Parameter]
     public required PageContent Content { get; set; }
+
+    [Parameter]
+    public string? ImageSrc { get; set; }
+
+    [Parameter]
+    public string? ImageAlt { get; set; }
 
     [Parameter]
     public int SectionCount { get; set; }

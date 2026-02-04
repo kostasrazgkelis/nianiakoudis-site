@@ -112,6 +112,18 @@
   <data name="Contact.HeroImageAlt" xml:space="preserve">
     <value>Επικοινωνία</value>
   </data>
+  <data name="About.HeroImageAlt" xml:space="preserve">
+    <value>Σχετικά με εμάς</value>
+  </data>
+  <data name="About.Title" xml:space="preserve">
+    <value>ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ</value>
+  </data>
+  <data name="About.Paragraph1" xml:space="preserve">
+    <value>Είμαστε μια ομάδα που συνδυάζει τεχνική γνώση και δημιουργική σκέψη, με στόχο να χτίζουμε ψηφιακές παρουσίες που ξεχωρίζουν για την καθαρότητα και τη λειτουργικότητά τους.</value>
+  </data>
+  <data name="About.Paragraph2" xml:space="preserve">
+    <value>Δουλεύουμε δίπλα σας από τον αρχικό σχεδιασμό μέχρι την υλοποίηση και την υποστήριξη, ώστε το αποτέλεσμα να εξυπηρετεί πραγματικές ανάγκες και να εξελίσσεται με τον χρόνο.</value>
+  </data>
   <data name="Contact.LinkedInLabel" xml:space="preserve">
     <value>LinkedIn:</value>
   </data>
@@ -311,49 +323,49 @@
     <value>Επικοινωνία</value>
   </data>
   <data name="Info.1.Paragraph1" xml:space="preserve">
-    <value>Παρουσιάζουμε τις βασικές υπηρεσίες και τον τρόπο που τις προσαρμόζουμε στις ανάγκες σας.</value>
+    <value>Ξεκινάμε με αναλυτική καταγραφή των στόχων σας, του κοινού σας και των βασικών λειτουργιών που πρέπει να υποστηριχθούν.</value>
   </data>
   <data name="Info.1.Paragraph2" xml:space="preserve">
-    <value>Στόχος μας είναι μια καθαρή, αποτελεσματική και αξιόπιστη παρουσία.</value>
+    <value>Με βάση αυτά, σχεδιάζουμε μια καθαρή δομή περιεχομένου και προτείνουμε λύσεις που μπορούν να εξελιχθούν μαζί με την επιχείρησή σας.</value>
   </data>
   <data name="Info.1.Title" xml:space="preserve">
-    <value>Μάθετε περισσότερα - Ενότητα 1</value>
+    <value>ΥΠΗΡΕΣΙΑ 1</value>
   </data>
   <data name="Info.2.Paragraph1" xml:space="preserve">
-    <value>Εστιάζουμε στην εμπειρία του χρήστη και στη σωστή ροή πληροφορίας.</value>
+    <value>Η εμπειρία χρήστη σχεδιάζεται με έμφαση στη σαφή πλοήγηση, την ταχύτητα φόρτωσης και τη σωστή ροή πληροφορίας.</value>
   </data>
   <data name="Info.2.Paragraph2" xml:space="preserve">
-    <value>Κάθε λεπτομέρεια έχει σημασία όταν δημιουργείται εμπιστοσύνη.</value>
+    <value>Δοκιμάζουμε και προσαρμόζουμε κάθε στοιχείο ώστε ο επισκέπτης να βρίσκει αυτό που χρειάζεται χωρίς περιττά βήματα.</value>
   </data>
   <data name="Info.2.Title" xml:space="preserve">
-    <value>Μάθετε περισσότερα - Ενότητα 2</value>
+    <value>ΥΠΗΡΕΣΙΑ 2</value>
   </data>
   <data name="Info.3.Paragraph1" xml:space="preserve">
-    <value>Συνδυάζουμε αισθητική και λειτουργικότητα με καθαρό, σύγχρονο design.</value>
+    <value>Δίνουμε ιδιαίτερη σημασία στην αισθητική, τα τυπογραφικά στοιχεία και την οπτική συνοχή, ώστε το design να ξεχωρίζει.</value>
   </data>
   <data name="Info.3.Paragraph2" xml:space="preserve">
-    <value>Η εικόνα σας πρέπει να αποτυπώνει την ποιότητα της δουλειάς σας.</value>
+    <value>Το τελικό αποτέλεσμα αποτυπώνει την ταυτότητά σας με τρόπο σύγχρονο και επαγγελματικό, χωρίς να χάνεται η απλότητα.</value>
   </data>
   <data name="Info.3.Title" xml:space="preserve">
-    <value>Μάθετε περισσότερα - Ενότητα 3</value>
+    <value>ΥΠΗΡΕΣΙΑ 3</value>
   </data>
   <data name="Info.4.Paragraph1" xml:space="preserve">
-    <value>Παρέχουμε συνεχή υποστήριξη και προτείνουμε βελτιώσεις όπου χρειάζεται.</value>
+    <value>Μετά την παράδοση, παραμένουμε δίπλα σας με τεχνική υποστήριξη, ενημερώσεις και μικρές βελτιώσεις όταν χρειάζεται.</value>
   </data>
   <data name="Info.4.Paragraph2" xml:space="preserve">
-    <value>Η συνεργασία μας δεν σταματά στην πρώτη παράδοση.</value>
+    <value>Παρακολουθούμε την απόδοση και προτείνουμε αλλαγές που ενισχύουν την εμπιστοσύνη και τα αποτελέσματα.</value>
   </data>
   <data name="Info.4.Title" xml:space="preserve">
-    <value>Μάθετε περισσότερα - Ενότητα 4</value>
+    <value>ΥΠΗΡΕΣΙΑ 4</value>
   </data>
   <data name="Info.5.Paragraph1" xml:space="preserve">
-    <value>Παρουσιάζουμε τις βασικές υπηρεσίες και τον τρόπο που τις προσαρμόζουμε στις ανάγκες σας.</value>
+    <value>Η συνεργασία μας βασίζεται σε σαφή επικοινωνία, συγκεκριμένα χρονοδιαγράμματα και παραδοτέα που συμφωνούμε από την αρχή.</value>
   </data>
   <data name="Info.5.Paragraph2" xml:space="preserve">
-    <value>Στόχος μας είναι μια καθαρή, αποτελεσματική και αξιόπιστη παρουσία.</value>
+    <value>Στόχος μας είναι μια αξιόπιστη παρουσία online που υποστηρίζει την καθημερινή λειτουργία και την ανάπτυξη της επιχείρησής σας.</value>
   </data>
   <data name="Info.5.Title" xml:space="preserve">
-    <value>Μάθετε περισσότερα - Ενότητα 5</value>
+    <value>ΥΠΗΡΕΣΙΑ 5</value>
   </data>
   <data name="Nav.About" xml:space="preserve">
     <value>ΣΧΕΤΙΚΑ</value>
