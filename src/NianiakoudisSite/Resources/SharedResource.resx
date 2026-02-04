@@ -281,7 +281,7 @@
     <value>Σχεδιάζουμε σενάρια και προϋπολογισμούς με έμφαση στη σταθερότητα.</value>
   </data>
   <data name="Home.Row1.ImageAlt" xml:space="preserve">
-    <value>Υπολογιστής οικονομικών</value>
+    <value>Στρατηγική Ευθυγράμμιση</value>
   </data>
   <data name="Home.Row1.Title" xml:space="preserve">
     <value>Χρηματοοικονομικός Σχεδιασμός</value>
@@ -314,13 +314,13 @@
     <value>Ψηφιακή Οργάνωση</value>
   </data>
   <data name="Home.Row5.Body" xml:space="preserve">
-    <value>Είμαστε διαθέσιμοι για κάθε σας ερώτηση.</value>
+    <value>Αξιολόγηση Απόδοσης της εταιρίας σας.</value>
   </data>
   <data name="Home.Row5.ImageAlt" xml:space="preserve">
-    <value>Επικοινωνήστε μαζί μας</value>
+    <value>Αξιολόγηση Απόδοσης</value>
   </data>
   <data name="Home.Row5.Title" xml:space="preserve">
-    <value>Επικοινωνία</value>
+    <value>Αξιολόγηση Απόδοσης</value>
   </data>
   <data name="Info.1.Paragraph1" xml:space="preserve">
     <value>Ξεκινάμε με αναλυτική καταγραφή των στόχων σας, του κοινού σας και των βασικών λειτουργιών που πρέπει να υποστηριχθούν.</value>
@@ -329,7 +329,7 @@
     <value>Με βάση αυτά, σχεδιάζουμε μια καθαρή δομή περιεχομένου και προτείνουμε λύσεις που μπορούν να εξελιχθούν μαζί με την επιχείρησή σας.</value>
   </data>
   <data name="Info.1.Title" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 1</value>
+    <value>Στρατηγική Ευθυγράμμιση</value>
   </data>
   <data name="Info.2.Paragraph1" xml:space="preserve">
     <value>Η εμπειρία χρήστη σχεδιάζεται με έμφαση στη σαφή πλοήγηση, την ταχύτητα φόρτωσης και τη σωστή ροή πληροφορίας.</value>
@@ -338,7 +338,7 @@
     <value>Δοκιμάζουμε και προσαρμόζουμε κάθε στοιχείο ώστε ο επισκέπτης να βρίσκει αυτό που χρειάζεται χωρίς περιττά βήματα.</value>
   </data>
   <data name="Info.2.Title" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 2</value>
+    <value>Πίνακας αναλυτικών στοιχείων</value>
   </data>
   <data name="Info.3.Paragraph1" xml:space="preserve">
     <value>Δίνουμε ιδιαίτερη σημασία στην αισθητική, τα τυπογραφικά στοιχεία και την οπτική συνοχή, ώστε το design να ξεχωρίζει.</value>
@@ -347,7 +347,7 @@
     <value>Το τελικό αποτέλεσμα αποτυπώνει την ταυτότητά σας με τρόπο σύγχρονο και επαγγελματικό, χωρίς να χάνεται η απλότητα.</value>
   </data>
   <data name="Info.3.Title" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 3</value>
+    <value>Συμβουλευτική συμφωνία</value>
   </data>
   <data name="Info.4.Paragraph1" xml:space="preserve">
     <value>Μετά την παράδοση, παραμένουμε δίπλα σας με τεχνική υποστήριξη, ενημερώσεις και μικρές βελτιώσεις όταν χρειάζεται.</value>
@@ -356,7 +356,7 @@
     <value>Παρακολουθούμε την απόδοση και προτείνουμε αλλαγές που ενισχύουν την εμπιστοσύνη και τα αποτελέσματα.</value>
   </data>
   <data name="Info.4.Title" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 4</value>
+    <value>Φορητός υπολογιστής εργασίας</value>
   </data>
   <data name="Info.5.Paragraph1" xml:space="preserve">
     <value>Η συνεργασία μας βασίζεται σε σαφή επικοινωνία, συγκεκριμένα χρονοδιαγράμματα και παραδοτέα που συμφωνούμε από την αρχή.</value>
@@ -365,7 +365,7 @@
     <value>Στόχος μας είναι μια αξιόπιστη παρουσία online που υποστηρίζει την καθημερινή λειτουργία και την ανάπτυξη της επιχείρησής σας.</value>
   </data>
   <data name="Info.5.Title" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 5</value>
+    <value>Αξιολόγηση Απόδοσης</value>
   </data>
   <data name="Nav.About" xml:space="preserve">
     <value>ΣΧΕΤΙΚΑ</value>
@@ -377,19 +377,19 @@
     <value>ΑΡΧΙΚΗ</value>
   </data>
   <data name="Nav.Service1" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 1</value>
+    <value>Στρατηγική Ευθυγράμμιση</value>
   </data>
   <data name="Nav.Service2" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 2</value>
+    <value>Πίνακας αναλυτικών στοιχείων</value>
   </data>
   <data name="Nav.Service3" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 3</value>
+    <value>Συμβουλευτική συμφωνία</value>
   </data>
   <data name="Nav.Service4" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 4</value>
+    <value>Φορητός υπολογιστής εργασίας</value>
   </data>
   <data name="Nav.Service5" xml:space="preserve">
-    <value>ΥΠΗΡΕΣΙΑ 5</value>
+    <value>Αξιολόγηση Απόδοσης</value>
   </data>
   <data name="Nav.Services" xml:space="preserve">
     <value>ΥΠΗΡΕΣΙΕΣ</value>
