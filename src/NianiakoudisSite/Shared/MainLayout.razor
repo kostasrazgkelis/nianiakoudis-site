@@ -1,4 +1,4 @@
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 @inject IJSRuntime JSRuntime
 
 <MudLayout>
@@ -26,6 +26,24 @@
                    OnClick="ScrollToTop">
             @L["Footer.ScrollTop"]
         </MudButton>
+        <MudBox Class="footer-grid">
+            <MudBox Class="footer-column home-flow-extra-card">
+                <MudText Typo="Typo.subtitle1" Class="footer-title home-flow-extra-card-title">Τι δίνουμε;</MudText>
+                <ul class="footer-list home-flow-extra-card-body">
+                    <li>Εμπιστοσύνη</li>
+                    <li>Συνεργασία</li>
+                    <li>Συμβουλές</li>
+                </ul>
+            </MudBox>
+            <MudBox Class="footer-column home-flow-extra-card">
+                <MudText Typo="Typo.subtitle1" Class="footer-title home-flow-extra-card-title">Τι παίρνουμε;</MudText>
+                <ul class="footer-list home-flow-extra-card-body">
+                    <li>Αποτέλεσμα</li>
+                    <li>Αξιοπιστία</li>
+                    <li>Κέρδος</li>
+                </ul>
+            </MudBox>
+        </MudBox>
         <MudText Typo="Typo.subtitle1">@string.Format(L["Footer.Copyright"], DateTime.Now.Year)</MudText>
         <MudStack Class="footer-contact" Row="true" Spacing="2">
             <MudText Typo="Typo.body1">@L["Footer.TelephoneLabel"] <MudLink Href="@($"tel:{L["Common.PhoneHref"]}")">@L["Common.PhoneText"]</MudLink></MudText>

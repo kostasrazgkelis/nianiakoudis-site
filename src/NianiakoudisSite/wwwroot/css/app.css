@@ -1303,6 +1303,56 @@ body::-webkit-scrollbar {
     font-size: 0.95rem;
 }
 
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 1.25rem auto 1.5rem;
+    max-width: 900px;
+    width: 100%;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    max-width: 360px;
+    margin: 0 auto;
+    color: var(--color-text);
+}
+
+.footer-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 1.1rem;
+}
+
+.footer-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.footer-list li {
+    margin: 0.35rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-list li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: currentColor;
+    border-radius: 2px;
+    flex: 0 0 auto;
+}
+
 @media (max-width: 900px) {
     .brand-text-full {
         display: none;
@@ -1559,6 +1609,10 @@ body::-webkit-scrollbar {
     .info-button {
         padding: 0.55rem 1.1rem;
         font-size: 0.85rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
     }
 
     .contact-hero {
