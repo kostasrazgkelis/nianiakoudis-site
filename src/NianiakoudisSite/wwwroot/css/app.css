@@ -1062,6 +1062,16 @@ body::-webkit-scrollbar {
     size-adjust:inherit;
 }
 
+.elevator-reveal {
+    width: 100%;
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+.elevator-reveal.is-visible {
+    animation: contact-slide-up 1.5s ease forwards;
+}
+
 .contact-slide-down {
     padding: 1rem;
     opacity: 0;

@@ -36,6 +36,11 @@
 </MudLayout>
 
 @code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("revealOnScroll.init", ".elevator-reveal");
+    }
+
     private async Task ScrollToTop()
     {
         await JSRuntime.InvokeVoidAsync("eval", "window.scrollTo({ top: 0, behavior: 'smooth' })");

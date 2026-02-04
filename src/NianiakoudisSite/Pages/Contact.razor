@@ -1,16 +1,21 @@
 @page "/contact"
 
 
-<MudBox Class="home-stack contact-stack">
-    
-    <MudImage ObjectFit="ObjectFit.Cover" Src="/assets/pictures/contact-us.jpg" Alt="@L["Contact.HeroImageAlt"]" Class="contact-hero contact-slide-up"/>
+<MudBox Class="home-stack info-stack">
 
-    <MudContainer 
+    <MudContainer Class="info-hero">
+        <MudImage ObjectFit="ObjectFit.Cover" Src="/assets/pictures/contact-us.jpg" Alt="@L["Contact.HeroImageAlt"]" Class="contact-hero contact-slide-up"/>
+
+        <MudPaper Class="info-page" Square="true" Elevation="2">
+            <MudText Typo="Typo.h4">@L["Contact.Title"]</MudText>
+        </MudPaper>
+    </MudContainer>
+
+    <MudContainer
         MaxWidth="MaxWidth.Large"
         Fixed="true"
         Class="contact-content">
 
-        <MudText Typo="Typo.h4" Class="contact-title contact-fade-title">@L["Contact.Title"]</MudText>
         <MudText Typo="Typo.body1" Class="contact-subtitle contact-slide-down">
             @L["Contact.Subtitle"]
         </MudText>
