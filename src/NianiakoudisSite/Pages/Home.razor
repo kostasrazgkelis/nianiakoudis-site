@@ -1,70 +1,280 @@
-@page "/"
-@inject IPageContentService ContentService
+﻿@page "/"
+@inject IJSRuntime JSRuntime
+@using MudBlazor
 
-<div class="home-stack">
-    <PageHero Content="ContentService.GetHome()" />
+<MudBox Class="home-stack" Id="home-stack">
 
-    <section class="home-scroll">
-        <div class="home-row">
-            <div class="home-content">
-                <h2>Lorem ipsum dolor</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat
-                    vehicula felis, sed pretium dolor finibus vitae.
-                </p>
-                <a class="info-button" href="/info-1">Πληροφορίες</a>
-            </div>
-            <div class="home-visual">
-                <img src="https://via.placeholder.com/480x320" alt="Placeholder 1" />
-            </div>
-        </div>
+    <MudPaper Class="home-carousel-shell" Square="true" Elevation="2">
+        <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(8)" BulletsColor="Color.Primary" BulletsClass="home-bullets">
 
-        <div class="home-row reverse">
-            <div class="home-visual">
-                <img src="https://via.placeholder.com/480x320" alt="Placeholder 2" />
-            </div>
-            <div class="home-content">
-                <h2>Dolor sit amet</h2>
-                <p>
-                    Integer hendrerit, justo ac suscipit posuere, orci lectus fermentum
-                    ligula, at pretium lorem felis vitae massa.
-                </p>
-                <a class="info-button" href="/info-2">Πληροφορίες</a>
-            </div>
-        </div>
 
-        <div class="home-row">
-            <div class="home-content">
-                <h2>Consectetur adipiscing</h2>
-                <p>
-                    Nulla facilisi. Vivamus id magna eu velit bibendum dictum sed sed
-                    lectus.
-                </p>
-                <a class="info-button" href="/info-3">Πληροφορίες</a>
-            </div>
-            <div class="home-visual">
-                <img src="https://via.placeholder.com/480x320" alt="Placeholder 3" />
-            </div>
-        </div>
+        <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
+            <MudPaper Class="home-hero hero" Square="true" Elevation="1">
+                <MudImage Src="/assets/pictures/carousel-picture-1.jpg" Alt="@L["Home.Hero.ImageAlt"]" Class="home-hero-image" />
+                <MudBox Class="home-hero-text">
+                    <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-first">
+                        @L["Home.Hero.Line1"]
+                    </MudText>
+                    <MudText Typo="Typo.h6" Class="home-hero-paragraph home-hero-paragraph-second">
+                        @L["Home.Hero.Line2"]
+                    </MudText>
+                    <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-third">
+                        @L["Home.Hero.Line3Prefix"] <span class="home-hero-paragraph-delayed">@L["Home.Hero.Line3Suffix"]</span>
+                    </MudText>
+                </MudBox>
+        </MudPaper>
+        </MudCarouselItem>
 
-        <div class="home-row reverse">
-            <div class="home-visual">
-                <img src="https://via.placeholder.com/480x320" alt="Placeholder 4" />
-            </div>
-            <div class="home-content">
-                <h2>Elit sed do</h2>
-                <p>
-                    Curabitur faucibus nulla et nibh vehicula, nec convallis mauris
-                    vulputate.
-                </p>
-                <a class="info-button" href="/info-4">Πληροφορίες</a>
-            </div>
-        </div>
+        @for (var index = 0; index < Rows.Count; index++)
+        {
+            var row = Rows[index];
+            var rowClass = index % 2 == 1 ? "home-row reverse" : "home-row";
 
-        <div class="home-scroll-footer">
-            <button class="scroll-top-button" type="button" onclick="scrollHomeTop()">
-                Go Up
-            </button>
-        </div>
-    </section>
-</div>
+            <MudCarouselItem Class="@rowClass">
+                <MudPaper Class="home-row-card" Square="true" Elevation="1">
+                    <MudGrid Class="home-row-grid" Spacing="0">
+                        <MudItem xs="12" md="6" Class="home-copy">
+                            <MudText Typo="Typo.h5">@row.Title</MudText>
+                            <MudText Typo="Typo.body1" Class="home-body">@row.Body</MudText>
+                            <MudButton Class="info-button" Variant="Variant.Filled" Color="Color.Secondary" Href="@row.Link">
+                                @L["Home.LearnMore"]
+                            </MudButton>
+                        </MudItem>
+                        <MudItem xs="12" md="6" Class="home-visual">
+                            <MudImage Src="@row.ImageUrl" Alt="@row.ImageAlt" Class="home-image" />
+                        </MudItem>
+                    </MudGrid>
+
+                </MudPaper>
+            </MudCarouselItem>
+        }
+        
+        </MudCarousel>
+    </MudPaper>
+
+    <HomeFlow Items="FlowItems" Duration="9s">
+        <HeaderContent>
+            <MudBox Class="home-flow-header home-container" data-flow-index="0">
+                <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                    @L["Home.Flow.HeaderTitle"]
+                </MudText>
+            </MudBox>
+        </HeaderContent>
+        <ChildContent>
+            <MudBox Class="home-flow-longform home-container" data-flow-index="4">
+                <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                    @L["Home.Flow.OverviewTitle"]
+                </MudText>
+                <MudText Typo="Typo.body1" Class="home-flow-longform-body">
+                    @L["Home.Flow.OverviewParagraph1"]
+                </MudText>
+                <MudText Typo="Typo.body1" Class="home-flow-longform-body">
+                    @L["Home.Flow.OverviewParagraph2"]
+                </MudText>
+            </MudBox>
+
+            <MudBox Class="home-flow-extra">
+                <MudBox Class="home-container home-flow-extra-header" data-flow-index="5">
+                    <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                        @L["Home.Flow.ExtraTitle"]
+                    </MudText>
+                    <MudText Typo="Typo.subtitle1" Class="home-flow-extra-body">
+                        @L["Home.Flow.ExtraBody"]
+                    </MudText>
+                </MudBox>
+
+                <MudBox Class="home-flow-extra-grid">
+                    @foreach (var card in FlowExtraCards)
+                    {
+                        <MudLink Href="@card.Link" Class="home-flow-extra-link" Underline="Underline.None">
+                            <MudPaper Class="box-1-card home-container home-flow-extra-card"
+                                      Square="true"
+                                      Elevation="2"
+                                      data-flow-index="@card.FlowIndex">
+                                <MudText Typo="Typo.h6" Class="home-flow-extra-card-title">
+                                    @card.Title
+                                </MudText>
+                                <MudText Typo="Typo.subtitle2" Class="home-flow-extra-card-body">
+                                    @card.Body
+                                </MudText>
+                            </MudPaper>
+                        </MudLink>
+                    }
+                </MudBox>
+            </MudBox>
+
+            <MudContainer Class="box-1 home-container" data-flow-index="11">
+                <MudGrid Class="box-1-grid" Spacing="2">
+                    <MudItem xs="12" md="12" Class="box-1-left">
+                        <MudText Typo="Typo.h5" Class="box-1-title">@L["Home.Flow.ContactBoxTitle"]</MudText>
+                        <MudText Typo="Typo.body1" Class="box-1-subtitle">
+                            @L["Home.Flow.ContactBoxBody"]
+                        </MudText>
+                    </MudItem>
+                    <MudItem xs="12" md="12">
+                        <MudGrid Class="box-1-cards" Spacing="2">
+                            <MudItem xs="12" md="4">
+                                <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                    <MudIcon Icon="@Icons.Material.Filled.Email" Class="box-1-card-icon" />
+                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.EmailTitle"]</MudText>
+                                    <MudLink Href="@($"mailto:{L["Common.Email"]}")" Class="box-1-link">
+                                        @L["Common.Email"]
+                                    </MudLink>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" md="4">
+                                <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                    <MudIcon Icon="@Icons.Material.Filled.Phone" Class="box-1-card-icon" />
+                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.PhoneTitle"]</MudText>
+                                    <MudLink Href="@($"tel:{L["Common.PhoneHref"]}")" Class="box-1-link">
+                                        @L["Common.PhoneText"]
+                                    </MudLink>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" md="4">
+                                <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                    <MudIcon Icon="@Icons.Material.Filled.Business" Class="box-1-card-icon" />
+                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.LinkedInTitle"]</MudText>
+                                    <MudLink Href="@L["Common.LinkedInHref"]" Target="_blank" Rel="noopener noreferrer" Class="box-1-link">
+                                        @L["Home.Contact.LinkedInText"]
+                                    </MudLink>
+                                </MudPaper>
+                            </MudItem>
+                        </MudGrid>
+                    </MudItem>
+                </MudGrid>
+            </MudContainer>
+        </ChildContent>
+    </HomeFlow>
+</MudBox>
+
+@code {
+    private IReadOnlyList<HomeRow> Rows { get; set; } = Array.Empty<HomeRow>();
+
+    private sealed record HomeRow(string Title, string Body, string Link, string ImageUrl, string ImageAlt);
+
+    private bool HeroVisible { get; set; }
+
+    private sealed record FlowExtraCard(string Title, string Body, int FlowIndex, string Link);
+
+    private IReadOnlyList<HomeFlowItem> FlowItems { get; set; } = Array.Empty<HomeFlowItem>();
+
+    private IReadOnlyList<FlowExtraCard> FlowExtraCards { get; set; } = Array.Empty<FlowExtraCard>();
+
+    protected override void OnInitialized()
+    {
+        Rows = new List<HomeRow>
+        {
+            new HomeRow(
+                L["Home.Row1.Title"].Value,
+                L["Home.Row1.Body"].Value,
+                "/info-1",
+                "/assets/pictures/carousel-picture-2.jpg",
+                L["Home.Row1.ImageAlt"].Value),
+            new HomeRow(
+                L["Home.Row2.Title"].Value,
+                L["Home.Row2.Body"].Value,
+                "/info-2",
+                "/assets/pictures/carousel-picture-3.jpg",
+                L["Home.Row2.ImageAlt"].Value),
+            new HomeRow(
+                L["Home.Row3.Title"].Value,
+                L["Home.Row3.Body"].Value,
+                "/info-3",
+                "/assets/pictures/carousel-picture-4.jpg",
+                L["Home.Row3.ImageAlt"].Value),
+            new HomeRow(
+                L["Home.Row4.Title"].Value,
+                L["Home.Row4.Body"].Value,
+                "/info-4",
+                "/assets/pictures/carousel-picture-5.jpg",
+                L["Home.Row4.ImageAlt"].Value),
+            new HomeRow(
+                L["Home.Row5.Title"].Value,
+                L["Home.Row5.Body"].Value,
+                "/info-5",
+                "/assets/pictures/carousel-picture-6.jpg",
+                L["Home.Row5.ImageAlt"].Value)
+        };
+
+        FlowItems = new[]
+        {
+            new HomeFlowItem(
+                L["Home.FlowItem1.Title"].Value,
+                new[]
+                {
+                    L["Home.FlowItem1.Line1"].Value,
+                    L["Home.FlowItem1.Line2"].Value
+                },
+                GridColumn: 1,
+                GridRow: 1,
+                FlowIndex: 1),
+            new HomeFlowItem(
+                L["Home.FlowItem2.Title"].Value,
+                new[]
+                {
+                    L["Home.FlowItem2.Line1"].Value,
+                    L["Home.FlowItem2.Line2"].Value
+                },
+                GridColumn: 3,
+                GridRow: 2,
+                FlowIndex: 2),
+            new HomeFlowItem(
+                L["Home.FlowItem3.Title"].Value,
+                new[]
+                {
+                    L["Home.FlowItem3.Line1"].Value,
+                    L["Home.FlowItem3.Line2"].Value
+                },
+                GridColumn: 2,
+                GridRow: 3,
+                FlowIndex: 3)
+        };
+
+        FlowExtraCards = new[]
+        {
+            new FlowExtraCard(
+                L["Home.FlowExtra1.Title"].Value,
+                L["Home.FlowExtra1.Body"].Value,
+                6,
+                "/info-1"),
+            new FlowExtraCard(
+                L["Home.FlowExtra2.Title"].Value,
+                L["Home.FlowExtra2.Body"].Value,
+                7,
+                "/info-2"),
+            new FlowExtraCard(
+                L["Home.FlowExtra3.Title"].Value,
+                L["Home.FlowExtra3.Body"].Value,
+                8,
+                "/info-3"),
+            new FlowExtraCard(
+                L["Home.FlowExtra4.Title"].Value,
+                L["Home.FlowExtra4.Body"].Value,
+                9,
+                "/info-4"),
+            new FlowExtraCard(
+                L["Home.FlowExtra5.Title"].Value,
+                L["Home.FlowExtra5.Body"].Value,
+                10,
+                "/info-5")
+        };
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            HeroVisible = true;
+            await JSRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow");
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private async Task ScrollToTop()
+    {
+        await JSRuntime.InvokeVoidAsync("eval", "document.querySelector('.content')?.scrollTo({ top: 0, behavior: 'smooth' })");
+    }
+}
+
+

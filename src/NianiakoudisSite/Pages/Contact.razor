@@ -1,0 +1,124 @@
+@page "/contact"
+
+
+<MudBox Class="home-stack info-stack">
+
+    <MudContainer Class="info-hero">
+        <MudImage ObjectFit="ObjectFit.Cover" Src="/assets/pictures/contact-us.png" Alt="@L["Contact.HeroImageAlt"]" Class="contact-hero contact-slide-up"/>
+
+        <MudPaper Class="info-page" Square="true" Elevation="2">
+            <MudText Typo="Typo.h4">@L["Contact.Title"]</MudText>
+        </MudPaper>
+    </MudContainer>
+
+    <MudContainer
+        MaxWidth="MaxWidth.Large"
+        Fixed="true"
+        Class="contact-content">
+
+        <MudText Typo="Typo.body1" Class="contact-subtitle contact-slide-down">
+            @L["Contact.Subtitle"]
+        </MudText>
+
+        <MudGrid Class="contact-grid contact-slide-down">
+            <MudItem xs="12" md="5">
+                <MudPaper Class="contact-card contact-card-details" Square="true" Elevation="0">
+                    <MudText Typo="Typo.subtitle1" Class="contact-section-title">@L["Contact.DetailsTitle"]</MudText>
+                    <MudText Typo="Typo.body2" Class="contact-detail">
+                        <MudIcon Icon="@Icons.Material.Filled.Phone" Class="contact-detail-icon"/>
+                        @L["Contact.PhoneLabel"]
+                        <MudLink Href="@($"tel:{L["Common.PhoneHref"]}")">@L["Common.PhoneText"]</MudLink>
+                    </MudText>
+                    <MudText Typo="Typo.body2" Class="contact-detail">
+                        <MudIcon Icon="@Icons.Material.Filled.Email" Class="contact-detail-icon"/>
+                        @L["Contact.EmailLabel"]
+                        <MudLink Href="@($"mailto:{L["Common.Email"]}")">@L["Common.Email"]</MudLink>
+                    </MudText>
+                    <MudText Typo="Typo.body2" Class="contact-detail">
+                        <MudIcon Icon="@Icons.Material.Filled.Language" Class="contact-detail-icon"/>
+                        @L["Contact.LinkedInLabel"]
+                        <MudLink Href="@L["Common.LinkedInHref"]" Target="_blank" rel="noopener noreferrer">
+                            @L["Common.LinkedInText"]
+                        </MudLink>
+                    </MudText>
+                </MudPaper>
+            </MudItem>
+
+            <MudItem xs="12" md="7">
+                <MudPaper Class="contact-card" Square="true" Elevation="0">
+                    <MudText Typo="Typo.subtitle1" Class="contact-section-title">@L["Contact.FormTitle"]</MudText>
+
+                    <MudForm @ref="ContactForm">
+                        <MudTextField @bind-Value="FullName"
+                                        Label="@L["Contact.Form.FullNameLabel"]"
+                                        Variant="Variant.Outlined"
+                                        Margin="Margin.Dense"
+                                        Class="contact-field"
+                                        Immediate="true"/>
+                        <MudTextField @bind-Value="Email"
+                                        Label="@L["Contact.Form.EmailLabel"]"
+                                        Variant="Variant.Outlined"
+                                        Margin="Margin.Dense"
+                                        Class="contact-field"
+                                        Immediate="true"
+                                        InputType="InputType.Email"
+                                        Required="true"/>
+                        <MudTextField @bind-Value="Phone"
+                                        Label="@L["Contact.Form.PhoneLabel"]"
+                                        Variant="Variant.Outlined"
+                                        Margin="Margin.Dense"
+                                        Class="contact-field"
+                                        Immediate="true"/>
+                        <MudTextField @bind-Value="Subject"
+                                        Label="@L["Contact.Form.SubjectLabel"]"
+                                        Variant="Variant.Outlined"
+                                        Margin="Margin.Dense"
+                                        Class="contact-field"
+                                        Immediate="true"/>
+                        <MudTextField @bind-Value="Message"
+                                        Label="@L["Contact.Form.MessageLabel"]"
+                                        Variant="Variant.Outlined"
+                                        Margin="Margin.Dense"
+                                        Class="contact-field"
+                                        Immediate="true"
+                                        Lines="5"
+                                        Required="true"/>
+
+                        <MudButton Class="contact-submit"
+                                    Variant="Variant.Filled"
+                                    Color="Color.Secondary"
+                                    Disabled="@(!CanSend)"
+                                    Href="@MailToHref">
+                            @L["Contact.Form.Submit"]
+                        </MudButton>
+                    </MudForm>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+            
+    </MudContainer>
+</MudBox>
+
+@code {
+    private MudForm? ContactForm;
+    private string FullName = string.Empty;
+    private string Email = string.Empty;
+    private string Phone = string.Empty;
+    private string Subject = string.Empty;
+    private string Message = string.Empty;
+
+    private bool CanSend =>
+        !string.IsNullOrWhiteSpace(Email)
+        && !string.IsNullOrWhiteSpace(Message);
+
+    private string MailToHref
+    {
+        get
+        {
+            string? subject = string.IsNullOrWhiteSpace(Subject) ? L["Contact.Mail.SubjectDefault"].Value : Subject;
+            var body = $"{L["Contact.Mail.NameLabel"].Value}: {FullName}\n{L["Contact.Mail.EmailLabel"].Value}: {Email}\n{L["Contact.Mail.PhoneLabel"].Value}: {Phone}\n\n{L["Contact.Mail.MessageLabel"].Value}:\n{Message}";
+            return $"mailto:{L["Common.Email"].Value}?subject={Uri.EscapeDataString(subject)}&body={Uri.EscapeDataString(body)}";
+        }
+    }
+
+}

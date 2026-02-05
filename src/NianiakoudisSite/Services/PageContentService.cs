@@ -1,36 +1,42 @@
+using Microsoft.Extensions.Localization;
 using NianiakoudisSite.Models;
 
 namespace NianiakoudisSite.Services;
 
 public sealed class PageContentService : IPageContentService
 {
+    private readonly IStringLocalizer<SharedResource> _localizer;
+
+    public PageContentService(IStringLocalizer<SharedResource> localizer)
+    {
+        _localizer = localizer;
+    }
+
     public PageContent GetHome()
     {
         return new PageContent(
-            "Αρχική",
-            "Απλή, καθαρή παρουσία στο web.",
+            _localizer["PageContent.Home.Hero"].Value,
             new[]
             {
-                "Διακριτική αισθητική με έμφαση στην ουσία",
-                "Ξεκάθαρη δομή και εύκολη πλοήγηση",
-                "Χρώματα που αλλάζουν από ένα σημείο"
+                _localizer["PageContent.Home.Highlight1"].Value,
+                _localizer["PageContent.Home.Highlight2"].Value,
+                _localizer["PageContent.Home.Highlight3"].Value
             },
-            "Καλώς ήρθατε στη βασική μας σελίδα. Εδώ θα βρείτε μια σύντομη παρουσίαση του brand και του τρόπου δουλειάς μας."
+            _localizer["PageContent.Home.Summary"].Value
         );
     }
 
     public PageContent GetAbout()
     {
         return new PageContent(
-            "Σχετικά",
-            "Εμπιστοσύνη, συνέπεια, απλότητα.",
+            _localizer["PageContent.About.Hero"].Value,
             new[]
             {
-                "Αναλυτική σκέψη και υπεύθυνες επιλογές",
-                "Δομημένες λύσεις που κλιμακώνονται",
-                "Συνεργασία με ξεκάθαρη επικοινωνία"
+                _localizer["PageContent.About.Highlight1"].Value,
+                _localizer["PageContent.About.Highlight2"].Value,
+                _localizer["PageContent.About.Highlight3"].Value
             },
-            "Η ομάδα μας επικεντρώνεται στη σταθερή ποιότητα και στη διαρκή βελτίωση. Στόχος μας είναι να προσφέρουμε καθαρές, αποτελεσματικές λύσεις."
+            _localizer["PageContent.About.Summary"].Value
         );
     }
 }

@@ -1,4 +1,55 @@
-<nav class="nav">
-    <NavLink href="" Match="NavLinkMatch.All">Αρχική</NavLink>
-    <NavLink href="about">Σχετικά</NavLink>
-</nav>
+<MudStack Class="nav-links nav-links-desktop" Row="true" Spacing="2">
+    <MudNavLink Href="" Match="NavLinkMatch.All">@L["Nav.Home"]</MudNavLink>
+    <MudNavLink Href="about">@L["Nav.About"]</MudNavLink>
+    <MudMenu Class="services-menu" Dense="true" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter">
+        <ActivatorContent>
+            <MudButton Class="services-menu-button" Variant="Variant.Text" EndIcon="@Icons.Material.Filled.KeyboardArrowDown">
+                @L["Nav.Services"]
+            </MudButton>
+        </ActivatorContent>
+        <ChildContent>
+            <MudMenuItem Href="info-1">@L["Nav.Service1"]</MudMenuItem>
+            <MudMenuItem Href="info-2">@L["Nav.Service2"]</MudMenuItem>
+            <MudMenuItem Href="info-3">@L["Nav.Service3"]</MudMenuItem>
+            <MudMenuItem Href="info-4">@L["Nav.Service4"]</MudMenuItem>
+            <MudMenuItem Href="info-5">@L["Nav.Service5"]</MudMenuItem>
+        </ChildContent>
+    </MudMenu>
+    <MudNavLink Href="contact">@L["Nav.Contact"]</MudNavLink>
+</MudStack>
+
+<MudIconButton Class="nav-links-mobile" Icon="@Icons.Material.Filled.Menu" Color="Color.Primary" OnClick="ToggleMobileMenu" />
+
+<MudDrawer Class="mobile-drawer"
+           Anchor="Anchor.Left"
+           Variant="DrawerVariant.Temporary"
+           Elevation="4"
+           Overlay="true"
+           CloseOnOverlayClick="true"
+           @bind-Open="isMobileMenuOpen">
+    <MudNavLink Href="/" OnClick="CloseMobileMenu">@L["Nav.Home"]</MudNavLink>
+    <MudNavLink Href="about" OnClick="CloseMobileMenu">@L["Nav.About"]</MudNavLink>
+    <MudText Typo="Typo.subtitle2" Class="nav-menu-section">
+        @L["Nav.Services"]
+    </MudText>
+    <MudNavLink Href="info-1" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service1"]</MudNavLink>
+    <MudNavLink Href="info-2" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service2"]</MudNavLink>
+    <MudNavLink Href="info-3" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service3"]</MudNavLink>
+    <MudNavLink Href="info-4" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service4"]</MudNavLink>
+    <MudNavLink Href="info-5" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service5"]</MudNavLink>
+    <MudNavLink Href="contact" OnClick="CloseMobileMenu">@L["Nav.Contact"]</MudNavLink>
+</MudDrawer>
+
+@code {
+    private bool isMobileMenuOpen;
+
+    private void ToggleMobileMenu()
+    {
+        isMobileMenuOpen = !isMobileMenuOpen;
+    }
+
+    private void CloseMobileMenu()
+    {
+        isMobileMenuOpen = false;
+    }
+}

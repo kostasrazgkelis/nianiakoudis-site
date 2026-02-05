@@ -1,21 +1,39 @@
 @using NianiakoudisSite.Models
 
-<section class="hero">
-    <div class="hero-card">
-        <p class="eyebrow">@Content.Title</p>
-        <h1>@Content.Hero</h1>
-        <p class="summary">@Content.Summary</p>
+<section class="hero page-hero">
+    @if (!string.IsNullOrWhiteSpace(ImageSrc))
+    {
+        <MudImage Src="@ImageSrc" Alt="@ImageAlt" ObjectFit="ObjectFit.Cover" Class="page-hero-image" />
+    }
+    <MudPaper Class="hero-card" Square="true" Elevation="1">
+        <MudText Typo="Typo.h3" Class="hero-reveal" Style="--reveal-delay: 0ms;">@Content.Hero</MudText>
+        <MudText Typo="Typo.subtitle1" Class="summary hero-reveal" Style="--reveal-delay: 140ms;">@Content.Summary</MudText>
 
-        <ul class="highlights">
-            @foreach (var highlight in Content.Highlights)
+        <MudList T="string" Class="highlights">
+            @for (var index = 0; index < Content.Highlights.Length; index++)
             {
-                <li>@highlight</li>
+                <MudListItem T="string" Class="hero-reveal-item" Style="@GetRevealStyle(index)" Text="@Content.Highlights[index]" />
             }
-        </ul>
-    </div>
+        </MudList>
+    </MudPaper>
 </section>
 
 @code {
     [Parameter]
     public required PageContent Content { get; set; }
+
+    [Parameter]
+    public string? ImageSrc { get; set; }
+
+    [Parameter]
+    public string? ImageAlt { get; set; }
+
+    [Parameter]
+    public int SectionCount { get; set; }
+
+    private static string GetRevealStyle(int index)
+    {
+        var delay = 300 + (index * 140);
+        return $"--reveal-delay: {delay}ms;";
+    }
 }

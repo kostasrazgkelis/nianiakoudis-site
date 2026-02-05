@@ -1,13 +1,31 @@
 @page "/info-3"
 
-<section class="info-page">
-    <h1>Πληροφορίες - Ενότητα 3</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum erat
-        nec elit imperdiet, non luctus purus scelerisque.
-    </p>
-    <p>
-        Sed suscipit justo id massa cursus, sit amet posuere lorem pretium. Phasellus
-        euismod risus nec lectus mollis, vitae molestie massa elementum.
-    </p>
-</section>
+<MudBox Class="home-stack info-stack">
+
+    <MudContainer Class="info-hero">
+        <MudImage ObjectFit="ObjectFit.Cover" Src="/assets/pictures/our-services-page-3.jpg" Alt="@L["Contact.HeroImageAlt"]" Class="contact-hero elevator-reveal"/>
+
+        <MudPaper Class="info-page" Square="true" Elevation="2">
+            <MudText Typo="Typo.h4">@L["Info.3.Title"]</MudText>
+            <MudBox Class="info-feature-row">
+                <MudBox Class="info-feature-pill info-anim-1">
+                    <MudIcon Icon="@Icons.Material.Filled.DesignServices" />
+                    <MudText Typo="Typo.subtitle2">Σχεδιασμός</MudText>
+                </MudBox>
+                <MudBox Class="info-feature-pill info-anim-2">
+                    <MudIcon Icon="@Icons.Material.Filled.Palette" />
+                    <MudText Typo="Typo.subtitle2">Ταυτότητα</MudText>
+                </MudBox>
+            </MudBox>
+        </MudPaper>
+    </MudContainer>
+
+    <MudText Typo="Typo.body1" Class="info-paragraph">
+        <MudIcon Icon="@Icons.Material.Filled.Brush" Class="info-paragraph-icon info-anim-1" />
+        @L["Info.3.Paragraph1"]
+    </MudText>
+    <MudText Typo="Typo.body1" Class="info-paragraph">
+        <MudIcon Icon="@Icons.Material.Filled.AutoAwesome" Class="info-paragraph-icon info-anim-2" />
+        @L["Info.3.Paragraph2"]
+    </MudText>
+</MudBox>

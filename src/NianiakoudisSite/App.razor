@@ -1,3 +1,8 @@
+<MudThemeProvider Theme="@theme" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
 <Router AppAssembly="typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="routeData" DefaultLayout="typeof(Shared.MainLayout)" />
@@ -5,7 +10,22 @@
     </Found>
     <NotFound>
         <LayoutView Layout="typeof(Shared.MainLayout)">
-            <p role="alert">Η σελίδα δεν βρέθηκε.</p>
+            <MudBox Class="not-found">
+                <MudText Typo="Typo.h6" Color="Color.Error" role="alert">@L["App.NotFound"]</MudText>
+            </MudBox>
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+    private readonly MudTheme theme = new MudTheme()
+    {        
+        Typography = new Typography
+        {
+            Default = new Default
+            {
+                FontFamily = new[] { "Noto Sans", "Inter", "Roboto", "Arial", "sans-serif" }
+            }
+        }
+    };
+}

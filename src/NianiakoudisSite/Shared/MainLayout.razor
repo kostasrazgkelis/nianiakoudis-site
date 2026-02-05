@@ -1,26 +1,66 @@
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
 
-<div class="page">
-    <header class="top-bar">
-        <NavLink href="/" class="brand-link">
-            <span class="brand-icon" aria-hidden="true">◆</span>
-            <span class="brand-text">TCS CONSULTING SERVICES</span>
-        </NavLink>
+<MudLayout>
+    <MudAppBar Class="app-bar" Color="Color.Default" Fixed="true" Elevation="0">
+        <MudLink Href="/" Class="brand-link">
+            <MudStack Class="brand-stack" Row="true" Spacing="1" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Material.Filled.Business" Class="brand-icon" />
+                <MudText Typo="Typo.h6" Class="brand-text">
+                    <span class="brand-text-full">@L["Brand.Full"]</span>
+                    <span class="brand-text-short">@L["Brand.Short"]</span>
+                </MudText>
+            </MudStack>
+        </MudLink>
+        <MudSpacer />
         <NavMenu />
-    </header>
+    </MudAppBar>
 
-    <main class="content">
+    <MudMainContent Class="app-main">
         @Body
-    </main>
+    </MudMainContent>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <span>© 2024 TCS CONSULTING SERVICES</span>
-            <div class="footer-contact">
-                <span>Telephone: <a href="tel:+302311234567">+30 231 123 4567</a></span>
-                <span>Email: <a href="mailto:info@nianiakoudis.gr">info@nianiakoudis.gr</a></span>
-                <span>LinkedIn: <a href="https://www.linkedin.com/company/nianiakoudis" target="_blank" rel="noopener noreferrer">linkedin.com/company/nianiakoudis</a></span>
-            </div>
-        </div>
-    </footer>
-</div>
+    <MudPaper Class="app-footer" Square="true" Elevation="0">
+        <MudButton Class="footer-scroll-button"
+                   Variant="Variant.Text"
+                   OnClick="ScrollToTop">
+            @L["Footer.ScrollTop"]
+        </MudButton>
+        <MudBox Class="footer-grid">
+            <MudBox Class="footer-column home-flow-extra-card">
+                <MudText Typo="Typo.subtitle1" Class="footer-title home-flow-extra-card-title">Τι δίνουμε;</MudText>
+                <ul class="footer-list home-flow-extra-card-body">
+                    <li>Εμπιστοσύνη</li>
+                    <li>Συνεργασία</li>
+                    <li>Συμβουλές</li>
+                </ul>
+            </MudBox>
+            <MudBox Class="footer-column home-flow-extra-card">
+                <MudText Typo="Typo.subtitle1" Class="footer-title home-flow-extra-card-title">Τι παίρνουμε;</MudText>
+                <ul class="footer-list home-flow-extra-card-body">
+                    <li>Αποτέλεσμα</li>
+                    <li>Αξιοπιστία</li>
+                    <li>Κέρδος</li>
+                </ul>
+            </MudBox>
+        </MudBox>
+        <MudText Typo="Typo.subtitle1" Class="footer-meta">@string.Format(L["Footer.Copyright"], DateTime.Now.Year)</MudText>
+        <MudStack Class="footer-contact footer-meta" Row="true" Spacing="2">
+            <MudText Typo="Typo.body1">@L["Footer.TelephoneLabel"] <MudLink Href="@($"tel:{L["Common.PhoneHref"]}")">@L["Common.PhoneText"]</MudLink></MudText>
+            <MudText Typo="Typo.body1">@L["Footer.EmailLabel"] <MudLink Href="@($"mailto:{L["Common.Email"]}")">@L["Common.Email"]</MudLink></MudText>
+            <MudText Typo="Typo.body1">@L["Footer.LinkedInLabel"] <MudLink Href="@L["Common.LinkedInHref"]" Target="_blank" rel="noopener noreferrer">@L["Common.LinkedInText"]</MudLink></MudText>
+        </MudStack>
+    </MudPaper>
+</MudLayout>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("revealOnScroll.init", ".elevator-reveal");
+    }
+
+    private async Task ScrollToTop()
+    {
+        await JSRuntime.InvokeVoidAsync("eval", "window.scrollTo({ top: 0, behavior: 'smooth' })");
+    }
+}
