@@ -44,8 +44,8 @@
                 </ul>
             </MudBox>
         </MudBox>
-        <MudText Typo="Typo.subtitle1">@string.Format(L["Footer.Copyright"], DateTime.Now.Year)</MudText>
-        <MudStack Class="footer-contact" Row="true" Spacing="2">
+        <MudText Typo="Typo.subtitle1" Class="footer-meta">@string.Format(L["Footer.Copyright"], DateTime.Now.Year)</MudText>
+        <MudStack Class="footer-contact footer-meta" Row="true" Spacing="2">
             <MudText Typo="Typo.body1">@L["Footer.TelephoneLabel"] <MudLink Href="@($"tel:{L["Common.PhoneHref"]}")">@L["Common.PhoneText"]</MudLink></MudText>
             <MudText Typo="Typo.body1">@L["Footer.EmailLabel"] <MudLink Href="@($"mailto:{L["Common.Email"]}")">@L["Common.Email"]</MudLink></MudText>
             <MudText Typo="Typo.body1">@L["Footer.LinkedInLabel"] <MudLink Href="@L["Common.LinkedInHref"]" Target="_blank" rel="noopener noreferrer">@L["Common.LinkedInText"]</MudLink></MudText>
