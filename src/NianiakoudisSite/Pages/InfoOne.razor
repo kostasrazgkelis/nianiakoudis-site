@@ -7,9 +7,25 @@
 
         <MudPaper Class="info-page" Square="true" Elevation="2">
             <MudText Typo="Typo.h4">@L["Info.1.Title"]</MudText>
+            <MudBox Class="info-feature-row">
+                <MudBox Class="info-feature-pill info-anim-1">
+                    <MudIcon Icon="@Icons.Material.Filled.AttachMoney" />
+                    <MudText Typo="Typo.subtitle2">Προϋπολογισμός</MudText>
+                </MudBox>
+                <MudBox Class="info-feature-pill info-anim-2">
+                    <MudIcon Icon="@Icons.Material.Filled.TrendingUp" />
+                    <MudText Typo="Typo.subtitle2">Στόχοι</MudText>
+                </MudBox>
+            </MudBox>
         </MudPaper>
     </MudContainer>
 
-    <MudText Typo="Typo.body1">@L["Info.1.Paragraph1"]</MudText>
-    <MudText Typo="Typo.body1">@L["Info.1.Paragraph2"]</MudText>
+    <MudText Typo="Typo.body1" Class="info-paragraph">
+        <MudIcon Icon="@Icons.Material.Filled.AccountBalanceWallet" Class="info-paragraph-icon info-anim-1" />
+        @L["Info.1.Paragraph1"]
+    </MudText>
+    <MudText Typo="Typo.body1" Class="info-paragraph">
+        <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Class="info-paragraph-icon info-anim-2" />
+        @L["Info.1.Paragraph2"]
+    </MudText>
 </MudBox>

@@ -87,6 +87,60 @@ body::-webkit-scrollbar {
     margin-right: auto;
 }
 
+.info-feature-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+}
+
+.info-feature-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--color-primary);
+    font-weight: 600;
+    box-shadow: 0 8px 16px rgba(31, 122, 140, 0.18);
+}
+
+.info-paragraph {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.info-paragraph-icon {
+    color: var(--color-primary);
+    margin-top: 0.15rem;
+}
+
+.info-anim-1,
+.info-anim-2 {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: info-fade-up 900ms ease forwards;
+}
+
+.info-anim-2 {
+    animation-delay: 180ms;
+}
+
+@keyframes info-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .info-hero {
     position: relative;
     width: 100%;
