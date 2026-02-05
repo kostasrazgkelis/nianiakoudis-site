@@ -551,6 +551,10 @@ body::-webkit-scrollbar {
     width: 100%;
 }
 
+.box-1-cards .mud-grid-item-md-4 {
+    background: var(--color-secondary);
+}
+
 .box-1-card {
     height: 100%;
     background: transparent;
@@ -1401,7 +1405,7 @@ body::-webkit-scrollbar {
 
 .footer-meta {
     margin-top: 1.25rem;
-    color: var(--color-primary);
+    color: var(--color-text);
     font-size: 1.1rem;
     -webkit-text-stroke: 0.4px rgba(31, 122, 140, 0.4);
 }
