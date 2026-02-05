@@ -798,6 +798,7 @@ body::-webkit-scrollbar {
     font-weight: 600;
     color: var(--color-muted);
     padding: 0.4rem 0.8rem;
+    text-align: center;
 }
 
 .nav-links .mud-nav-link-active {
@@ -806,6 +807,10 @@ body::-webkit-scrollbar {
 
 .nav-links-mobile {
     display: none;
+}
+
+.nav-links {
+    gap: 1.25rem;
 }
 
 
@@ -1277,22 +1282,38 @@ body::-webkit-scrollbar {
     color: var(--color-soft);
     background: var(--color-accent);
     opacity: 0.95;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    border-top: none;
+}
+
+.app-footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
 
 .footer-scroll-button {
+    margin-top: -1.25rem;
     margin-bottom: 0.75rem;
-    padding: 0.55rem 1.4rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.92);
-    color: var(--color-primary);
-    font-weight: 700;
+    padding: 0.65rem 1.4rem;
     text-transform: none;
+    font-weight: 700;
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 12px 24px rgba(31, 122, 140, 0.25);
+    position: relative;
+    z-index: 2;
 }
 
 .footer-scroll-button:hover,
 .footer-scroll-button:focus-visible {
-    background: #ffffff;
+    background: #1a6b7a;
 }
 
 .footer-contact {
@@ -1307,7 +1328,7 @@ body::-webkit-scrollbar {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
-    margin: 1.25rem auto 1.5rem;
+    margin: 2rem auto 2.5rem;
     max-width: 900px;
     width: 100%;
 }
@@ -1317,6 +1338,7 @@ body::-webkit-scrollbar {
     flex-direction: column;
     gap: 0.75rem;
     align-items: center;
+    justify-content: center;
     padding: 1.25rem 1.5rem;
     max-width: 360px;
     margin: 0 auto;
