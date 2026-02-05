@@ -5,7 +5,7 @@
 <MudBox Class="home-stack" Id="home-stack">
 
     <MudPaper Class="home-carousel-shell" Square="true" Elevation="2">
-        <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(10)" BulletsColor="Color.Primary" BulletsClass="home-bullets">
+        <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(8)" BulletsColor="Color.Primary" BulletsClass="home-bullets">
 
 
         <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
