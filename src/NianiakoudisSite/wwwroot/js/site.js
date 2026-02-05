@@ -419,7 +419,9 @@ window.homeSectionsObserver = {
         var isNarrowScreen = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
         var observer = new IntersectionObserver(function (entries, obs) {
             entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
+                var halfViewport = window.innerHeight * 0.5;
+                var reachedHalf = entry.boundingClientRect.top <= halfViewport;
+                if (entry.isIntersecting && reachedHalf) {
                     entry.target.classList.add("is-visible");
                     if (entry.target.classList.contains("home-flow")) {
                         startFlow(entry.target);
