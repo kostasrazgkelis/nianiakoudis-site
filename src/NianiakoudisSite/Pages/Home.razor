@@ -4,12 +4,12 @@
 
 <MudBox Class="home-stack" Id="home-stack">
 
-    <MudPaper Class="home-carousel-shell" Square="true" Elevation="2" Padding="0">
-        <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(10)" Interval="20000" BulletsColor="Color.Primary" BulletsClass="home-bullets">
+    <MudPaper Class="home-carousel-shell" Square="true" Elevation="2">
+        <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(10)" BulletsColor="Color.Primary" BulletsClass="home-bullets">
 
 
         <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
-            <MudPaper Class="home-hero hero" Square="true" Elevation="1" Padding="0">
+            <MudPaper Class="home-hero hero" Square="true" Elevation="1">
                 <MudImage Src="/assets/pictures/carousel-picture-1.jpg" Alt="@L["Home.Hero.ImageAlt"]" Class="home-hero-image" />
                 <MudBox Class="home-hero-text">
                     <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-first">
@@ -103,7 +103,7 @@
                 </MudBox>
             </MudBox>
 
-            <MudContainer Square="true" Class="box-1 home-container" Gutter="false" data-flow-index="11">
+            <MudContainer Class="box-1 home-container" data-flow-index="11">
                 <MudGrid Class="box-1-grid" Spacing="2">
                     <MudItem xs="12" md="12" Class="box-1-left">
                         <MudText Typo="Typo.h5" Class="box-1-title">@L["Home.Flow.ContactBoxTitle"]</MudText>
