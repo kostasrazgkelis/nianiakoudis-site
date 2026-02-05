@@ -5,7 +5,7 @@ window.homeSectionsObserver = {
             return;
         }
 
-        var flowStartDelayMs = 1000;
+        var flowStartDelayMs = 700;
 
         function parseDuration(value) {
             if (!value) {
