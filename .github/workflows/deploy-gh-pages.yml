@@ -1,4 +1,4 @@
-name: Deploy Blazor WASM to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -35,13 +35,16 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
           OWNER_NAME="${GITHUB_REPOSITORY%/*}"
 
-          if [ "$REPO_NAME" = "${OWNER_NAME}.github.io" ]; then
+          # Custom domains serve from root, so base href must remain "/".
+          if [ -f "release/wwwroot/CNAME" ]; then
+            BASE_HREF="/"
+          elif [ "$REPO_NAME" = "${OWNER_NAME}.github.io" ]; then
             BASE_HREF="/"
           else
             BASE_HREF="/$REPO_NAME/"
           fi
 
-          sed -i "s|<base href=\"/\" />|<base href=\"$BASE_HREF\" />|g" release/wwwroot/index.html
+          sed -i -E "s|<base href=\"[^\"]*\" />|<base href=\"$BASE_HREF\" />|g" release/wwwroot/index.html
           cp release/wwwroot/index.html release/wwwroot/404.html
 
       - name: Setup Pages
