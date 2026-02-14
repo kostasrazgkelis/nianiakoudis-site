@@ -27,8 +27,13 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Clean publish output
+        run: |
+          rm -rf release
+          mkdir -p release
+
       - name: Publish Blazor app
-        run: dotnet publish src/NianiakoudisSite/NianiakoudisSite.csproj -c Release -o release
+        run: dotnet publish src/NianiakoudisSite/NianiakoudisSite.csproj -c Release -o release --nologo
 
       - name: Configure base href and SPA fallback
         run: |

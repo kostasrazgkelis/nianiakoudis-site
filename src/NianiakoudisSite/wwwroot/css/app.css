@@ -176,39 +176,13 @@ body::-webkit-scrollbar {
     width: 100%;
 }
 
-@keyframes home-carousel-rise-in {
-    from {
-        transform: translate3d(0, 100%, 0);
-        visibility: visible;
-    }
-    to {
-        transform: translate3d(0, 0, 0);
-    }
+.home-carousel .mud-carousel-item {
+    height: 100%;
 }
 
-@keyframes home-carousel-rise-out {
-    from {
-        transform: translate3d(0, 0, 0);
-        visibility: visible;
-    }
-    to {
-        transform: translate3d(0, -100%, 0);
-    }
-}
-
-.home-carousel .mud-carousel-transition-slide-next-enter,
-.home-carousel .mud-carousel-transition-slide-prev-enter,
-.home-carousel .mud-carousel-transition-slide-next-rtl-enter,
-.home-carousel .mud-carousel-transition-slide-prev-rtl-enter {
-    animation: 1.6s home-carousel-rise-in;
-}
-
-.home-carousel .mud-carousel-transition-slide-next-exit,
-.home-carousel .mud-carousel-transition-slide-prev-exit,
-.home-carousel .mud-carousel-transition-slide-next-rtl-exit,
-.home-carousel .mud-carousel-transition-slide-prev-rtl-exit {
-    animation: 0.75s home-carousel-rise-out;
-    animation-fill-mode: forwards;
+.home-carousel .mud-carousel-item > .hero-transition,
+.home-carousel .mud-carousel-item > .home-row {
+    height: 100%;
 }
 
 .home-second {
@@ -746,7 +720,7 @@ body::-webkit-scrollbar {
         -1px -1px 0 #000000;
     opacity: 0;
     animation: home-hero-text-fade 2s ease forwards;
-    animation-delay: 1.2s;
+    animation-delay: 0.8s;
 }
 
 .home-hero-paragraph {
@@ -759,12 +733,12 @@ body::-webkit-scrollbar {
 }
 
 .home-hero-paragraph-second {
-    animation-delay: 2.6s;
+    animation-delay: 2s;
     letter-spacing: 0.08em;
     padding: 0rem;
 }
 .home-hero-paragraph-third {
-    animation-delay: 4s;
+    animation-delay: 2.5s;
     font-size: clamp(1.05rem, 1vw + 0.85rem, 1.6rem);
     padding: 0rem;
 }
@@ -773,7 +747,7 @@ body::-webkit-scrollbar {
     opacity: 0;
     display: inline-block;
     animation: home-hero-text-fade 2s ease forwards;
-    animation-delay: 5.5s;
+    animation-delay: 3.5s;
     font-size: inherit;
 }
 @keyframes home-hero-text-fade {
