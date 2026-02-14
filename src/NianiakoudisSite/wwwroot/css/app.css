@@ -846,9 +846,14 @@ body::-webkit-scrollbar {
     gap: 0rem;
 }
 
-.brand-icon {
-    color: var(--color-accent);
-    font-size: 1.6rem;
+.brand-logo {
+    width: clamp(2rem, 1.3vw + 1.6rem, 2.6rem);
+    height: clamp(2rem, 1.3vw + 1.6rem, 2.6rem);
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    flex-shrink: 0;
+    margin-right: 0.55rem;
 }
 
 .nav-links .mud-nav-link {
