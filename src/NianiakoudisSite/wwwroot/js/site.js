@@ -444,9 +444,18 @@ window.revealOnScroll = {
             return;
         }
 
+        function reveal(item) {
+            item.classList.add("is-visible");
+        }
+
+        function isInViewport(item) {
+            var rect = item.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+
         if (!("IntersectionObserver" in window)) {
             items.forEach(function (item) {
-                item.classList.add("is-visible");
+                reveal(item);
             });
             return;
         }
@@ -454,18 +463,33 @@ window.revealOnScroll = {
         var observer = new IntersectionObserver(function (entries, obs) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add("is-visible");
+                    reveal(entry.target);
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.2 });
+        }, { threshold: 0.1 });
 
         items.forEach(function (item) {
             if (item.dataset.revealObserved === "1") {
                 return;
             }
             item.dataset.revealObserved = "1";
+
+            // If the element is already in view, reveal immediately.
+            if (isInViewport(item)) {
+                reveal(item);
+                return;
+            }
+
             observer.observe(item);
+
+            // Defensive fallback for edge cases where observers don't fire (seen on some desktop layouts).
+            window.setTimeout(function () {
+                if (!item.classList.contains("is-visible")) {
+                    reveal(item);
+                    observer.unobserve(item);
+                }
+            }, 1200);
         });
     }
 };
