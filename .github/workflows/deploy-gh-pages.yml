@@ -35,10 +35,7 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
           OWNER_NAME="${GITHUB_REPOSITORY%/*}"
 
-          # Custom domains serve from root, so base href must remain "/".
-          if [ -f "release/wwwroot/CNAME" ]; then
-            BASE_HREF="/"
-          elif [ "$REPO_NAME" = "${OWNER_NAME}.github.io" ]; then
+          if [ "$REPO_NAME" = "${OWNER_NAME}.github.io" ]; then
             BASE_HREF="/"
           else
             BASE_HREF="/$REPO_NAME/"
