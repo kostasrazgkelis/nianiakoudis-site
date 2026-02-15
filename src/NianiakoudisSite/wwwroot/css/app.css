@@ -114,6 +114,15 @@ body::-webkit-scrollbar {
     gap: 0.6rem;
 }
 
+.info-paragraph-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-inline: clamp(2rem, 8vw, 6rem);
+    padding-block: 0.5rem;
+}
+
 .info-paragraph-icon {
     color: var(--color-primary);
     margin-top: 0.15rem;
