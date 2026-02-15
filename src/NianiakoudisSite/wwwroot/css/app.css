@@ -1304,8 +1304,28 @@ body::-webkit-scrollbar {
 .contact-card-details {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: stretch;
     gap: 0.75rem;
+}
+
+.contact-card-details .contact-section-title {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.contact-card-details-body {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.contact-card-details .contact-detail {
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 0;
 }
 
 .contact-section-title {
