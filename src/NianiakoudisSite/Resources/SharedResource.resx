@@ -235,26 +235,17 @@
   <data name="Home.FlowItem1.Line1" xml:space="preserve">
     <value>Συνεργαζόμαστε με ομάδες σε στρατηγική, οικονομικά και λειτουργίες για να μετατρέπουμε την πληροφορία σε δράση.</value>
   </data>
-  <data name="Home.FlowItem1.Line2" xml:space="preserve">
-    <value>Από την ανάλυση έως την υλοποίηση, εστιάζουμε σε μετρήσιμα αποτελέσματα.</value>
-  </data>
   <data name="Home.FlowItem1.Title" xml:space="preserve">
     <value>ΠΟΙΟΙ ΕΙΜΑΣΤΕ</value>
   </data>
   <data name="Home.FlowItem2.Line1" xml:space="preserve">
     <value>Σχεδιάζουμε λύσεις που ταιριάζουν στις ανάγκες και στους στόχους σας.</value>
   </data>
-  <data name="Home.FlowItem2.Line2" xml:space="preserve">
-    <value>Παραδίδουμε ξεκάθαρα πλάνα με πρακτικά βήματα.</value>
-  </data>
   <data name="Home.FlowItem2.Title" xml:space="preserve">
     <value>ΤΙ ΚΑΝΟΥΜΕ</value>
   </data>
   <data name="Home.FlowItem3.Line1" xml:space="preserve">
     <value>Σχεδιάζουμε λύσεις που ταιριάζουν στις ανάγκες και στους στόχους σας.</value>
-  </data>
-  <data name="Home.FlowItem3.Line2" xml:space="preserve">
-    <value>Παραδίδουμε ξεκάθαρα πλάνα με πρακτικά βήματα.</value>
   </data>
   <data name="Home.FlowItem3.Title" xml:space="preserve">
     <value>ΤΙ ΚΑΝΟΥΜΕ</value>

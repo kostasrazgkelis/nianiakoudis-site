@@ -4,8 +4,7 @@ window.homeSectionsObserver = {
         if (!items.length) {
             return;
         }
-
-        var flowStartDelayMs = 700;
+        var flowStartDelayMs = 200;
 
         function parseDuration(value) {
             if (!value) {
@@ -166,6 +165,15 @@ window.homeSectionsObserver = {
                 });
             }
 
+            // Always anchor the flow start at the dedicated header container.
+            var headerContainer = flow.querySelector(".home-flow-header.home-container");
+            if (headerContainer) {
+                ordered = ordered.filter(function (container) {
+                    return container !== headerContainer;
+                });
+                ordered.unshift(headerContainer);
+            }
+
             var centers = [];
             ordered.forEach(function (container) {
                 var rect = container.getBoundingClientRect();
@@ -283,11 +291,12 @@ window.homeSectionsObserver = {
             return bestLength;
         }
 
-        function scheduleFlowContainers(flow) {
+        function scheduleFlowContainers(flow, offsetMs) {
             var containers = flow.querySelectorAll(".home-container");
             if (!containers.length) {
                 return;
             }
+            var baseOffset = Math.max(0, offsetMs || 0);
 
             var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
             if (prefersReducedMotion) {
@@ -348,7 +357,7 @@ window.homeSectionsObserver = {
                 var delay = Math.max(0, Math.round((lengthAt / totalLength) * durationMs));
                 window.setTimeout(function () {
                     container.classList.add("is-visible");
-                }, delay);
+                }, baseOffset + delay);
             });
         }
 
@@ -356,6 +365,7 @@ window.homeSectionsObserver = {
             if (flow.dataset.flowStarted === "1") {
                 updateFlowPath(flow);
                 syncFlowTrailLength(flow, true);
+                flow.classList.add("is-visible");
                 return;
             }
 
@@ -367,6 +377,7 @@ window.homeSectionsObserver = {
             var motions = flow.querySelectorAll(".home-flow-head-motion");
             var draws = flow.querySelectorAll(".home-flow-trail-draw");
             window.setTimeout(function () {
+                flow.classList.add("is-visible");
                 if (head) {
                     head.removeAttribute("transform");
                 }
@@ -380,8 +391,8 @@ window.homeSectionsObserver = {
                         draw.beginElement();
                     }
                 });
+                scheduleFlowContainers(flow, 0);
             }, flowStartDelayMs);
-            scheduleFlowContainers(flow);
         }
 
         function handleLayoutChange() {
@@ -416,20 +427,18 @@ window.homeSectionsObserver = {
         window.addEventListener("resize", queueLayoutChange);
         window.addEventListener("orientationchange", queueLayoutChange);
 
-        var isNarrowScreen = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
         var observer = new IntersectionObserver(function (entries, obs) {
             entries.forEach(function (entry) {
-                var halfViewport = window.innerHeight * 0.5;
-                var reachedHalf = entry.boundingClientRect.top <= halfViewport;
-                if (entry.isIntersecting && reachedHalf) {
-                    entry.target.classList.add("is-visible");
+                if (entry.isIntersecting) {
                     if (entry.target.classList.contains("home-flow")) {
                         startFlow(entry.target);
+                    } else {
+                        entry.target.classList.add("is-visible");
                     }
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: isNarrowScreen ? 0 : 0.2 });
+        }, { threshold: 0 });
 
         items.forEach(function (item) {
             observer.observe(item);

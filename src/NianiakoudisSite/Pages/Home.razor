@@ -5,18 +5,15 @@
 <MudBox Class="home-stack" Id="home-stack">
 
     <MudPaper Class="home-carousel-shell" Square="true" Elevation="2">
-        <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(8)" BulletsColor="Color.Primary" BulletsClass="home-bullets">
+        <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(6)" BulletsColor="Color.Primary" BulletsClass="home-bullets">
 
 
         <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
             <MudPaper Class="home-hero hero" Square="true" Elevation="1">
-                <MudImage Src="assets/pictures/carousel-picture-1.jpg" Alt="@L["Home.Hero.ImageAlt"]" Class="home-hero-image" />
+                <MudImage Src="@AssetUrl.WithVersion("assets/pictures/carousel-picture-1.jpg")" Alt="@L["Home.Hero.ImageAlt"]" Class="home-hero-image" />
                 <MudBox Class="home-hero-text">
                     <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-first">
                         @L["Home.Hero.Line1"]
-                    </MudText>
-                    <MudText Typo="Typo.h6" Class="home-hero-paragraph home-hero-paragraph-second">
-                        @L["Home.Hero.Line2"]
                     </MudText>
                     <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-third">
                         @L["Home.Hero.Line3Prefix"] <span class="home-hero-paragraph-delayed">@L["Home.Hero.Line3Suffix"]</span>
@@ -52,7 +49,7 @@
         </MudCarousel>
     </MudPaper>
 
-    <HomeFlow Items="FlowItems" Duration="9s">
+    <HomeFlow Items="FlowItems" Duration="11s">
         <HeaderContent>
             <MudBox Class="home-flow-header home-container" data-flow-index="0">
                 <MudText Typo="Typo.h4" Class="home-flow-longform-title">
@@ -169,31 +166,31 @@
                 L["Home.Row1.Title"].Value,
                 L["Home.Row1.Body"].Value,
                 "info-1",
-                "assets/pictures/carousel-picture-2.jpg",
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-2.jpg"),
                 L["Home.Row1.ImageAlt"].Value),
             new HomeRow(
                 L["Home.Row2.Title"].Value,
                 L["Home.Row2.Body"].Value,
                 "info-2",
-                "assets/pictures/carousel-picture-3.jpg",
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-3.jpg"),
                 L["Home.Row2.ImageAlt"].Value),
             new HomeRow(
                 L["Home.Row3.Title"].Value,
                 L["Home.Row3.Body"].Value,
                 "info-3",
-                "assets/pictures/carousel-picture-4.jpg",
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-4.jpg"),
                 L["Home.Row3.ImageAlt"].Value),
             new HomeRow(
                 L["Home.Row4.Title"].Value,
                 L["Home.Row4.Body"].Value,
                 "info-4",
-                "assets/pictures/carousel-picture-5.jpg",
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-5.jpg"),
                 L["Home.Row4.ImageAlt"].Value),
             new HomeRow(
                 L["Home.Row5.Title"].Value,
                 L["Home.Row5.Body"].Value,
                 "info-5",
-                "assets/pictures/carousel-picture-6.jpg",
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-6.jpg"),
                 L["Home.Row5.ImageAlt"].Value)
         };
 
@@ -203,8 +200,7 @@
                 L["Home.FlowItem1.Title"].Value,
                 new[]
                 {
-                    L["Home.FlowItem1.Line1"].Value,
-                    L["Home.FlowItem1.Line2"].Value
+                    L["Home.FlowItem1.Line1"].Value
                 },
                 GridColumn: 1,
                 GridRow: 1,
@@ -213,8 +209,7 @@
                 L["Home.FlowItem2.Title"].Value,
                 new[]
                 {
-                    L["Home.FlowItem2.Line1"].Value,
-                    L["Home.FlowItem2.Line2"].Value
+                    L["Home.FlowItem2.Line1"].Value
                 },
                 GridColumn: 3,
                 GridRow: 2,
@@ -223,8 +218,7 @@
                 L["Home.FlowItem3.Title"].Value,
                 new[]
                 {
-                    L["Home.FlowItem3.Line1"].Value,
-                    L["Home.FlowItem3.Line2"].Value
+                    L["Home.FlowItem3.Line1"].Value
                 },
                 GridColumn: 2,
                 GridRow: 3,
