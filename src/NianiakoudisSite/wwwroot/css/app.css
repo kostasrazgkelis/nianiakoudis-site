@@ -524,13 +524,14 @@ body::-webkit-scrollbar {
 
 .home-flow-extra-link {
     display: block;
+    height: 100%;
     color: inherit;
     text-decoration: none;
     cursor: pointer;
 }
 
 .home-flow-extra-link:focus-visible .home-flow-extra-card {
-    transform: translateY(-6px) scale(1.20);
+    transform: translateY(-4px) scale(1.03);
     box-shadow: 0 16px 28px rgba(31, 122, 140, 0.18);
     border-color: rgba(31, 122, 140, 0.22);
     background-color: rgba(255, 255, 255, 0.95);
@@ -538,12 +539,18 @@ body::-webkit-scrollbar {
 
 .home-flow-extra-card {
     width: 100%;
-    min-height: 220px;
+    min-height: clamp(200px, 22vw, 260px);
+    padding: clamp(1rem, 1.2vw, 1.35rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(0.75rem, 1vw, 1rem);
     background-color: rgba(255, 255, 255, 1);
     position: relative;
     top: 16px;
     transform: none;
     transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease, border-color 220ms ease;
+    will-change: transform;
 }
 
 .home-flow-extra-card.is-visible {
@@ -554,7 +561,7 @@ body::-webkit-scrollbar {
 
 .home-flow-extra-card:hover,
 .home-flow-extra-card:focus-within {
-    transform: translateY(-6px) scale(1.10);
+    transform: translateY(-4px) scale(1.03);
     box-shadow: 0 16px 28px rgba(31, 122, 140, 0.18);
     border-color: rgba(31, 122, 140, 0.22);
     background-color: rgba(255, 255, 255, 0.85);
@@ -581,6 +588,26 @@ body::-webkit-scrollbar {
     color: var(--color-muted);
     font-weight: 700;
     line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .home-flow-extra-card {
+        min-height: clamp(180px, 28vw, 220px);
+    }
+
+    .home-flow-extra-card:hover,
+    .home-flow-extra-card:focus-within,
+    .home-flow-extra-link:focus-visible .home-flow-extra-card {
+        transform: translateY(-2px) scale(1.01);
+    }
+}
+
+@media (hover: none) {
+    .home-flow-extra-card:hover,
+    .home-flow-extra-card:focus-within,
+    .home-flow-extra-link:focus-visible .home-flow-extra-card {
+        transform: none;
+    }
 }
 
 .box-1-grid {
@@ -619,6 +646,7 @@ body::-webkit-scrollbar {
     border: 1px solid rgba(0, 0, 0, 0.08);
     font-weight: 700;
     padding: 1.5rem 1.25rem;
+    padding-top: 1rem;
     margin: 0;
     display: flex;
     gap: 0.65rem;
