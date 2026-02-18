@@ -1,162 +1,192 @@
 ﻿@page "/"
-@inject IJSRuntime JSRuntime
-@using MudBlazor
+@inject IJSRuntime JsRuntime
 
-<MudBox Class="home-stack" Id="home-stack">
+<MudCollapse Expanded="@ShowCarousel" Class="home-carousel-collapse">
+    <MudStack Spacing="16">
+        <MudPaper Class="home-carousel-shell" Square="true" Elevation="1">
+            <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(6)" BulletsColor="Color.Primary" BulletsClass="home-bullets">
+                <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
+                    <MudPaper Class="home-hero hero" Square="true" Elevation="1">
+                        <picture class="home-hero-image">
+                            <source srcset="@HeroAvifImageUrl" type="image/avif" />
+                            <source srcset="@HeroWebpImageUrl" type="image/webp" />
+                            <img src="@HeroJpgImageUrl"
+                                 alt="@L["Home.Hero.ImageAlt"]"
+                                 class="home-hero-image"
+                                 width="1280"
+                                 height="853"
+                                 loading="eager"
+                                 fetchpriority="high"
+                                 decoding="async"
+                                 sizes="100vw" />
+                        </picture>
+                        <MudBox Class="home-hero-text">
+                            <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-first">
+                                @L["Home.Hero.Line1"]
+                            </MudText>
+                            <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-third">
+                                @L["Home.Hero.Line3Prefix"] <span class="home-hero-paragraph-delayed">@L["Home.Hero.Line3Suffix"]</span>
+                            </MudText>
+                        </MudBox>
+                    </MudPaper>
+                </MudCarouselItem>
 
-    <MudPaper Class="home-carousel-shell" Square="true" Elevation="2">
-        <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(6)" BulletsColor="Color.Primary" BulletsClass="home-bullets">
+                @for (var index = 0; index < Rows.Count; index++)
+                {
+                    var row = Rows[index];
+                    var rowClass = index % 2 == 1 ? "home-row reverse" : "home-row";
 
-
-        <MudCarouselItem Class="@($"hero-transition {(HeroVisible ? "is-visible" : string.Empty)}")">
-            <MudPaper Class="home-hero hero" Square="true" Elevation="1">
-                <MudImage Src="@AssetUrl.WithVersion("assets/pictures/carousel-picture-1.jpg")" Alt="@L["Home.Hero.ImageAlt"]" Class="home-hero-image" />
-                <MudBox Class="home-hero-text">
-                    <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-first">
-                        @L["Home.Hero.Line1"]
-                    </MudText>
-                    <MudText Typo="Typo.body2" Class="home-hero-paragraph home-hero-paragraph-third">
-                        @L["Home.Hero.Line3Prefix"] <span class="home-hero-paragraph-delayed">@L["Home.Hero.Line3Suffix"]</span>
-                    </MudText>
-                </MudBox>
+                    <MudCarouselItem Class="@rowClass">
+                        <MudPaper Class="home-row-card" Square="true" Elevation="1">
+                            <MudGrid Class="home-row-grid" Spacing="0">
+                                <MudItem xs="12" md="6" Class="home-copy">
+                                    <MudText Typo="Typo.h5">@row.Title</MudText>
+                                    <MudText Typo="Typo.body1" Class="home-body">@row.Body</MudText>
+                                    <MudButton Class="info-button" Variant="Variant.Filled" Color="Color.Secondary" Href="@row.Link">
+                                        @L["Home.LearnMore"]
+                                    </MudButton>
+                                </MudItem>
+                                <MudItem xs="12" md="6" Class="home-visual">
+                                    <picture class="home-image">
+                                        <source srcset="@row.ImageAvifUrl" type="image/avif" />
+                                        <source srcset="@row.ImageWebpUrl" type="image/webp" />
+                                        <img src="@row.ImageJpgUrl"
+                                             alt="@row.ImageAlt"
+                                             class="home-image"
+                                             loading="lazy"
+                                             decoding="async"
+                                             width="1280"
+                                             height="853" />
+                                    </picture>
+                                </MudItem>
+                            </MudGrid>
+                        </MudPaper>
+                    </MudCarouselItem>
+                }
+            </MudCarousel>
         </MudPaper>
-        </MudCarouselItem>
 
-        @for (var index = 0; index < Rows.Count; index++)
-        {
-            var row = Rows[index];
-            var rowClass = index % 2 == 1 ? "home-row reverse" : "home-row";
-
-            <MudCarouselItem Class="@rowClass">
-                <MudPaper Class="home-row-card" Square="true" Elevation="1">
-                    <MudGrid Class="home-row-grid" Spacing="0">
-                        <MudItem xs="12" md="6" Class="home-copy">
-                            <MudText Typo="Typo.h5">@row.Title</MudText>
-                            <MudText Typo="Typo.body1" Class="home-body">@row.Body</MudText>
-                            <MudButton Class="info-button" Variant="Variant.Filled" Color="Color.Secondary" Href="@row.Link">
-                                @L["Home.LearnMore"]
-                            </MudButton>
-                        </MudItem>
-                        <MudItem xs="12" md="6" Class="home-visual">
-                            <MudImage Src="@row.ImageUrl" Alt="@row.ImageAlt" Class="home-image" />
-                        </MudItem>
-                    </MudGrid>
-
-                </MudPaper>
-            </MudCarouselItem>
-        }
-        
-        </MudCarousel>
-    </MudPaper>
-
-    <HomeFlow Items="FlowItems" Duration="11s">
-        <HeaderContent>
-            <MudBox Class="home-flow-header home-container" data-flow-index="0">
-                <MudText Typo="Typo.h4" Class="home-flow-longform-title">
-                    @L["Home.Flow.HeaderTitle"]
-                </MudText>
-            </MudBox>
-        </HeaderContent>
-        <ChildContent>
-            <MudBox Class="home-flow-longform home-container" data-flow-index="4">
-                <MudText Typo="Typo.h4" Class="home-flow-longform-title">
-                    @L["Home.Flow.OverviewTitle"]
-                </MudText>
-                <MudText Typo="Typo.body1" Class="home-flow-longform-body">
-                    @L["Home.Flow.OverviewParagraph1"]
-                </MudText>
-                <MudText Typo="Typo.body1" Class="home-flow-longform-body">
-                    @L["Home.Flow.OverviewParagraph2"]
-                </MudText>
-            </MudBox>
-
-            <MudBox Class="home-flow-extra">
-                <MudBox Class="home-container home-flow-extra-header" data-flow-index="5">
-                    <MudText Typo="Typo.h4" Class="home-flow-longform-title">
-                        @L["Home.Flow.ExtraTitle"]
-                    </MudText>
-                    <MudText Typo="Typo.subtitle1" Class="home-flow-extra-body">
-                        @L["Home.Flow.ExtraBody"]
-                    </MudText>
-                </MudBox>
-
-                <MudBox Class="home-flow-extra-grid">
-                    @foreach (var card in FlowExtraCards)
-                    {
-                        <MudLink Href="@card.Link" Class="home-flow-extra-link" Underline="Underline.None">
-                            <MudPaper Class="box-1-card home-container home-flow-extra-card"
-                                      Square="true"
-                                      Elevation="2"
-                                      data-flow-index="@card.FlowIndex">
-                                <MudText Typo="Typo.h6" Class="home-flow-extra-card-title">
-                                    @card.Title
-                                </MudText>
-                                <MudText Typo="Typo.subtitle2" Class="home-flow-extra-card-body">
-                                    @card.Body
-                                </MudText>
-                            </MudPaper>
-                        </MudLink>
-                    }
-                </MudBox>
-            </MudBox>
-
-            <MudContainer Class="box-1 home-container" data-flow-index="11">
-                <MudGrid Class="box-1-grid" Spacing="2">
-                    <MudItem xs="12" md="12" Class="box-1-left">
-                        <MudText Typo="Typo.h5" Class="box-1-title">@L["Home.Flow.ContactBoxTitle"]</MudText>
-                        <MudText Typo="Typo.body1" Class="box-1-subtitle">
-                            @L["Home.Flow.ContactBoxBody"]
+        <MudPaper Elevation="0" Class="home-flow-section">
+            <HomeFlow Items="FlowItems" Duration="12s">
+                <HeaderContent>
+                    <MudBox Class="home-flow-header home-container" data-flow-index="0">
+                        <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                            @L["Home.Flow.HeaderTitle"]
                         </MudText>
-                    </MudItem>
-                    <MudItem xs="12" md="12">
-                        <MudGrid Class="box-1-cards" Spacing="2">
-                            <MudItem xs="12" md="4">
-                                <MudPaper Class="box-1-card" Square="true" Elevation="1">
-                                    <MudIcon Icon="@Icons.Material.Filled.Email" Class="box-1-card-icon" />
-                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.EmailTitle"]</MudText>
-                                    <MudLink Href="@($"mailto:{L["Common.Email"]}")" Class="box-1-link">
-                                        @L["Common.Email"]
-                                    </MudLink>
-                                </MudPaper>
+                    </MudBox>
+                </HeaderContent>
+                <ChildContent>
+                    <MudBox Class="home-flow-longform home-container" data-flow-index="4">
+                        <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                            @L["Home.Flow.OverviewTitle"]
+                        </MudText>
+                        <MudText Typo="Typo.body1" Class="home-flow-longform-body">
+                            @L["Home.Flow.OverviewParagraph1"]
+                        </MudText>
+                        <MudText Typo="Typo.body1" Class="home-flow-longform-body">
+                            @L["Home.Flow.OverviewParagraph2"]
+                        </MudText>
+                    </MudBox>
+
+                    <MudBox Class="home-flow-extra">
+                        <MudBox Class="home-container home-flow-extra-header" data-flow-index="5">
+                            <MudText Typo="Typo.h4" Class="home-flow-longform-title">
+                                @L["Home.Flow.ExtraTitle"]
+                            </MudText>
+                            <MudText Typo="Typo.subtitle1" Class="home-flow-extra-body">
+                                @L["Home.Flow.ExtraBody"]
+                            </MudText>
+                        </MudBox>
+
+                        <MudBox Class="home-flow-extra-grid">
+                            @foreach (var card in FlowExtraCards)
+                            {
+                                <MudLink Href="@card.Link" Class="home-flow-extra-link" Underline="Underline.None">
+                                    <MudPaper Class="box-1-card home-container home-flow-extra-card"
+                                              Square="true"
+                                              Elevation="2"
+                                              data-flow-index="@card.FlowIndex">
+                                        <MudText Typo="Typo.h6" Class="home-flow-extra-card-title">
+                                            @card.Title
+                                        </MudText>
+                                        <MudText Typo="Typo.subtitle2" Class="home-flow-extra-card-body">
+                                            @card.Body
+                                        </MudText>
+                                    </MudPaper>
+                                </MudLink>
+                            }
+                        </MudBox>
+                    </MudBox>
+
+                    <MudContainer Class="box-1 home-container" data-flow-index="11">
+                        <MudGrid Class="box-1-grid" Spacing="2">
+                            <MudItem xs="12" md="12" Class="box-1-left">
+                                <MudText Typo="Typo.h5" Class="box-1-title">@L["Home.Flow.ContactBoxTitle"]</MudText>
+                                <MudText Typo="Typo.body1" Class="box-1-subtitle">
+                                    @L["Home.Flow.ContactBoxBody"]
+                                </MudText>
                             </MudItem>
-                            <MudItem xs="12" md="4">
-                                <MudPaper Class="box-1-card" Square="true" Elevation="1">
-                                    <MudIcon Icon="@Icons.Material.Filled.Phone" Class="box-1-card-icon" />
-                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.PhoneTitle"]</MudText>
-                                    <MudLink Href="@($"tel:{L["Common.PhoneHref"]}")" Class="box-1-link">
-                                        @L["Common.PhoneText"]
-                                    </MudLink>
-                                </MudPaper>
-                            </MudItem>
-                            <MudItem xs="12" md="4">
-                                <MudPaper Class="box-1-card" Square="true" Elevation="1">
-                                    <MudIcon Icon="@Icons.Material.Filled.Business" Class="box-1-card-icon" />
-                                    <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.LinkedInTitle"]</MudText>
-                                    <MudLink Href="@L["Common.LinkedInHref"]" Target="_blank" Rel="noopener noreferrer" Class="box-1-link">
-                                        @L["Home.Contact.LinkedInText"]
-                                    </MudLink>
-                                </MudPaper>
+                            <MudItem xs="12" md="12">
+                                <MudGrid Class="box-1-cards" Spacing="2">
+                                    <MudItem xs="12" md="4">
+                                        <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                            <MudIcon Icon="@Icons.Material.Filled.Email" Class="box-1-card-icon" />
+                                            <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.EmailTitle"]</MudText>
+                                            <MudLink Href="@($"mailto:{L["Common.Email"]}")" Class="box-1-link">
+                                                @L["Common.Email"]
+                                            </MudLink>
+                                        </MudPaper>
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                            <MudIcon Icon="@Icons.Material.Filled.Phone" Class="box-1-card-icon" />
+                                            <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.PhoneTitle"]</MudText>
+                                            <MudLink Href="@($"tel:{L["Common.PhoneHref"]}")" Class="box-1-link">
+                                                @L["Common.PhoneText"]
+                                            </MudLink>
+                                        </MudPaper>
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <MudPaper Class="box-1-card" Square="true" Elevation="1">
+                                            <MudIcon Icon="@Icons.Material.Filled.Business" Class="box-1-card-icon" />
+                                            <MudText Typo="Typo.subtitle2" Class="box-1-card-title">@L["Home.Contact.LinkedInTitle"]</MudText>
+                                            <MudLink Href="@L["Common.LinkedInHref"]" Target="_blank" Rel="noopener noreferrer" Class="box-1-link">
+                                                @L["Home.Contact.LinkedInText"]
+                                            </MudLink>
+                                        </MudPaper>
+                                    </MudItem>
+                                </MudGrid>
                             </MudItem>
                         </MudGrid>
-                    </MudItem>
-                </MudGrid>
-            </MudContainer>
-        </ChildContent>
-    </HomeFlow>
-</MudBox>
+                    </MudContainer>
+                </ChildContent>
+            </HomeFlow>
+        </MudPaper>
+    </MudStack>
+</MudCollapse>
 
 @code {
     private IReadOnlyList<HomeRow> Rows { get; set; } = Array.Empty<HomeRow>();
+    private IReadOnlyList<HomeFlowItem> FlowItems { get; set; } = Array.Empty<HomeFlowItem>();
+    private IReadOnlyList<FlowExtraCard> FlowExtraCards { get; set; } = Array.Empty<FlowExtraCard>();
 
-    private sealed record HomeRow(string Title, string Body, string Link, string ImageUrl, string ImageAlt);
-
-    private bool HeroVisible { get; set; }
+    private sealed record HomeRow(
+        string Title,
+        string Body,
+        string Link,
+        string ImageJpgUrl,
+        string ImageWebpUrl,
+        string ImageAvifUrl,
+        string ImageAlt);
 
     private sealed record FlowExtraCard(string Title, string Body, int FlowIndex, string Link);
 
-    private IReadOnlyList<HomeFlowItem> FlowItems { get; set; } = Array.Empty<HomeFlowItem>();
+    private bool HeroVisible { get; set; }
+    private bool ShowCarousel { get; set; }
 
-    private IReadOnlyList<FlowExtraCard> FlowExtraCards { get; set; } = Array.Empty<FlowExtraCard>();
+    private string HeroJpgImageUrl { get; } = AssetUrl.WithVersion("assets/pictures/carousel-picture-1.jpg");
+    private string HeroWebpImageUrl { get; } = AssetUrl.WithVersion("assets/pictures/carousel-picture-1.webp");
+    private string HeroAvifImageUrl { get; } = AssetUrl.WithVersion("assets/pictures/carousel-picture-1.avif");
 
     protected override void OnInitialized()
     {
@@ -167,30 +197,40 @@
                 L["Home.Row1.Body"].Value,
                 "info-1",
                 AssetUrl.WithVersion("assets/pictures/carousel-picture-2.jpg"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-2.webp"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-2.avif"),
                 L["Home.Row1.ImageAlt"].Value),
             new HomeRow(
                 L["Home.Row2.Title"].Value,
                 L["Home.Row2.Body"].Value,
                 "info-2",
                 AssetUrl.WithVersion("assets/pictures/carousel-picture-3.jpg"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-3.webp"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-3.avif"),
                 L["Home.Row2.ImageAlt"].Value),
             new HomeRow(
                 L["Home.Row3.Title"].Value,
                 L["Home.Row3.Body"].Value,
                 "info-3",
                 AssetUrl.WithVersion("assets/pictures/carousel-picture-4.jpg"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-4.webp"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-4.avif"),
                 L["Home.Row3.ImageAlt"].Value),
             new HomeRow(
                 L["Home.Row4.Title"].Value,
                 L["Home.Row4.Body"].Value,
                 "info-4",
                 AssetUrl.WithVersion("assets/pictures/carousel-picture-5.jpg"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-5.webp"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-5.avif"),
                 L["Home.Row4.ImageAlt"].Value),
             new HomeRow(
                 L["Home.Row5.Title"].Value,
                 L["Home.Row5.Body"].Value,
                 "info-5",
                 AssetUrl.WithVersion("assets/pictures/carousel-picture-6.jpg"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-6.webp"),
+                AssetUrl.WithVersion("assets/pictures/carousel-picture-6.avif"),
                 L["Home.Row5.ImageAlt"].Value)
         };
 
@@ -260,15 +300,10 @@
         if (firstRender)
         {
             HeroVisible = true;
-            await JSRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow");
+            await JsRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow");
+            ShowCarousel = true;
+            await JsRuntime.InvokeVoidAsync("revealOnScroll.init", ".home-row, .home-hero, .home-flow-section, .home-flow-header");
             await InvokeAsync(StateHasChanged);
         }
     }
-
-    private async Task ScrollToTop()
-    {
-        await JSRuntime.InvokeVoidAsync("eval", "document.querySelector('.content')?.scrollTo({ top: 0, behavior: 'smooth' })");
-    }
 }
-
-

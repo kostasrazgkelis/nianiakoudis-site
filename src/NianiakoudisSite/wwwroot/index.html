@@ -18,10 +18,21 @@
     <div id="app">
         <div class="spinner-loader" role="status" aria-live="polite" aria-label="Φόρτωση">
             <span class="spinner-loader-ring" aria-hidden="true"></span>
+            <span class="spinner-loader-text">Welcome to TCS Consulting</span>
         </div>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
     <script src="js/site.js"></script>
+    <script>
+        Blazor.start().then(function () {
+            var loader = document.querySelector("#app .spinner-loader");
+            if (!loader) return;
+            loader.classList.add("is-hidden");
+            window.setTimeout(function () {
+                loader.remove();
+            }, 260);
+        });
+    </script>
 </body>
 </html>

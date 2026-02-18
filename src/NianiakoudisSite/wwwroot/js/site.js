@@ -431,14 +431,32 @@ window.homeSectionsObserver = {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     if (entry.target.classList.contains("home-flow")) {
-                        startFlow(entry.target);
+                        // Only start the flow animation if the user has scrolled at all.
+                        // If the collapse just expanded and brought the element into view at
+                        // page-load time (scrollY === 0), wait for a real scroll before firing.
+                        if (window.scrollY > 0) {
+                            obs.unobserve(entry.target);
+                            startFlow(entry.target);
+                        } else {
+                            // Re-check on first scroll
+                            var target = entry.target;
+                            var once = false;
+                            var onScroll = function () {
+                                if (once) { return; }
+                                once = true;
+                                window.removeEventListener("scroll", onScroll, { passive: true });
+                                obs.unobserve(target);
+                                startFlow(target);
+                            };
+                            window.addEventListener("scroll", onScroll, { passive: true });
+                        }
                     } else {
                         entry.target.classList.add("is-visible");
+                        obs.unobserve(entry.target);
                     }
-                    obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0 });
+        }, { threshold: 0, rootMargin: "0px 0px 0px 0px" });
 
         items.forEach(function (item) {
             observer.observe(item);
