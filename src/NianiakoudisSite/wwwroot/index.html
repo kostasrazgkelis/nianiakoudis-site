@@ -13,6 +13,9 @@
     <link rel="apple-touch-icon" href="assets/logo/TCS-logo.jpg" />
     <link rel="stylesheet" href="_content/MudBlazor/MudBlazor.min.css" />
     <link rel="stylesheet" href="css/app.css" />
+    <link rel="preload" as="image"
+      href="/assets/pictures/carousel-picture-1.webp"
+      type="image/webp">
 </head>
 <body>
     <div id="app">
@@ -20,8 +23,18 @@
             <span class="spinner-loader-ring" aria-hidden="true"></span>
         </div>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
     <script src="js/site.js"></script>
+    <script>
+        Blazor.start().then(function () {
+            var loader = document.querySelector("#app .spinner-loader");
+            if (!loader) return;
+            loader.classList.add("is-hidden");
+            window.setTimeout(function () {
+                loader.remove();
+            }, 260);
+        });
+    </script>
 </body>
 </html>
