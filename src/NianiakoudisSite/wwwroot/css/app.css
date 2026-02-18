@@ -1517,10 +1517,17 @@ body::-webkit-scrollbar {
     text-align: center;
     color: var(--color-soft);
     background: var(--color-accent);
-    opacity: 0.95;
     position: relative;
     border-top: none;
     overflow: visible;
+    opacity: 0;
+    animation: footer-fade-in 600ms ease forwards;
+    animation-delay: 500ms;
+}
+
+@keyframes footer-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 0.95; }
 }
 
 .app-footer::before {

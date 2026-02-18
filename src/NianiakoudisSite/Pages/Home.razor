@@ -302,9 +302,8 @@
         {
             HeroVisible = true;
             await JsRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow");
-            await Task.Delay(1000);
             ShowCarousel = true;
-            await JsRuntime.InvokeVoidAsync("revealOnScroll.init", ".home-row, .home-hero, .home-flow-section, .home-flow-header, .home-flow-longform, .home-flow-extra-card");
+            await JsRuntime.InvokeVoidAsync("revealOnScroll.init", ".home-row, .home-hero, .home-flow-section, .home-flow-header");
             await InvokeAsync(StateHasChanged);
         }
     }
