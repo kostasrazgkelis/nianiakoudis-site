@@ -2,10 +2,6 @@
 @inject IJSRuntime JsRuntime
 @using Microsoft.AspNetCore.Components.Web
 
-<HeadContent>
-    <link rel="preload" as="image" href="@HeroWebpImageUrl" type="image/webp" />
-</HeadContent>
-
 <MudCollapse Expanded="@ShowCarousel" Class="home-carousel-collapse">
     <MudStack Spacing="16">
         <MudPaper Class="home-carousel-shell" Square="true" Elevation="1">
@@ -71,8 +67,8 @@
             </MudCarousel>
         </MudPaper>
 
-        <MudPaper Elevation="0">
-            <HomeFlow Items="FlowItems" Duration="11s">
+        <MudPaper Elevation="0" Class="home-flow-section">
+            <HomeFlow Items="FlowItems" Duration="12s">
                 <HeaderContent>
                     <MudBox Class="home-flow-header home-container" data-flow-index="0">
                         <MudText Typo="Typo.h4" Class="home-flow-longform-title">
@@ -308,7 +304,7 @@
             await JsRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow");
             await Task.Delay(1000);
             ShowCarousel = true;
-            await JsRuntime.InvokeVoidAsync("revealOnScroll.init", ".home-row, .home-hero, .home-flow-header, .home-flow-longform, .home-flow-extra-card");
+            await JsRuntime.InvokeVoidAsync("revealOnScroll.init", ".home-row, .home-hero, .home-flow-section, .home-flow-header, .home-flow-longform, .home-flow-extra-card");
             await InvokeAsync(StateHasChanged);
         }
     }

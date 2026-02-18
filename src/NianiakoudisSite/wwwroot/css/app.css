@@ -377,6 +377,15 @@ body::-webkit-scrollbar {
     animation: home-section-rise 1400ms ease forwards;
 }
 
+.home-flow-section {
+    opacity: 0;
+    transition: opacity 700ms ease;
+}
+
+.home-flow-section.is-visible {
+    opacity: 1;
+}
+
 @keyframes home-section-rise {
     from {
         opacity: 0;
