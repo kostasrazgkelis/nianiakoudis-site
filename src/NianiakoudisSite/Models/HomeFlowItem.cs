@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace NianiakoudisSite.Models;
 
 public sealed record HomeFlowItem(
