@@ -815,6 +815,11 @@ body::-webkit-scrollbar {
     gap: 0.75rem;
     z-index: 1;
     text-align: center;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.25rem 2rem;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
 .home-hero-paragraph {
