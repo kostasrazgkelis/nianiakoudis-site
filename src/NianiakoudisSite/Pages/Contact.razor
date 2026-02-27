@@ -4,7 +4,7 @@
 <MudBox Class="home-stack info-stack">
 
     <MudContainer Class="info-hero">
-        <MudImage ObjectFit="ObjectFit.Cover" Src="@AssetUrl.WithVersion("assets/pictures/contact-us.png")" Alt="@L["Contact.HeroImageAlt"]" Class="contact-hero contact-slide-up"/>
+        <MudImage ObjectFit="ObjectFit.Cover" Src="@AssetUrl.WithVersion("assets/pictures/contact-us.png")" Alt="@L["Contact.HeroImageAlt"]" Class="@($"contact-hero {(DisableContactAnimations ? string.Empty : "contact-slide-up")}")"/>
 
         <MudPaper Class="info-page" Square="true" Elevation="2">
             <MudText Typo="Typo.h4">@L["Contact.Title"]</MudText>
@@ -16,11 +16,11 @@
         Fixed="true"
         Class="contact-content">
 
-        <MudText Typo="Typo.body1" Class="contact-subtitle contact-slide-down">
+        <MudText Typo="Typo.body1" Class="@($"contact-subtitle {(DisableContactAnimations ? string.Empty : "contact-slide-down")}")">
             @L["Contact.Subtitle"]
         </MudText>
 
-        <MudGrid Class="contact-grid contact-slide-down">
+        <MudGrid Class="@($"contact-grid {(DisableContactAnimations ? string.Empty : "contact-slide-down")}")">
             <MudItem xs="12" md="5">
                 <MudPaper Class="contact-card contact-card-details" Square="true" Elevation="0">
                     <MudText Typo="Typo.subtitle1" Class="contact-section-title">@L["Contact.DetailsTitle"]</MudText>
@@ -102,12 +102,30 @@
 </MudBox>
 
 @code {
+    private static bool ContactIntroAlreadyPlayed;
+
     private MudForm? ContactForm;
     private string FullName = string.Empty;
     private string Email = string.Empty;
     private string Phone = string.Empty;
     private string Subject = string.Empty;
     private string Message = string.Empty;
+    private bool DisableContactAnimations { get; set; }
+
+    protected override void OnInitialized()
+    {
+        DisableContactAnimations = ContactIntroAlreadyPlayed;
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !DisableContactAnimations)
+        {
+            ContactIntroAlreadyPlayed = true;
+        }
+
+        return Task.CompletedTask;
+    }
 
     private bool CanSend =>
         !string.IsNullOrWhiteSpace(Email)
