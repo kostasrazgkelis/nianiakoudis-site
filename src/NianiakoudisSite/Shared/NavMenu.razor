@@ -8,11 +8,11 @@
             </MudButton>
         </ActivatorContent>
         <ChildContent>
-            <MudMenuItem Href="info-1">@L["Nav.Service1"]</MudMenuItem>
-            <MudMenuItem Href="info-2">@L["Nav.Service2"]</MudMenuItem>
-            <MudMenuItem Href="info-3">@L["Nav.Service3"]</MudMenuItem>
-            <MudMenuItem Href="info-4">@L["Nav.Service4"]</MudMenuItem>
-            <MudMenuItem Href="info-5">@L["Nav.Service5"]</MudMenuItem>
+            <MudMenuItem Href="logistikes-ipiresies">@L["Nav.Service1"]</MudMenuItem>
+            <MudMenuItem Href="forologikes-ipiresies">@L["Nav.Service2"]</MudMenuItem>
+            <MudMenuItem Href="simvouleftikes-ipiresies">@L["Nav.Service3"]</MudMenuItem>
+            <MudMenuItem Href="forologikoi-elegxoi">@L["Nav.Service4"]</MudMenuItem>
+            <MudMenuItem Href="misthodosia">@L["Nav.Service5"]</MudMenuItem>
         </ChildContent>
     </MudMenu>
     <MudNavLink Href="contact">@L["Nav.Contact"]</MudNavLink>
@@ -25,18 +25,18 @@
            Variant="DrawerVariant.Temporary"
            Elevation="4"
            Overlay="true"
-           CloseOnOverlayClick="true"
+           OverlayAutoClose="true"
            @bind-Open="isMobileMenuOpen">
     <MudNavLink Href="" OnClick="CloseMobileMenu">@L["Nav.Home"]</MudNavLink>
     <MudNavLink Href="about" OnClick="CloseMobileMenu">@L["Nav.About"]</MudNavLink>
     <MudText Typo="Typo.subtitle2" Class="nav-menu-section">
         @L["Nav.Services"]
     </MudText>
-    <MudNavLink Href="info-1" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service1"]</MudNavLink>
-    <MudNavLink Href="info-2" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service2"]</MudNavLink>
-    <MudNavLink Href="info-3" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service3"]</MudNavLink>
-    <MudNavLink Href="info-4" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service4"]</MudNavLink>
-    <MudNavLink Href="info-5" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service5"]</MudNavLink>
+    <MudNavLink Href="logistikes-ipiresies" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service1"]</MudNavLink>
+    <MudNavLink Href="forologikes-ipiresies" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service2"]</MudNavLink>
+    <MudNavLink Href="simvouleftikes-ipiresies" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service3"]</MudNavLink>
+    <MudNavLink Href="forologikoi-elegxoi" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service4"]</MudNavLink>
+    <MudNavLink Href="misthodosia" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service5"]</MudNavLink>
     <MudNavLink Href="contact" OnClick="CloseMobileMenu">@L["Nav.Contact"]</MudNavLink>
 </MudDrawer>
 

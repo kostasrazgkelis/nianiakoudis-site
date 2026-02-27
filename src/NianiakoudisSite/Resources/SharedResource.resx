@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
@@ -59,28 +59,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Brand.Full" xml:space="preserve">
-    <value>TCS CONSULTING SERVICES</value>
+    <value>tcs Consulting Services</value>
   </data>
   <data name="Brand.Short" xml:space="preserve">
-    <value>TCS</value>
+    <value>tcs</value>
   </data>
   <data name="App.NotFound" xml:space="preserve">
     <value>Η σελίδα δεν βρέθηκε.</value>
   </data>
   <data name="Common.Email" xml:space="preserve">
-    <value>info@nianiakoudis.gr</value>
+    <value>t.c.s.taxconsultancy@gmail.com</value>
   </data>
   <data name="Common.LinkedInHref" xml:space="preserve">
-    <value>https://www.linkedin.com/company/nianiakoudis</value>
+    <value>https://www.linkedin.com/in/tcs-consulting-services-95a476270/</value>
   </data>
   <data name="Common.LinkedInText" xml:space="preserve">
-    <value>linkedin.com/company/nianiakoudis</value>
+    <value>linkedin</value>
   </data>
   <data name="Common.PhoneHref" xml:space="preserve">
-    <value>+302311234567</value>
+    <value>6932413116</value>
   </data>
   <data name="Common.PhoneText" xml:space="preserve">
-    <value>+30 231 123 4567</value>
+    <value>6932413116</value>
   </data>
   <data name="Contact.DetailsTitle" xml:space="preserve">
     <value>ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</value>
@@ -119,10 +119,22 @@
     <value>ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ</value>
   </data>
   <data name="About.Paragraph1" xml:space="preserve">
-    <value>Είμαστε μια ομάδα που συνδυάζει τεχνική γνώση και δημιουργική σκέψη, με στόχο να χτίζουμε ψηφιακές παρουσίες που ξεχωρίζουν για την καθαρότητα και τη λειτουργικότητά τους.</value>
+    <value>Είμαστε μια ομάδα εξειδικευμένων συνεργατών με τριάντα χρόνια εμπειρίας στον χώρο και πλαισιωνόμαστε από μια εξίσου έμπειρη και αποτελεσματική ομάδα στελεχών.</value>
   </data>
   <data name="About.Paragraph2" xml:space="preserve">
-    <value>Δουλεύουμε δίπλα σας από τον αρχικό σχεδιασμό μέχρι την υλοποίηση και την υποστήριξη, ώστε το αποτέλεσμα να εξυπηρετεί πραγματικές ανάγκες και να εξελίσσεται με τον χρόνο.</value>
+    <value>Δουλεύουμε δίπλα σας από την καταγραφή της ανάγκης και καθ’ όλη την υλοποίηση των λύσεων, με συνεχή υποστήριξη.</value>
+  </data>
+  <data name="About.Paragraph3" xml:space="preserve">
+    <value>Επιδιώκουμε το αποτέλεσμα να εξυπηρετεί τις πραγματικές ανάγκες και τους στόχους της εταιρείας σας, εξασφαλίζοντας την απαραίτητη συμμόρφωση διαχρονικά, λαμβάνοντας υπόψη τις αλλαγές στο οικονομικό περιβάλλον.</value>
+  </data>
+  <data name="About.Paragraph4" xml:space="preserve">
+    <value>Εξειδικευόμαστε σε θέματα φορολογίας, συμβουλευτικής, οικονομικών υπηρεσιών και μισθοδοσίας. Υποστηρίζουμε αποτελεσματικά φορολογικούς ελέγχους και παρέχουμε εξειδικευμένες λύσεις στα ανωτέρω αντικείμενα.</value>
+  </data>
+  <data name="About.Paragraph5" xml:space="preserve">
+    <value>Διαθέτουμε εξειδίκευση στον κατασκευαστικό κλάδο, τον ξενοδοχειακό κλάδο, εμπορικές επιχειρήσεις και ναυτιλιακές επιχειρήσεις.</value>
+  </data>
+  <data name="About.Paragraph6" xml:space="preserve">
+    <value>Υποστηρίζουμε επιχειρήσεις σε Ελλάδα, Κύπρο και Βαλκάνια.</value>
   </data>
   <data name="Contact.LinkedInLabel" xml:space="preserve">
     <value>LinkedIn:</value>
@@ -152,7 +164,7 @@
     <value>ΕΠΙΚΟΙΝΩΝΙΑ</value>
   </data>
   <data name="Footer.Copyright" xml:space="preserve">
-    <value>© {0} TCS CONSULTING SERVICES</value>
+    <value>© {0} tcs Consulting Services</value>
   </data>
   <data name="Footer.EmailLabel" xml:space="preserve">
     <value>Email:</value>
@@ -170,7 +182,7 @@
     <value>Email</value>
   </data>
   <data name="Home.Contact.LinkedInText" xml:space="preserve">
-    <value>linkedin.com/nianiakoudis</value>
+    <value>linkedin.com/in/tcs-consulting-services</value>
   </data>
   <data name="Home.Contact.LinkedInTitle" xml:space="preserve">
     <value>LinkedIn</value>
@@ -191,76 +203,76 @@
     <value>Επιπλέον Πληροφορίες</value>
   </data>
   <data name="Home.Flow.HeaderTitle" xml:space="preserve">
-    <value>Καλώς ήρθατε στην TCS CONSULTING SERVICES</value>
+    <value>Καλώς ήρθατε στην tcs Consulting Services</value>
   </data>
   <data name="Home.Flow.OverviewParagraph1" xml:space="preserve">
-    <value>Παρέχουμε ολοκληρωμένη υποστήριξη σε στρατηγική, οικονομικά και λειτουργίες, μετατρέποντας την πληροφορία σε δράση.</value>
+    <value>Δουλεύουμε δίπλα σας από την καταγραφή της ανάγκης και καθ’ όλη την υλοποίηση των λύσεων, με συνεχή υποστήριξη. Επιδιώκουμε το αποτέλεσμα να εξυπηρετεί τις πραγματικές ανάγκες και τους στόχους της εταιρείας σας, εξασφαλίζοντας την απαραίτητη συμμόρφωση διαχρονικά, λαμβάνοντας υπόψη τις αλλαγές στο οικονομικό περιβάλλον.</value>
   </data>
   <data name="Home.Flow.OverviewParagraph2" xml:space="preserve">
-    <value>Συνεργαζόμαστε στενά με την ομάδα σας, από την ανάλυση έως την υλοποίηση, με έμφαση στη συνέπεια και την αξιοπιστία.</value>
+    <value></value>
   </data>
   <data name="Home.Flow.OverviewTitle" xml:space="preserve">
     <value>Επισκόπηση</value>
   </data>
   <data name="Home.FlowExtra1.Body" xml:space="preserve">
-    <value>Ξεκαθαρίζουμε στόχους, εύρος και κριτήρια επιτυχίας από την αρχή.</value>
+    <value>Ενημερωμένα λογιστικά βιβλία και αξιόπιστη πληροφόρηση</value>
   </data>
   <data name="Home.FlowExtra1.Title" xml:space="preserve">
-    <value>Στρατηγική Ευθυγράμμιση</value>
+    <value>Λογιστικές υπηρεσίες</value>
   </data>
   <data name="Home.FlowExtra2.Body" xml:space="preserve">
-    <value>Δημιουργούμε σενάρια και προϋπολογισμούς με σιγουριά.</value>
+    <value>Στρατηγική φορολογική καθοδήγηση με συνέπεια και αξιοπιστία</value>
   </data>
   <data name="Home.FlowExtra2.Title" xml:space="preserve">
-    <value>Οικονομικός Σχεδιασμός</value>
+    <value>Φορολογικές υπηρεσίες</value>
   </data>
   <data name="Home.FlowExtra3.Body" xml:space="preserve">
-    <value>Χαρτογραφούμε διαδικασίες και εντοπίζουμε βελτιώσεις.</value>
+    <value>Λύσεις που ανταποκρίνονται στους στόχους και τις ανάγκες σας</value>
   </data>
   <data name="Home.FlowExtra3.Title" xml:space="preserve">
-    <value>Σχεδιασμός Λειτουργιών</value>
+    <value>Συμβουλευτικές υπηρεσίες</value>
   </data>
   <data name="Home.FlowExtra4.Body" xml:space="preserve">
-    <value>Πρακτική υποστήριξη μαζί με την ομάδα σας.</value>
+    <value>Υποστήριξη σε φορολογικούς ελέγχους με τεκμηρίωση και στρατηγική</value>
   </data>
   <data name="Home.FlowExtra4.Title" xml:space="preserve">
-    <value>Υποστήριξη Υλοποίησης</value>
+    <value>Φορολογικοί έλεγχοι</value>
   </data>
   <data name="Home.FlowExtra5.Body" xml:space="preserve">
-    <value>Παρακολουθούμε KPI και βελτιώνουμε συνεχώς.</value>
+    <value>Σύγχρονη και ολοκληρωμένη παρακολούθηση μισθοδοσίας</value>
   </data>
   <data name="Home.FlowExtra5.Title" xml:space="preserve">
-    <value>Αξιολόγηση Απόδοσης</value>
+    <value>Μισθοδοσία</value>
   </data>
   <data name="Home.FlowItem1.Line1" xml:space="preserve">
-    <value>Συνεργαζόμαστε με ομάδες σε στρατηγική, οικονομικά και λειτουργίες για να μετατρέπουμε την πληροφορία σε δράση.</value>
+    <value>Είμαστε μια ομάδα που συνδυάζει εξειδικευμένη τεχνική γνώση, πολυετή εμπειρία άνω των 30 ετών και δημιουργική σκέψη.</value>
   </data>
   <data name="Home.FlowItem1.Title" xml:space="preserve">
-    <value>ΠΟΙΟΙ ΕΙΜΑΣΤΕ</value>
+    <value>Ποιοι είμαστε</value>
   </data>
   <data name="Home.FlowItem2.Line1" xml:space="preserve">
-    <value>Σχεδιάζουμε λύσεις που ταιριάζουν στις ανάγκες και στους στόχους σας.</value>
+    <value>Στόχος μας είναι να χτίζουμε μακροχρόνιες και επιτυχημένες συνεργασίες που σας προσφέρουν αξία.</value>
   </data>
   <data name="Home.FlowItem2.Title" xml:space="preserve">
-    <value>ΤΙ ΚΑΝΟΥΜΕ</value>
+    <value>Ο στόχος μας</value>
   </data>
   <data name="Home.FlowItem3.Line1" xml:space="preserve">
-    <value>Σχεδιάζουμε λύσεις που ταιριάζουν στις ανάγκες και στους στόχους σας.</value>
+    <value>Εξειδικευόμαστε σε θέματα φορολογίας, συμβουλευτικής, οικονομικών υπηρεσιών και μισθοδοσίας. Υποστηρίζουμε αποτελεσματικά φορολογικούς ελέγχους και παρέχουμε εξειδικευμένες λύσεις στα ανωτέρω αντικείμενα.</value>
   </data>
   <data name="Home.FlowItem3.Title" xml:space="preserve">
-    <value>ΤΙ ΚΑΝΟΥΜΕ</value>
+    <value>Οι υπηρεσίες μας</value>
   </data>
   <data name="Home.Hero.ImageAlt" xml:space="preserve">
     <value>Χειραψία</value>
   </data>
   <data name="Home.Hero.Line1" xml:space="preserve">
-    <value>TCS CONSULTING SERVICES</value>
+    <value>tcs Consulting Services</value>
   </data>
   <data name="Home.Hero.Line2" xml:space="preserve">
     <value>ΛΟΓΙΣΤΙΚΟ &amp; ΦΟΡΟΤΕΧΝΙΚΟ ΓΡΑΦΕΙΟ</value>
   </data>
   <data name="Home.Hero.Line3Prefix" xml:space="preserve">
-    <value>20 Χρόνια Εμπειρίας</value>
+    <value>Άνω των 30 ετών εμπειρίας</value>
   </data>
   <data name="Home.Hero.Line3Suffix" xml:space="preserve">
     <value>μαζί σας</value>
@@ -305,7 +317,7 @@
     <value>Ψηφιακή Οργάνωση</value>
   </data>
   <data name="Home.Row5.Body" xml:space="preserve">
-    <value>Αξιολόγηση Απόδοσης της εταιρίας σας.</value>
+    <value>Αξιολόγηση Απόδοσης της εταιρείας σας.</value>
   </data>
   <data name="Home.Row5.ImageAlt" xml:space="preserve">
     <value>Αξιολόγηση Απόδοσης</value>
@@ -314,49 +326,49 @@
     <value>Αξιολόγηση Απόδοσης</value>
   </data>
   <data name="Info.1.Paragraph1" xml:space="preserve">
-    <value>Ξεκινάμε με αναλυτική καταγραφή των στόχων σας, του κοινού σας και των βασικών λειτουργιών που πρέπει να υποστηριχθούν.</value>
+    <value>Υποστηρίζουμε παρακολούθηση και τήρηση λογιστικών βιβλίων, υπηρεσίες myDATA, παρακολούθηση και προγραμματισμό μηνιαίων φορολογικών υποχρεώσεων, σύνταξη λογιστικών καταστάσεων.</value>
   </data>
   <data name="Info.1.Paragraph2" xml:space="preserve">
-    <value>Με βάση αυτά, σχεδιάζουμε μια καθαρή δομή περιεχομένου και προτείνουμε λύσεις που μπορούν να εξελιχθούν μαζί με την επιχείρησή σας.</value>
+    <value>Διαθέτουμε εξειδίκευση στον κατασκευαστικό κλάδο, τον ξενοδοχειακό κλάδο, εμπορικές επιχειρήσεις και ναυτιλιακές επιχειρήσεις.</value>
   </data>
   <data name="Info.1.Title" xml:space="preserve">
-    <value>Στρατηγική Ευθυγράμμιση</value>
+    <value>Λογιστικές υπηρεσίες</value>
   </data>
   <data name="Info.2.Paragraph1" xml:space="preserve">
-    <value>Η εμπειρία χρήστη σχεδιάζεται με έμφαση στη σαφή πλοήγηση, την ταχύτητα φόρτωσης και τη σωστή ροή πληροφορίας.</value>
+    <value>Σύνταξη και υποβολή φορολογικών δηλώσεων, θέματα φορολογίας εισοδήματος φυσικών και νομικών προσώπων, φορολογία ακίνητης περιουσίας, φορολογία κατοίκων εξωτερικού, υποστήριξη σε φορολογικούς ελέγχους και διευθέτηση φορολογικών εκκρεμοτήτων, θέματα transfer pricing.</value>
   </data>
   <data name="Info.2.Paragraph2" xml:space="preserve">
-    <value>Δοκιμάζουμε και προσαρμόζουμε κάθε στοιχείο ώστε ο επισκέπτης να βρίσκει αυτό που χρειάζεται χωρίς περιττά βήματα.</value>
+    <value>Διαθέτουμε εξειδίκευση στον κατασκευαστικό κλάδο, τον ξενοδοχειακό κλάδο, εμπορικές επιχειρήσεις και ναυτιλιακές επιχειρήσεις.</value>
   </data>
   <data name="Info.2.Title" xml:space="preserve">
-    <value>Πίνακας αναλυτικών στοιχείων</value>
+    <value>Φορολογικές υπηρεσίες</value>
   </data>
   <data name="Info.3.Paragraph1" xml:space="preserve">
-    <value>Δίνουμε ιδιαίτερη σημασία στην αισθητική, τα τυπογραφικά στοιχεία και την οπτική συνοχή, ώστε το design να ξεχωρίζει.</value>
+    <value>Management consulting, χρηματοοικονομική συμβουλευτική, διαχείριση κινδύνων, σύνταξη επιχειρηματικών σχεδίων (Business Plans), αποτίμηση επιχειρήσεων, συμβουλευτική σε θέματα εξαγορών και συγχωνεύσεων και υποστήριξη σε αναδιάρθρωση επιχειρηματικών δανείων.</value>
   </data>
   <data name="Info.3.Paragraph2" xml:space="preserve">
-    <value>Το τελικό αποτέλεσμα αποτυπώνει την ταυτότητά σας με τρόπο σύγχρονο και επαγγελματικό, χωρίς να χάνεται η απλότητα.</value>
+    <value>Διαθέτουμε εξειδίκευση στον κατασκευαστικό κλάδο, τον ξενοδοχειακό κλάδο, εμπορικές επιχειρήσεις και ναυτιλιακές επιχειρήσεις.</value>
   </data>
   <data name="Info.3.Title" xml:space="preserve">
-    <value>Συμβουλευτική συμφωνία</value>
+    <value>Συμβουλευτικές υπηρεσίες</value>
   </data>
   <data name="Info.4.Paragraph1" xml:space="preserve">
-    <value>Μετά την παράδοση, παραμένουμε δίπλα σας με τεχνική υποστήριξη, ενημερώσεις και μικρές βελτιώσεις όταν χρειάζεται.</value>
+    <value>Υποστήριξη σε φορολογικούς ελέγχους και διευθέτηση φορολογικών εκκρεμοτήτων, σύνταξη και υποβολή ενδικοφανών προσφυγών.</value>
   </data>
   <data name="Info.4.Paragraph2" xml:space="preserve">
-    <value>Παρακολουθούμε την απόδοση και προτείνουμε αλλαγές που ενισχύουν την εμπιστοσύνη και τα αποτελέσματα.</value>
+    <value>Διαθέτουμε εξειδίκευση στον κατασκευαστικό κλάδο, τον ξενοδοχειακό κλάδο, εμπορικές επιχειρήσεις και ναυτιλιακές επιχειρήσεις.</value>
   </data>
   <data name="Info.4.Title" xml:space="preserve">
-    <value>Φορητός υπολογιστής εργασίας</value>
+    <value>Φορολογικοί έλεγχοι</value>
   </data>
   <data name="Info.5.Paragraph1" xml:space="preserve">
-    <value>Η συνεργασία μας βασίζεται σε σαφή επικοινωνία, συγκεκριμένα χρονοδιαγράμματα και παραδοτέα που συμφωνούμε από την αρχή.</value>
+    <value>Ολοκληρωμένη λογιστική και ασφαλιστική παρακολούθηση μισθοδοσίας για μισθωτούς, ημερομίσθιους και οικοδομοτεχνικά έργα.</value>
   </data>
   <data name="Info.5.Paragraph2" xml:space="preserve">
-    <value>Στόχος μας είναι μια αξιόπιστη παρουσία online που υποστηρίζει την καθημερινή λειτουργία και την ανάπτυξη της επιχείρησής σας.</value>
+    <value>Διαθέτουμε εξειδίκευση στον κατασκευαστικό κλάδο, τον ξενοδοχειακό κλάδο, εμπορικές επιχειρήσεις και ναυτιλιακές επιχειρήσεις.</value>
   </data>
   <data name="Info.5.Title" xml:space="preserve">
-    <value>Αξιολόγηση Απόδοσης</value>
+    <value>Μισθοδοσία</value>
   </data>
   <data name="Nav.About" xml:space="preserve">
     <value>ΣΧΕΤΙΚΑ</value>
@@ -368,19 +380,19 @@
     <value>ΑΡΧΙΚΗ</value>
   </data>
   <data name="Nav.Service1" xml:space="preserve">
-    <value>Στρατηγική Ευθυγράμμιση</value>
+    <value>Λογιστικές υπηρεσίες</value>
   </data>
   <data name="Nav.Service2" xml:space="preserve">
-    <value>Πίνακας αναλυτικών στοιχείων</value>
+    <value>Φορολογικές υπηρεσίες</value>
   </data>
   <data name="Nav.Service3" xml:space="preserve">
-    <value>Συμβουλευτική συμφωνία</value>
+    <value>Συμβουλευτικές υπηρεσίες</value>
   </data>
   <data name="Nav.Service4" xml:space="preserve">
-    <value>Φορητός υπολογιστής εργασίας</value>
+    <value>Φορολογικοί έλεγχοι</value>
   </data>
   <data name="Nav.Service5" xml:space="preserve">
-    <value>Αξιολόγηση Απόδοσης</value>
+    <value>Μισθοδοσία</value>
   </data>
   <data name="Nav.Services" xml:space="preserve">
     <value>ΥΠΗΡΕΣΙΕΣ</value>
@@ -416,3 +428,5 @@
     <value>Χτίζουμε μια ξεκάθαρη ψηφιακή παρουσία που στηρίζει τους στόχους σας και ενισχύει την αξιοπιστία του brand σας.</value>
   </data>
 </root>
+
+
