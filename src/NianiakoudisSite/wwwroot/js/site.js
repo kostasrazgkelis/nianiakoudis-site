@@ -520,3 +520,27 @@ window.revealOnScroll = {
         });
     }
 };
+
+window.visibilityObserver = {
+    observeElementOnce: function (element, dotNetRef, methodName) {
+        if (!element || !dotNetRef || !methodName) {
+            return;
+        }
+
+        if (!("IntersectionObserver" in window)) {
+            dotNetRef.invokeMethodAsync(methodName);
+            return;
+        }
+
+        var observer = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    obs.unobserve(entry.target);
+                    dotNetRef.invokeMethodAsync(methodName);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        observer.observe(element);
+    }
+};

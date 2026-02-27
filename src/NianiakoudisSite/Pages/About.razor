@@ -1,4 +1,4 @@
-@page "/about"
+﻿@page "/about"
 
 <MudBox Class="home-stack info-stack">
 
@@ -13,10 +13,23 @@
         </MudPaper>
     </MudContainer>
 
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph1"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph2"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph3"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph4"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph5"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph6"]</MudText>
+    <MudText Typo="Typo.body1" Class="about-paragraph">
+        <TypewriterOnVisible Text="@L["About.Paragraph1"].Value" SpeedMs="25" StartDelayMs="0" />
+    </MudText>
+    <MudText Typo="Typo.body1" Class="about-paragraph">
+        <TypewriterOnVisible Text="@L["About.Paragraph2"].Value" SpeedMs="25" StartDelayMs="200" />
+    </MudText>
+    <MudText Typo="Typo.body1" Class="about-paragraph">
+        <TypewriterOnVisible Text="@L["About.Paragraph3"].Value" SpeedMs="25" StartDelayMs="400" />
+    </MudText>
+    <MudText Typo="Typo.body1" Class="about-paragraph">
+        <TypewriterOnVisible Text="@L["About.Paragraph4"].Value" SpeedMs="25" StartDelayMs="600" />
+    </MudText>
+    <MudText Typo="Typo.body1" Class="about-paragraph">
+        <TypewriterOnVisible Text="@L["About.Paragraph5"].Value" SpeedMs="25" StartDelayMs="800" />
+    </MudText>
+    <MudText Typo="Typo.body1" Class="about-paragraph">
+        <TypewriterOnVisible Text="@L["About.Paragraph6"].Value" SpeedMs="25" StartDelayMs="1000" />
+    </MudText>
 </MudBox>
+
