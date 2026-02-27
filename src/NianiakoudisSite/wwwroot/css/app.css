@@ -153,6 +153,15 @@ body::-webkit-scrollbar {
     margin-right: auto;
 }
 
+.about-paragraph {
+    line-height: 1.75;
+    padding-inline: clamp(0.5rem, 2vw, 1rem);
+}
+
+.about-paragraph + .about-paragraph {
+    margin-top: 1rem;
+}
+
 .info-feature-row {
     display: flex;
     justify-content: center;
