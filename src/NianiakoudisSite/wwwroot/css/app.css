@@ -189,6 +189,14 @@ body::-webkit-scrollbar {
     gap: 0.6rem;
 }
 
+.service-paragraph {
+    width: 100%;
+    max-width: 960px;
+    line-height: 1.8;
+    text-align: center !important;
+    overflow-wrap: anywhere;
+}
+
 .info-paragraph-container {
     width: 100%;
     display: flex;
