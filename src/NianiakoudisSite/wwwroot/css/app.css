@@ -7,7 +7,7 @@
     
     --color-text: #1d1d1f;
     --color-muted: #596275;
-    --top-bar-height: 6rem;
+    --top-bar-height: 6.5rem;
     --content-pad: 1rem;
     --content-pad-x: clamp(1rem, 3vw, 3rem);
     --content-bottom-pad: clamp(3rem, 6vw, 6rem);
@@ -962,13 +962,13 @@ body::-webkit-scrollbar {
 }
 
 .brand-logo {
-    width: clamp(2rem, 1.3vw + 1.6rem, 2.6rem);
-    height: clamp(2rem, 1.3vw + 1.6rem, 2.6rem);
+    width: clamp(2.6rem, 1.7vw + 2rem, 3.4rem);
+    height: clamp(2.6rem, 1.7vw + 2rem, 3.4rem);
     object-fit: cover;
     border-radius: 4px;
     display: block;
     flex-shrink: 0;
-    margin-right: 0.55rem;
+    margin-right: 0.65rem;
 }
 
 .nav-links .mud-nav-link {
@@ -1691,6 +1691,14 @@ body::-webkit-scrollbar {
         right: calc(0.75rem + env(safe-area-inset-right));
         top: 50%;
         transform: translateY(-50%);
+        max-width: calc(100% - 4.5rem);
+        overflow: hidden;
+    }
+
+    .app-bar .brand-logo {
+        width: clamp(2.3rem, 2vw + 1.7rem, 2.9rem);
+        height: clamp(2.3rem, 2vw + 1.7rem, 2.9rem);
+        margin-right: 0.45rem;
     }
 
     .nav-links-desktop {

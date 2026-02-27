@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Brand.Full" xml:space="preserve">
-    <value>TCS CONSULTING SERVICES</value>
+    <value>tcs Consulting Services</value>
   </data>
   <data name="Brand.Short" xml:space="preserve">
-    <value>TCS</value>
+    <value>tcs</value>
   </data>
   <data name="App.NotFound" xml:space="preserve">
     <value>Η σελίδα δεν βρέθηκε.</value>
@@ -152,7 +152,7 @@
     <value>ΕΠΙΚΟΙΝΩΝΙΑ</value>
   </data>
   <data name="Footer.Copyright" xml:space="preserve">
-    <value>© {0} TCS CONSULTING SERVICES</value>
+    <value>© {0} tcs Consulting Services</value>
   </data>
   <data name="Footer.EmailLabel" xml:space="preserve">
     <value>Email:</value>
@@ -191,7 +191,7 @@
     <value>Επιπλέον Πληροφορίες</value>
   </data>
   <data name="Home.Flow.HeaderTitle" xml:space="preserve">
-    <value>Καλώς ήρθατε στην TCS CONSULTING SERVICES</value>
+    <value>Καλώς ήρθατε στην tcs Consulting Services</value>
   </data>
   <data name="Home.Flow.OverviewParagraph1" xml:space="preserve">
     <value>Παρέχουμε ολοκληρωμένη υποστήριξη σε στρατηγική, οικονομικά και λειτουργίες, μετατρέποντας την πληροφορία σε δράση.</value>
@@ -254,13 +254,13 @@
     <value>Χειραψία</value>
   </data>
   <data name="Home.Hero.Line1" xml:space="preserve">
-    <value>TCS CONSULTING SERVICES</value>
+    <value>tcs Consulting Services</value>
   </data>
   <data name="Home.Hero.Line2" xml:space="preserve">
     <value>ΛΟΓΙΣΤΙΚΟ &amp; ΦΟΡΟΤΕΧΝΙΚΟ ΓΡΑΦΕΙΟ</value>
   </data>
   <data name="Home.Hero.Line3Prefix" xml:space="preserve">
-    <value>20 Χρόνια Εμπειρίας</value>
+    <value>Άνω των 30 ετών εμπειρίας</value>
   </data>
   <data name="Home.Hero.Line3Suffix" xml:space="preserve">
     <value>μαζί σας</value>
@@ -416,3 +416,4 @@
     <value>Χτίζουμε μια ξεκάθαρη ψηφιακή παρουσία που στηρίζει τους στόχους σας και ενισχύει την αξιοπιστία του brand σας.</value>
   </data>
 </root>
+
