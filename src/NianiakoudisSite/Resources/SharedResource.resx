@@ -317,7 +317,7 @@
     <value>Ψηφιακή Οργάνωση</value>
   </data>
   <data name="Home.Row5.Body" xml:space="preserve">
-    <value>Αξιολόγηση Απόδοσης της εταιρίας σας.</value>
+    <value>Αξιολόγηση Απόδοσης της εταιρείας σας.</value>
   </data>
   <data name="Home.Row5.ImageAlt" xml:space="preserve">
     <value>Αξιολόγηση Απόδοσης</value>
@@ -428,4 +428,5 @@
     <value>Χτίζουμε μια ξεκάθαρη ψηφιακή παρουσία που στηρίζει τους στόχους σας και ενισχύει την αξιοπιστία του brand σας.</value>
   </data>
 </root>
+
 
