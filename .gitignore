@@ -4,3 +4,4 @@
 **/wwwroot/_framework/
 **/wwwroot/_content/
 release/
+*.sln
