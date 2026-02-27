@@ -1,10 +1,15 @@
 @implements IDisposable
 @inject IJSRuntime JsRuntime
+@inject NavigationManager NavigationManager
 
 <span class="@Class" @ref="_anchor">
-    @if (_started)
+    @if (_skipAnimation)
     {
-        <Typewriter @key="_instanceKey" Speed="@SpeedCharsPerSecond" Autostart="true">
+        @Text
+    }
+    else if (_started)
+    {
+        <Typewriter @key="_instanceKey" Speed="@SpeedCharsPerSecond" Autostart="true" OnComplete="@HandleComplete">
             <span @key="_instanceKey">@Text</span>
         </Typewriter>
     }
@@ -15,7 +20,7 @@
     public string Text { get; set; } = string.Empty;
 
     [Parameter]
-    public int SpeedMs { get; set; } = 25;
+    public int SpeedMs { get; set; } = 15;
 
     [Parameter]
     public int StartDelayMs { get; set; }
@@ -23,16 +28,40 @@
     [Parameter]
     public string? Class { get; set; }
 
+    [Parameter]
+    public EventCallback OnCompleted { get; set; }
+
+    [Parameter]
+    public string? AnimationKey { get; set; }
+
+    private static readonly HashSet<string> PlayedAnimationKeys = new(StringComparer.Ordinal);
+    private static readonly object PlayedAnimationKeysLock = new();
+
     private ElementReference _anchor;
     private DotNetObjectReference<TypewriterOnVisible>? _dotNetRef;
     private bool _started;
+    private bool _skipAnimation;
+    private bool _completionRaised;
+    private string _resolvedAnimationKey = string.Empty;
     private readonly string _instanceKey = Guid.NewGuid().ToString("N");
     private int SpeedCharsPerSecond => Math.Max(1, 1000 / Math.Max(1, SpeedMs));
+
+    protected override void OnParametersSet()
+    {
+        _resolvedAnimationKey = ResolveAnimationKey();
+        _skipAnimation = HasAnimationPlayed(_resolvedAnimationKey);
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (!firstRender)
         {
+            return;
+        }
+
+        if (_skipAnimation)
+        {
+            await HandleComplete();
             return;
         }
 
@@ -47,11 +76,12 @@
     [JSInvokable]
     public Task StartTyping()
     {
-        if (_started)
+        if (_skipAnimation || _started)
         {
             return Task.CompletedTask;
         }
 
+        MarkAnimationAsPlayed(_resolvedAnimationKey);
         _started = true;
         return StartDelayMs > 0
             ? InvokeAsync(async () =>
@@ -60,6 +90,48 @@
                 await InvokeAsync(StateHasChanged);
             })
             : InvokeAsync(StateHasChanged);
+    }
+
+    private string ResolveAnimationKey()
+    {
+        if (!string.IsNullOrWhiteSpace(AnimationKey))
+        {
+            return AnimationKey.Trim();
+        }
+
+        var route = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        var normalizedRoute = string.IsNullOrWhiteSpace(route) ? "/" : route;
+        return $"{normalizedRoute}|{Text}";
+    }
+
+    private static bool HasAnimationPlayed(string key)
+    {
+        lock (PlayedAnimationKeysLock)
+        {
+            return PlayedAnimationKeys.Contains(key);
+        }
+    }
+
+    private static void MarkAnimationAsPlayed(string key)
+    {
+        lock (PlayedAnimationKeysLock)
+        {
+            PlayedAnimationKeys.Add(key);
+        }
+    }
+
+    private async Task HandleComplete()
+    {
+        if (_completionRaised)
+        {
+            return;
+        }
+
+        _completionRaised = true;
+        if (OnCompleted.HasDelegate)
+        {
+            await OnCompleted.InvokeAsync();
+        }
     }
 
     public void Dispose()

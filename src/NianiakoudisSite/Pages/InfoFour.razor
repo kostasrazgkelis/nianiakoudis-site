@@ -1,4 +1,4 @@
-﻿@page "/forologikoi-elegxoi"
+@page "/forologikoi-elegxoi"
 
 <MudBox Class="home-stack info-stack">
 
@@ -12,12 +12,27 @@
 
     <MudContainer Class="info-paragraph-container">
         <MudText Typo="Typo.body1" Class="service-paragraph">
-            <TypewriterOnVisible Text="@L["Info.4.Paragraph1"].Value" SpeedMs="25" StartDelayMs="0" />
+            <TypewriterOnVisible Text="@L["Info.4.Paragraph1"].Value"
+                                 SpeedMs="15"
+                                 StartDelayMs="0"
+                                 OnCompleted="HandleFirstParagraphCompleted" />
         </MudText>
-        <MudText Typo="Typo.body1" Class="service-paragraph">
-            <TypewriterOnVisible Text="@L["Info.4.Paragraph2"].Value" SpeedMs="25" StartDelayMs="220" />
-        </MudText>
+        @if (ShowSecondParagraph)
+        {
+            <MudText Typo="Typo.body1" Class="service-paragraph">
+                <TypewriterOnVisible Text="@L["Info.4.Paragraph2"].Value" SpeedMs="15" StartDelayMs="0" />
+            </MudText>
+        }
     </MudContainer>
 
 </MudBox>
 
+@code {
+    private bool ShowSecondParagraph { get; set; }
+
+    private Task HandleFirstParagraphCompleted()
+    {
+        ShowSecondParagraph = true;
+        return InvokeAsync(StateHasChanged);
+    }
+}
