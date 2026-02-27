@@ -977,8 +977,7 @@ body::-webkit-scrollbar {
 }
 
 .home-no-anim .home-flow-section,
-.home-no-anim .home-container:not(.home-flow-extra-card),
-.home-no-anim .box-1 {
+.home-no-anim .home-container:not(.home-flow-extra-card) {
     opacity: 1 !important;
     transform: none !important;
     top: 0 !important;
