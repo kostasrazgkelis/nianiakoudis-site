@@ -977,14 +977,18 @@ body::-webkit-scrollbar {
 }
 
 .home-no-anim .home-flow-section,
-.home-no-anim .home-container,
-.home-no-anim .box-1,
-.home-no-anim .home-flow-extra-card {
+.home-no-anim .home-container:not(.home-flow-extra-card) {
     opacity: 1 !important;
     transform: none !important;
     top: 0 !important;
     animation: none !important;
     transition: none !important;
+}
+
+.home-no-anim .home-flow-extra-card {
+    opacity: 1 !important;
+    top: 0 !important;
+    animation: none !important;
 }
 
 .home-no-anim .home-hero-paragraph,
@@ -1088,12 +1092,14 @@ body::-webkit-scrollbar {
     font-size: inherit;
 }
 
-.mud-carousel-item-active .home-hero-paragraph {
+.mud-carousel-item-active .home-hero-paragraph,
+.hero-transition.is-visible .home-hero-paragraph {
     animation: home-hero-text-fade 2s ease forwards;
     animation-delay: var(--hero-line-delay, 0.8s);
 }
 
-.mud-carousel-item-active .home-hero-paragraph-delayed {
+.mud-carousel-item-active .home-hero-paragraph-delayed,
+.hero-transition.is-visible .home-hero-paragraph-delayed {
     animation: home-hero-text-fade 2s ease forwards;
     animation-delay: 3.5s;
 }
