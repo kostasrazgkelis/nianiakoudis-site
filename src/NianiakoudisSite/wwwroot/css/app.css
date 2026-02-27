@@ -158,6 +158,38 @@ body::-webkit-scrollbar {
     padding-inline: clamp(0.5rem, 2vw, 1rem);
 }
 
+.about-paragraph-block {
+    width: min(900px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.about-paragraph-block + .about-paragraph-block {
+    margin-top: 0.9rem;
+}
+
+.about-paragraph-badge {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.55rem;
+    color: var(--color-primary);
+    background: rgba(31, 122, 140, 0.12);
+    border: 1px solid rgba(31, 122, 140, 0.26);
+    opacity: 0;
+    transform: translateY(4px) scale(0.92);
+    animation: about-icon-fade-in 900ms ease forwards;
+}
+
+.about-paragraph-block .about-paragraph {
+    margin: 0;
+}
+
 .about-paragraph + .about-paragraph {
     margin-top: 1rem;
 }
@@ -238,6 +270,39 @@ body::-webkit-scrollbar {
     vertical-align: -.125em;
 }
 
+.typewriter-word-stream {
+    display: inline;
+}
+
+.typewriter-word-token {
+    display: inline;
+}
+
+.typewriter-word-token--fade {
+    opacity: 0;
+    animation: typewriter-word-fade-in 180ms ease forwards;
+}
+
+@keyframes typewriter-word-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes about-icon-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px) scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 @keyframes about-flag-fade-in {
     from {
         opacity: 0;
@@ -277,11 +342,18 @@ body::-webkit-scrollbar {
 }
 
 .service-paragraph {
-    width: 100%;
-    max-width: 960px;
+    width: min(100%, 760px);
     line-height: 1.8;
-    text-align: center !important;
+    text-align: left !important;
     overflow-wrap: anywhere;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-paragraph .typewriter-word-stream,
+.service-paragraph .typewriter-on-visible-live,
+.service-paragraph .type-writer-container {
+    text-align: left !important;
 }
 
 .info-paragraph-container {

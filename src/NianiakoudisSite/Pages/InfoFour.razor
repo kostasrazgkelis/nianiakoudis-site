@@ -13,14 +13,12 @@
     <MudContainer Class="info-paragraph-container">
         <MudText Typo="Typo.body1" Class="service-paragraph">
             <TypewriterOnVisible Text="@L["Info.4.Paragraph1"].Value"
-                                 SpeedMs="15"
-                                 StartDelayMs="0"
                                  OnCompleted="HandleFirstParagraphCompleted" />
         </MudText>
         @if (ShowSecondParagraph)
         {
             <MudText Typo="Typo.body1" Class="service-paragraph">
-                <TypewriterOnVisible Text="@L["Info.4.Paragraph2"].Value" SpeedMs="15" StartDelayMs="0" />
+                <TypewriterOnVisible Text="@L["Info.4.Paragraph2"].Value" />
             </MudText>
         }
     </MudContainer>
@@ -36,3 +34,4 @@
         return InvokeAsync(StateHasChanged);
     }
 }
+

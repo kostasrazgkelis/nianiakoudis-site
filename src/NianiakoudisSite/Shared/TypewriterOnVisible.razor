@@ -7,6 +7,22 @@
     {
         @Text
     }
+    else if (_animateByWords && _started)
+    {
+        <span class="typewriter-word-stream">
+            @foreach (var token in _visibleWordTokens)
+            {
+                if (token.IsWord)
+                {
+                    <span class="typewriter-word-token typewriter-word-token--fade" @key="token.Id">@token.Text</span>
+                }
+                else
+                {
+                    @token.Text
+                }
+            }
+        </span>
+    }
     else if (_started)
     {
         <Typewriter @key="_instanceKey" Speed="@SpeedCharsPerSecond" Autostart="true" OnComplete="@HandleComplete">
@@ -20,7 +36,7 @@
     public string Text { get; set; } = string.Empty;
 
     [Parameter]
-    public int SpeedMs { get; set; } = 15;
+    public int SpeedMs { get; set; } = 10;
 
     [Parameter]
     public int StartDelayMs { get; set; }
@@ -34,22 +50,30 @@
     [Parameter]
     public string? AnimationKey { get; set; }
 
+    [Parameter]
+    public bool AnimateByWords { get; set; } = true;
+
     private static readonly HashSet<string> PlayedAnimationKeys = new(StringComparer.Ordinal);
     private static readonly object PlayedAnimationKeysLock = new();
 
     private ElementReference _anchor;
     private DotNetObjectReference<TypewriterOnVisible>? _dotNetRef;
     private bool _started;
+    private bool _animateByWords;
     private bool _skipAnimation;
     private bool _completionRaised;
+    private int _tokenSequence;
+    private readonly List<RenderedToken> _visibleWordTokens = [];
     private string _resolvedAnimationKey = string.Empty;
     private readonly string _instanceKey = Guid.NewGuid().ToString("N");
     private int SpeedCharsPerSecond => Math.Max(1, 1000 / Math.Max(1, SpeedMs));
+    private int WordStepDelayMs => Math.Max(30, SpeedMs * 6);
 
     protected override void OnParametersSet()
     {
         _resolvedAnimationKey = ResolveAnimationKey();
         _skipAnimation = HasAnimationPlayed(_resolvedAnimationKey);
+        _animateByWords = AnimateByWords;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -83,6 +107,20 @@
 
         MarkAnimationAsPlayed(_resolvedAnimationKey);
         _started = true;
+
+        if (_animateByWords)
+        {
+            return InvokeAsync(async () =>
+            {
+                if (StartDelayMs > 0)
+                {
+                    await Task.Delay(StartDelayMs);
+                }
+
+                await RunWordAnimationAsync();
+            });
+        }
+
         return StartDelayMs > 0
             ? InvokeAsync(async () =>
             {
@@ -120,6 +158,94 @@
         }
     }
 
+    private async Task RunWordAnimationAsync()
+    {
+        var tokens = SplitIntoWordTokens(Text);
+        if (tokens.Length == 0)
+        {
+            await HandleComplete();
+            return;
+        }
+
+        _tokenSequence = 0;
+        _visibleWordTokens.Clear();
+
+        var totalWords = tokens.Count(IsWordToken);
+        var revealedWords = 0;
+
+        for (var i = 0; i < tokens.Length; i++)
+        {
+            var token = tokens[i];
+            var isWord = IsWordToken(token);
+            _visibleWordTokens.Add(new RenderedToken(++_tokenSequence, token, isWord));
+            await InvokeAsync(StateHasChanged);
+
+            if (!isWord)
+            {
+                continue;
+            }
+
+            revealedWords++;
+            if (revealedWords < totalWords)
+            {
+                await Task.Delay(WordStepDelayMs);
+            }
+        }
+
+        await HandleComplete();
+    }
+
+    private static string[] SplitIntoWordTokens(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return Array.Empty<string>();
+        }
+
+        var tokens = new List<string>();
+        var tokenStart = -1;
+
+        for (var i = 0; i < text.Length; i++)
+        {
+            var currentChar = text[i];
+            if (!char.IsWhiteSpace(currentChar))
+            {
+                tokenStart = tokenStart == -1 ? i : tokenStart;
+                continue;
+            }
+
+            if (tokenStart != -1)
+            {
+                tokens.Add(text[tokenStart..(i + 1)]);
+                tokenStart = -1;
+            }
+            else
+            {
+                tokens.Add(currentChar.ToString());
+            }
+        }
+
+        if (tokenStart != -1)
+        {
+            tokens.Add(text[tokenStart..]);
+        }
+
+        return tokens.ToArray();
+    }
+
+    private static bool IsWordToken(string token)
+    {
+        foreach (var character in token)
+        {
+            if (!char.IsWhiteSpace(character))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private async Task HandleComplete()
     {
         if (_completionRaised)
@@ -138,4 +264,6 @@
     {
         _dotNetRef?.Dispose();
     }
+
+    private sealed record RenderedToken(int Id, string Text, bool IsWord);
 }

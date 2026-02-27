@@ -13,55 +13,59 @@
         </MudPaper>
     </MudContainer>
 
-    <MudText Typo="Typo.body1" Class="about-paragraph">
-        <TypewriterOnVisible Text="@L["About.Paragraph1"].Value"
-                             SpeedMs="15"
-                             StartDelayMs="0"
-                             OnCompleted="@(() => HandleParagraphCompleted(1))" />
-    </MudText>
+    <MudBox Class="about-paragraph-block">
+        <MudIcon Icon="@Icons.Material.Filled.Group" Class="about-paragraph-badge" aria-hidden="true" />
+        <MudText Typo="Typo.body1" Class="about-paragraph">
+            <TypewriterOnVisible Text="@L["About.Paragraph1"].Value"
+                                 OnCompleted="@(() => HandleParagraphCompleted(1))" />
+        </MudText>
+    </MudBox>
     @if (VisibleParagraphs >= 2)
     {
-        <MudText Typo="Typo.body1" Class="about-paragraph">
-            <TypewriterOnVisible Text="@L["About.Paragraph2"].Value"
-                                 SpeedMs="15"
-                                 StartDelayMs="0"
-                                 OnCompleted="@(() => HandleParagraphCompleted(2))" />
-        </MudText>
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.Handshake" Class="about-paragraph-badge" aria-hidden="true" />
+            <MudText Typo="Typo.body1" Class="about-paragraph">
+                <TypewriterOnVisible Text="@L["About.Paragraph2"].Value"
+                                     OnCompleted="@(() => HandleParagraphCompleted(2))" />
+            </MudText>
+        </MudBox>
     }
     @if (VisibleParagraphs >= 3)
     {
-        <MudText Typo="Typo.body1" Class="about-paragraph">
-            <TypewriterOnVisible Text="@L["About.Paragraph3"].Value"
-                                 SpeedMs="15"
-                                 StartDelayMs="0"
-                                 OnCompleted="@(() => HandleParagraphCompleted(3))" />
-        </MudText>
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.TrackChanges" Class="about-paragraph-badge" aria-hidden="true" />
+            <MudText Typo="Typo.body1" Class="about-paragraph">
+                <TypewriterOnVisible Text="@L["About.Paragraph3"].Value"
+                                     OnCompleted="@(() => HandleParagraphCompleted(3))" />
+            </MudText>
+        </MudBox>
     }
     @if (VisibleParagraphs >= 4)
     {
-        <MudText Typo="Typo.body1" Class="about-paragraph">
-            <TypewriterOnVisible Text="@L["About.Paragraph4"].Value"
-                                 SpeedMs="15"
-                                 StartDelayMs="0"
-                                 OnCompleted="@(() => HandleParagraphCompleted(4))" />
-        </MudText>
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.Calculate" Class="about-paragraph-badge" aria-hidden="true" />
+            <MudText Typo="Typo.body1" Class="about-paragraph">
+                <TypewriterOnVisible Text="@L["About.Paragraph4"].Value"
+                                     OnCompleted="@(() => HandleParagraphCompleted(4))" />
+            </MudText>
+        </MudBox>
     }
     @if (VisibleParagraphs >= 5)
     {
-        <MudText Typo="Typo.body1" Class="about-paragraph">
-            <TypewriterOnVisible Text="@L["About.Paragraph5"].Value"
-                                 SpeedMs="15"
-                                 StartDelayMs="0"
-                                 OnCompleted="@(() => HandleParagraphCompleted(5))" />
-        </MudText>
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.Apartment" Class="about-paragraph-badge" aria-hidden="true" />
+            <MudText Typo="Typo.body1" Class="about-paragraph">
+                <TypewriterOnVisible Text="@L["About.Paragraph5"].Value"
+                                     OnCompleted="@(() => HandleParagraphCompleted(5))" />
+            </MudText>
+        </MudBox>
     }
     @if (VisibleParagraphs >= 6)
     {
-        <MudBox Class="about-last-block">
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.Public" Class="about-paragraph-badge" aria-hidden="true" />
             <MudText Typo="Typo.body1" Class="about-paragraph">
                 <TypewriterOnVisible Text="@L["About.Paragraph6"].Value"
-                                     SpeedMs="15"
-                                     StartDelayMs="0"
                                      OnCompleted="@(() => HandleParagraphCompleted(6))" />
             </MudText>
             @if (ShowFlags)
@@ -106,4 +110,5 @@
         return InvokeAsync(StateHasChanged);
     }
 }
+
 
