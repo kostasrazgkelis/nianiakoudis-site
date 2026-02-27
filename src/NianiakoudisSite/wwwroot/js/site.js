@@ -1,9 +1,11 @@
 window.homeSectionsObserver = {
-    init: function (selector) {
+    init: function (selector, options) {
         var items = document.querySelectorAll(selector);
         if (!items.length) {
             return;
         }
+        options = options || {};
+        var disableAnimation = !!options.disableAnimation;
         var flowStartDelayMs = 200;
 
         function parseDuration(value) {
@@ -413,6 +415,28 @@ window.homeSectionsObserver = {
             }
         });
 
+        if (disableAnimation) {
+            items.forEach(function (item) {
+                if (!item.classList.contains("home-flow")) {
+                    item.classList.add("is-visible");
+                    return;
+                }
+
+                item.classList.add("is-visible");
+                var containers = item.querySelectorAll(".home-container");
+                containers.forEach(function (container) {
+                    container.classList.add("is-visible");
+                });
+
+                syncFlowTrailLength(item, true);
+                var trails = item.querySelectorAll(".home-flow-trail");
+                trails.forEach(function (trail) {
+                    trail.style.strokeDashoffset = 0;
+                });
+            });
+            return;
+        }
+
         var resizeTimer = null;
         function queueLayoutChange() {
             if (resizeTimer) {
@@ -465,11 +489,13 @@ window.homeSectionsObserver = {
 };
 
 window.revealOnScroll = {
-    init: function (selector) {
+    init: function (selector, options) {
         var items = document.querySelectorAll(selector);
         if (!items.length) {
             return;
         }
+        options = options || {};
+        var disableAnimation = !!options.disableAnimation;
 
         function reveal(item) {
             item.classList.add("is-visible");
@@ -478,6 +504,13 @@ window.revealOnScroll = {
         function isInViewport(item) {
             var rect = item.getBoundingClientRect();
             return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+
+        if (disableAnimation) {
+            items.forEach(function (item) {
+                reveal(item);
+            });
+            return;
         }
 
         if (!("IntersectionObserver" in window)) {
