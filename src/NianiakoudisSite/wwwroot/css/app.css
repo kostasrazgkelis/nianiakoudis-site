@@ -158,8 +158,160 @@ body::-webkit-scrollbar {
     padding-inline: clamp(0.5rem, 2vw, 1rem);
 }
 
+.about-paragraph-block {
+    width: min(900px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.about-paragraph-block + .about-paragraph-block {
+    margin-top: 0.9rem;
+}
+
+.about-paragraph-badge {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.55rem;
+    color: var(--color-primary);
+    background: rgba(31, 122, 140, 0.12);
+    border: 1px solid rgba(31, 122, 140, 0.26);
+    opacity: 0;
+    transform: translateY(4px) scale(0.92);
+    animation: about-icon-fade-in 900ms ease forwards;
+}
+
+.about-paragraph-block .about-paragraph {
+    margin: 0;
+}
+
 .about-paragraph + .about-paragraph {
     margin-top: 1rem;
+}
+
+.about-last-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.about-last-block .about-paragraph {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.about-flags {
+    width: auto;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+    margin-top: 0.35rem;
+    padding-inline: 0.35rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.about-flags::-webkit-scrollbar {
+    display: none;
+}
+
+.about-flag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(31, 122, 140, 0.22);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: about-flag-fade-in 520ms ease forwards;
+}
+
+.about-flag-chip:nth-child(1) {
+    animation-delay: 120ms;
+}
+
+.about-flag-chip:nth-child(2) {
+    animation-delay: 320ms;
+}
+
+.about-flag-chip:nth-child(3) {
+    animation-delay: 520ms;
+}
+
+.about-flag-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    line-height: 1;
+    color: inherit;
+}
+
+.about-flag-icon svg[blazicon] {
+    width: 1em;
+    height: 1em;
+    vertical-align: -.125em;
+}
+
+.typewriter-word-stream {
+    display: inline;
+}
+
+.typewriter-word-token {
+    display: inline;
+}
+
+.typewriter-word-token--fade {
+    opacity: 0;
+    animation: typewriter-word-fade-in 180ms ease forwards;
+}
+
+@keyframes typewriter-word-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes about-icon-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px) scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes about-flag-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .info-feature-row {
@@ -190,11 +342,18 @@ body::-webkit-scrollbar {
 }
 
 .service-paragraph {
-    width: 100%;
-    max-width: 960px;
+    width: min(100%, 760px);
     line-height: 1.8;
-    text-align: center !important;
+    text-align: left !important;
     overflow-wrap: anywhere;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-paragraph .typewriter-word-stream,
+.service-paragraph .typewriter-on-visible-live,
+.service-paragraph .type-writer-container {
+    text-align: left !important;
 }
 
 .info-paragraph-container {
@@ -817,6 +976,28 @@ body::-webkit-scrollbar {
     animation-delay: var(--reveal-delay, 0ms);
 }
 
+.home-no-anim .home-flow-section,
+.home-no-anim .home-container,
+.home-no-anim .box-1,
+.home-no-anim .home-flow-extra-card {
+    opacity: 1 !important;
+    transform: none !important;
+    top: 0 !important;
+    animation: none !important;
+    transition: none !important;
+}
+
+.home-no-anim .home-hero-paragraph,
+.home-no-anim .home-hero-paragraph-delayed {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+.home-no-anim .home-flow-head {
+    opacity: 0 !important;
+}
+
 .home-hero {
     width: 100%;
     height: 100%;
@@ -862,7 +1043,6 @@ body::-webkit-scrollbar {
     font-family: "Roboto Slab", "Montserrat", var(--mud-typography-default-family);
     font-weight: 800;
     font-size: clamp(1.5rem, 2vw + 1rem, 4rem);
-    opacity: 1;
     color: whitesmoke;
     letter-spacing: 0.08em;
     white-space: normal;
@@ -877,8 +1057,8 @@ body::-webkit-scrollbar {
         1px -1px 0 #000000,
         -1px -1px 0 #000000;
     opacity: 0;
-    animation: home-hero-text-fade 2s ease forwards;
-    animation-delay: 0.8s;
+    animation: none;
+    --hero-line-delay: 0.8s;
 }
 
 .home-hero-paragraph {
@@ -891,12 +1071,12 @@ body::-webkit-scrollbar {
 }
 
 .home-hero-paragraph-second {
-    animation-delay: 2s;
+    --hero-line-delay: 2s;
     letter-spacing: 0.08em;
     padding: 0rem;
 }
 .home-hero-paragraph-third {
-    animation-delay: 2.5s;
+    --hero-line-delay: 2.5s;
     font-size: clamp(1.05rem, 1.5vw + 0.85rem, 2rem);
     padding: 0rem;
 }
@@ -904,9 +1084,18 @@ body::-webkit-scrollbar {
 .home-hero-paragraph-delayed {
     opacity: 0;
     display: inline-block;
+    animation: none;
+    font-size: inherit;
+}
+
+.mud-carousel-item-active .home-hero-paragraph {
+    animation: home-hero-text-fade 2s ease forwards;
+    animation-delay: var(--hero-line-delay, 0.8s);
+}
+
+.mud-carousel-item-active .home-hero-paragraph-delayed {
     animation: home-hero-text-fade 2s ease forwards;
     animation-delay: 3.5s;
-    font-size: inherit;
 }
 @keyframes home-hero-text-fade {
     from {
@@ -983,7 +1172,8 @@ body::-webkit-scrollbar {
     width: clamp(2.6rem, 1.7vw + 2rem, 3.4rem);
     height: clamp(2.6rem, 1.7vw + 2rem, 3.4rem);
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 8px;
+    box-shadow: 0 0 0 4px lab(60.74% 44.31 38.44 / 0.216);
     display: block;
     flex-shrink: 0;
     margin-right: 0.65rem;

@@ -1,7 +1,7 @@
 ﻿@page "/"
 @inject IJSRuntime JsRuntime
 
-<MudCollapse Expanded="@ShowCarousel" Class="home-carousel-collapse">
+<MudCollapse Expanded="@ShowCarousel" Class="@($"home-carousel-collapse {(DisableHomeAnimations ? "home-no-anim" : string.Empty)}")">
     <MudStack Spacing="16">
         <MudPaper Class="home-carousel-shell" Square="true" Elevation="1">
             <MudCarousel TData="HomeRow" EnableSwipeGesture="true" Class="home-carousel" ShowArrows="false" ShowBullets="true" AutoCycle="true" AutoCycleTime="@TimeSpan.FromSeconds(6)" BulletsColor="Color.Primary" BulletsClass="home-bullets">
@@ -166,6 +166,8 @@
 </MudCollapse>
 
 @code {
+    private static bool HomeIntroAlreadyPlayed;
+
     private IReadOnlyList<HomeRow> Rows { get; set; } = Array.Empty<HomeRow>();
     private IReadOnlyList<HomeFlowItem> FlowItems { get; set; } = Array.Empty<HomeFlowItem>();
     private IReadOnlyList<FlowExtraCard> FlowExtraCards { get; set; } = Array.Empty<FlowExtraCard>();
@@ -183,6 +185,7 @@
 
     private bool HeroVisible { get; set; }
     private bool ShowCarousel { get; set; }
+    private bool DisableHomeAnimations { get; set; }
 
     private string HeroJpgImageUrl { get; } = AssetUrl.WithVersion("assets/pictures/carousel-picture-1.jpg");
     private string HeroWebpImageUrl { get; } = AssetUrl.WithVersion("assets/pictures/carousel-picture-1.webp");
@@ -190,6 +193,13 @@
 
     protected override void OnInitialized()
     {
+        DisableHomeAnimations = HomeIntroAlreadyPlayed;
+        if (DisableHomeAnimations)
+        {
+            HeroVisible = true;
+            ShowCarousel = true;
+        }
+
         Rows = new List<HomeRow>
         {
             new HomeRow(
@@ -300,9 +310,20 @@
         if (firstRender)
         {
             HeroVisible = true;
-            await JsRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow");
             ShowCarousel = true;
-            await JsRuntime.InvokeVoidAsync("revealOnScroll.init", ".home-row, .home-hero, .home-flow-section, .home-flow-header");
+
+            if (DisableHomeAnimations)
+            {
+                await JsRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow", new { disableAnimation = true });
+                await JsRuntime.InvokeVoidAsync("revealOnScroll.init", ".home-row, .home-hero, .home-flow-section, .home-flow-header", new { disableAnimation = true });
+            }
+            else
+            {
+                await JsRuntime.InvokeVoidAsync("homeSectionsObserver.init", ".home-flow");
+                await JsRuntime.InvokeVoidAsync("revealOnScroll.init", ".home-row, .home-hero, .home-flow-section, .home-flow-header");
+                HomeIntroAlreadyPlayed = true;
+            }
+
             await InvokeAsync(StateHasChanged);
         }
     }

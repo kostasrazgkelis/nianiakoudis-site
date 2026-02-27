@@ -13,10 +13,102 @@
         </MudPaper>
     </MudContainer>
 
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph1"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph2"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph3"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph4"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph5"]</MudText>
-    <MudText Typo="Typo.body1" Class="about-paragraph">@L["About.Paragraph6"]</MudText>
+    <MudBox Class="about-paragraph-block">
+        <MudIcon Icon="@Icons.Material.Filled.Group" Class="about-paragraph-badge" aria-hidden="true" />
+        <MudText Typo="Typo.body1" Class="about-paragraph">
+            <TypewriterOnVisible Text="@L["About.Paragraph1"].Value"
+                                 OnCompleted="@(() => HandleParagraphCompleted(1))" />
+        </MudText>
+    </MudBox>
+    @if (VisibleParagraphs >= 2)
+    {
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.Handshake" Class="about-paragraph-badge" aria-hidden="true" />
+            <MudText Typo="Typo.body1" Class="about-paragraph">
+                <TypewriterOnVisible Text="@L["About.Paragraph2"].Value"
+                                     OnCompleted="@(() => HandleParagraphCompleted(2))" />
+            </MudText>
+        </MudBox>
+    }
+    @if (VisibleParagraphs >= 3)
+    {
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.TrackChanges" Class="about-paragraph-badge" aria-hidden="true" />
+            <MudText Typo="Typo.body1" Class="about-paragraph">
+                <TypewriterOnVisible Text="@L["About.Paragraph3"].Value"
+                                     OnCompleted="@(() => HandleParagraphCompleted(3))" />
+            </MudText>
+        </MudBox>
+    }
+    @if (VisibleParagraphs >= 4)
+    {
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.Calculate" Class="about-paragraph-badge" aria-hidden="true" />
+            <MudText Typo="Typo.body1" Class="about-paragraph">
+                <TypewriterOnVisible Text="@L["About.Paragraph4"].Value"
+                                     OnCompleted="@(() => HandleParagraphCompleted(4))" />
+            </MudText>
+        </MudBox>
+    }
+    @if (VisibleParagraphs >= 5)
+    {
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.Apartment" Class="about-paragraph-badge" aria-hidden="true" />
+            <MudText Typo="Typo.body1" Class="about-paragraph">
+                <TypewriterOnVisible Text="@L["About.Paragraph5"].Value"
+                                     OnCompleted="@(() => HandleParagraphCompleted(5))" />
+            </MudText>
+        </MudBox>
+    }
+    @if (VisibleParagraphs >= 6)
+    {
+        <MudBox Class="about-paragraph-block">
+            <MudIcon Icon="@Icons.Material.Filled.Public" Class="about-paragraph-badge" aria-hidden="true" />
+            <MudText Typo="Typo.body1" Class="about-paragraph">
+                <TypewriterOnVisible Text="@L["About.Paragraph6"].Value"
+                                     OnCompleted="@(() => HandleParagraphCompleted(6))" />
+            </MudText>
+            @if (ShowFlags)
+            {
+                <MudBox Class="about-flags" aria-label="Χώρες δραστηριοποίησης">
+                    <span class="about-flag-chip about-flag-chip--greece">
+                        <span class="about-flag-icon" aria-hidden="true">
+                            <Blazicon Svg="FlagIcon4x3.Gr" />
+                        </span>
+                        Ελλάδα
+                    </span>
+                    <span class="about-flag-chip about-flag-chip--cyprus">
+                        <span class="about-flag-icon" aria-hidden="true">
+                            <Blazicon Svg="FlagIcon4x3.Cy" />
+                        </span>
+                        Κύπρος
+                    </span>
+                    <span class="about-flag-chip about-flag-chip--balkans">Βαλκάνια</span>
+                </MudBox>
+            }
+        </MudBox>
+    }
 </MudBox>
+
+@code {
+    private int VisibleParagraphs { get; set; } = 1;
+    private bool ShowFlags { get; set; }
+
+    private Task HandleParagraphCompleted(int paragraphIndex)
+    {
+        var nextParagraph = paragraphIndex + 1;
+        if (nextParagraph <= 6 && VisibleParagraphs < nextParagraph)
+        {
+            VisibleParagraphs = nextParagraph;
+        }
+
+        if (paragraphIndex == 6)
+        {
+            ShowFlags = true;
+        }
+
+        return InvokeAsync(StateHasChanged);
+    }
+}
+
+

@@ -1,4 +1,4 @@
-﻿@page "/logistikes-ipiresies"
+@page "/logistikes-ipiresies"
 
 <MudBox Class="home-stack info-stack">
 
@@ -12,12 +12,27 @@
 
     <MudContainer Class="info-paragraph-container">
         <MudText Typo="Typo.body1" Class="service-paragraph">
-            @L["Info.1.Paragraph1"]
+            <TypewriterOnVisible Text="@L["Info.1.Paragraph1"].Value"
+                                 OnCompleted="HandleFirstParagraphCompleted" />
         </MudText>
-        <MudText Typo="Typo.body1" Class="service-paragraph">
-            @L["Info.1.Paragraph2"]
-        </MudText>
+        @if (ShowSecondParagraph)
+        {
+            <MudText Typo="Typo.body1" Class="service-paragraph">
+                <TypewriterOnVisible Text="@L["Info.1.Paragraph2"].Value" />
+            </MudText>
+        }
     </MudContainer>
 </MudBox>
+
+@code {
+    private bool ShowSecondParagraph { get; set; }
+
+    private Task HandleFirstParagraphCompleted()
+    {
+        ShowSecondParagraph = true;
+        return InvokeAsync(StateHasChanged);
+    }
+}
+
 
 
