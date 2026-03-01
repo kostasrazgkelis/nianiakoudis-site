@@ -25,13 +25,22 @@
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
     <script src="js/site.js"></script>
     <script>
+        var loaderStartTime = performance.now();
+        var minLoaderVisibleMs = 1000;
+
         Blazor.start().then(function () {
             var loader = document.querySelector("#app .spinner-loader");
             if (!loader) return;
-            loader.classList.add("is-hidden");
+
+            var elapsed = performance.now() - loaderStartTime;
+            var remaining = Math.max(0, minLoaderVisibleMs - elapsed);
+
             window.setTimeout(function () {
-                loader.remove();
-            }, 260);
+                loader.classList.add("is-hidden");
+                window.setTimeout(function () {
+                    loader.remove();
+                }, 260);
+            }, remaining);
         });
     </script>
 </body>
