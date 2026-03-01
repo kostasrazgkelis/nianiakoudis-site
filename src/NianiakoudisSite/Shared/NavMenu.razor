@@ -27,17 +27,19 @@
            Overlay="true"
            OverlayAutoClose="true"
            @bind-Open="isMobileMenuOpen">
-    <MudNavLink Href="" OnClick="CloseMobileMenu">@L["Nav.Home"]</MudNavLink>
-    <MudNavLink Href="about" OnClick="CloseMobileMenu">@L["Nav.About"]</MudNavLink>
-    <MudText Typo="Typo.subtitle2" Class="nav-menu-section">
+    <MudNavLink Href="" Class="nav-menu-item" OnClick="CloseMobileMenu">@L["Nav.Home"]</MudNavLink>
+    <MudNavLink Href="about" Class="nav-menu-item" OnClick="CloseMobileMenu">@L["Nav.About"]</MudNavLink>
+    <MudNavLink Class="nav-menu-item nav-menu-section nav-menu-section-link" aria-disabled="true">
         @L["Nav.Services"]
-    </MudText>
-    <MudNavLink Href="logistikes-ipiresies" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service1"]</MudNavLink>
-    <MudNavLink Href="forologikes-ipiresies" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service2"]</MudNavLink>
-    <MudNavLink Href="simvouleftikes-ipiresies" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service3"]</MudNavLink>
-    <MudNavLink Href="forologikoi-elegxoi" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service4"]</MudNavLink>
-    <MudNavLink Href="misthodosia" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service5"]</MudNavLink>
-    <MudNavLink Href="contact" OnClick="CloseMobileMenu">@L["Nav.Contact"]</MudNavLink>
+        <MudBox Class="nav-menu-subitems">
+            <MudNavLink Href="logistikes-ipiresies" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service1"]</MudNavLink>
+            <MudNavLink Href="forologikes-ipiresies" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service2"]</MudNavLink>
+            <MudNavLink Href="simvouleftikes-ipiresies" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service3"]</MudNavLink>
+            <MudNavLink Href="forologikoi-elegxoi" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service4"]</MudNavLink>
+            <MudNavLink Href="misthodosia" Class="nav-menu-subitem" OnClick="CloseMobileMenu">@L["Nav.Service5"]</MudNavLink>
+        </MudBox>
+    </MudNavLink>
+    <MudNavLink Href="contact" Class="nav-menu-item" OnClick="CloseMobileMenu">@L["Nav.Contact"]</MudNavLink>
 </MudDrawer>
 
 @code {
