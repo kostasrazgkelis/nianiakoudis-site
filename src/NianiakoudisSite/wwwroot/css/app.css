@@ -4,6 +4,7 @@
     --color-third: #F5F749;
     --color-accent: #e76f51;
     --color-soft: #ffffff;
+    --color-footer: #2a2ae4b3;
     
     --color-text: #1d1d1f;
     --color-muted: #596275;
@@ -228,7 +229,9 @@ body::-webkit-scrollbar {
 
 .about-flag-chip {
     display: inline-flex;
+    flex: 0 0 9.25rem;
     align-items: center;
+    justify-content: center;
     gap: 0.45rem;
     padding: 0.4rem 0.85rem;
     border-radius: 999px;
@@ -236,6 +239,7 @@ body::-webkit-scrollbar {
     background: rgba(255, 255, 255, 0.9);
     color: var(--color-primary);
     font-weight: 700;
+    text-align: center;
     line-height: 1.2;
     white-space: nowrap;
     opacity: 0;
@@ -1175,14 +1179,14 @@ body::-webkit-scrollbar {
 }
 
 .brand-logo {
-    width: clamp(2.6rem, 1.7vw + 2rem, 3.4rem);
-    height: clamp(2.6rem, 1.7vw + 2rem, 3.4rem);
+    width: clamp(3.12rem, 2.04vw + 2.4rem, 4.08rem);
+    height: clamp(3.12rem, 2.04vw + 2.4rem, 4.08rem);
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 0 0 4px lab(60.74% 44.31 38.44 / 0.216);
     display: block;
     flex-shrink: 0;
-    margin-right: 0.65rem;
+    margin-right: 0.78rem;
 }
 
 .nav-links .mud-nav-link {
@@ -1758,7 +1762,7 @@ body::-webkit-scrollbar {
     padding: 1.5rem 3rem;
     text-align: center;
     color: var(--color-soft);
-    background: var(--color-accent);
+    background: var(--color-footer);
     position: relative;
     border-top: none;
     overflow: visible;
@@ -1783,26 +1787,6 @@ body::-webkit-scrollbar {
     z-index: 1;
 }
 
-.footer-scroll-button {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 999px;
-    padding: 0.65rem 1.4rem;
-    text-transform: none;
-    font-weight: 700;
-    background: var(--color-primary);
-    color: white;
-    box-shadow: none;
-    z-index: 2;
-}
-
-.footer-scroll-button:hover,
-.footer-scroll-button:focus-visible {
-    background: #1a6b7a;
-}
-
 .footer-contact {
     display: flex;
     flex-wrap: wrap;
@@ -1811,8 +1795,14 @@ body::-webkit-scrollbar {
     font-size: 0.95rem;
 }
 
-.footer-contact a {
-    color: var(--color-secondary);
+.footer-contact .mud-link,
+.footer-contact .mud-link:link,
+.footer-contact .mud-link:visited,
+.footer-contact .mud-link:hover,
+.footer-contact .mud-link:focus-visible,
+.footer-contact .mud-link:active {
+    color: var(--color-accent) !important;
+    text-decoration-color: currentColor;
 }
 
 .footer-grid {
@@ -1910,9 +1900,9 @@ body::-webkit-scrollbar {
     }
 
     .app-bar .brand-logo {
-        width: clamp(2.3rem, 2vw + 1.7rem, 2.9rem);
-        height: clamp(2.3rem, 2vw + 1.7rem, 2.9rem);
-        margin-right: 0.45rem;
+        width: clamp(2.76rem, 2.4vw + 2.04rem, 3.48rem);
+        height: clamp(2.76rem, 2.4vw + 2.04rem, 3.48rem);
+        margin-right: 0.54rem;
     }
 
     .nav-links-desktop {
