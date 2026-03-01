@@ -22,18 +22,13 @@
     </MudMainContent>
 
     <MudPaper Class="app-footer" Square="true" Elevation="0">
-        <MudButton Class="footer-scroll-button"
-                   Variant="Variant.Text"
-                   OnClick="ScrollToTop">
-            @L["Footer.ScrollTop"]
-        </MudButton>
         <MudBox Class="footer-grid">
             <MudBox Class="footer-column home-flow-extra-card">
                 <MudText Typo="Typo.subtitle1" Class="footer-title home-flow-extra-card-title">Τι προσφέρουμε</MudText>
                 <ul class="footer-list home-flow-extra-card-body">
                     <li>Εμπιστοσύνη</li>
                     <li>Συνεργασία</li>
-                    <li>Συμβουλές</li>
+                    <li>Λύσεις</li>
                     <li>Αποτέλεσμα</li>
                     <li>Αξιοπιστία</li>
                     <li>Κέρδος</li>
@@ -54,11 +49,6 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JSRuntime.InvokeVoidAsync("revealOnScroll.init", ".elevator-reveal");
-    }
-
-    private async Task ScrollToTop()
-    {
-        await JSRuntime.InvokeVoidAsync("eval", "window.scrollTo({ top: 0, behavior: 'smooth' })");
     }
 }
 
