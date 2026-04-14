@@ -1,3 +1,5 @@
+@using Blazor.Analytics.Components
+
 <MudThemeProvider Theme="@theme" />
 <MudPopoverProvider />
 <MudDialogProvider />
@@ -16,10 +18,11 @@
         </LayoutView>
     </NotFound>
 </Router>
+<NavigationTracker />
 
 @code {
     private readonly MudTheme theme = new MudTheme()
-    {        
+    {
         Typography = new Typography
         {
             Default = new Default
